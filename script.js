@@ -108,8 +108,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if ('scrollRestoration' in history) {
             history.scrollRestoration = 'manual';
         }
-        if (window.location.hash) {
+const hash = window.location.hash;
+        if (hash) {
             history.replaceState("", document.title, window.location.pathname + window.location.search);
+            setTimeout(() => {
+                if (hash === '#privacy' && window.openPrivacyModal) {
+                    window.openPrivacyModal();
+                } else if (hash === '#terms' && window.openTermsModal) {
+                    window.openTermsModal();
+                }
+            }, 300);
         }
         setTimeout(() => window.scrollTo(0, 0), 0);
     } catch (error) {
@@ -1031,21 +1039,6 @@ const Modals = {
     activeModal: null,
     
     init() {
-        // Login/Signup modals
-        window.openLoginModal = () => this.open('login-modal');
-        window.closeLoginModal = () => this.close('login-modal');
-        window.closeSignupModal = () => this.close('signup-modal');
-
-        window.switchToSignup = () => {
-            this.close('login-modal');
-            this.open('signup-modal');
-        };
-
-        window.switchToLogin = () => {
-            this.close('signup-modal');
-            this.open('login-modal');
-        };
-
         // Generic modals
         const modalIds = [
             'privacy-modal', 

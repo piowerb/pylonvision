@@ -11,6 +11,9 @@
     <meta name="theme-color" content="#050507">
     <link rel="canonical" href="https://pylonvision.com/">
 
+    <!-- Gravatar Authorization -->
+    <link rel="me" href="https://gravatar.com/pylonvision">
+
     <meta property="og:title" content="PylonVision | The Visual Learning & Automation Empire">
     <meta property="og:description" content="Scale your business with custom automation software. Work less, earn more.">
     <meta property="og:type" content="website">
@@ -60,11 +63,11 @@
                 </div>
 
                 <div class="nav-actions">
-                    <a href="javascript:void(0)" onclick="window.openLoginModal()" class="btn btn-glass login-btn-desktop">Login</a>
-                    <a href="#connect" class="btn btn-primary btn-nav-hide" style="padding: 10px 24px; font-size: 0.85rem;">Let's Start</a>
+                <a href="https://pylonvision.systeme.io/school/course/all-access" class="btn btn-glass login-btn-desktop">Login</a>                    
+                <a href="#connect" class="btn btn-primary btn-nav-hide" style="padding: 10px 24px; font-size: 0.85rem;">Let's Start</a>
 
                     <div class="mobile-header-actions">
-                        <a href="javascript:void(0)" onclick="window.openLoginModal()" class="mobile-user-icon" style="color: #fff; font-size: 1.2rem; margin-right: 0; text-decoration: none;">
+                        <a href="https://pylonvision.systeme.io/school/course/all-access" class="mobile-user-icon" style="color: #fff; font-size: 1.2rem; margin-right: 0; text-decoration: none;">
                             <i class="fa-regular fa-user"></i>
                         </a>
 
@@ -88,7 +91,7 @@
                     Community
                 </a>
                 
-                <a href="javascript:void(0)" onclick="window.openLoginModal()" class="mobile-login-item">
+                <a href="https://pylonvision.systeme.io/school/course/all-access" class="mobile-login-item">
                     Login
                 </a>
             </div>
@@ -677,11 +680,10 @@
                 <a href="https://www.pinterest.com/pylonvision/" target="_blank" rel="noopener noreferrer" class="social-card sc-pi">
                     <i class="fa-brands fa-pinterest-p"></i><span>Pinterest</span>
                 </a>
-                <div class="social-card sc-others soon-wrapper">
-                    <div class="soon-sticker">COMING SOON</div>
-                    <i class="fa-solid fa-plus"></i>
-                    <span>Other</span>
-                </div>
+                <a href="https://gravatar.com/pylonvision" target="_blank" rel="me noopener noreferrer" class="social-card sc-others" style="--hover-bg: #208EBE;">
+                    <i style="width: 48px; height: 48px; display: inline-block; background-color: currentColor; -webkit-mask: url('https://cdn.simpleicons.org/gravatar') no-repeat center / contain; mask: url('https://cdn.simpleicons.org/gravatar') no-repeat center / contain;"></i>
+                    <span>Gravatar</span>
+                </a>
             </div>
         </div>
     </section>
@@ -788,9 +790,7 @@
                     margin: 0; 
                     flex-wrap: wrap;">
                     <li><a href="javascript:void(0)" onclick="window.openStoryModal()" style="cursor: pointer; text-decoration: none; font-weight: 500; font-size: 1rem; color: #fff; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">About Us</a></li>
-                    
-                    <li><a href="javascript:void(0)" onclick="window.openRoadmapModal()" style="cursor: pointer; text-decoration: none; font-weight: 500; font-size: 1rem; color: #fff; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Roadmap</a></li>
-                    
+                                        
                     <li><a href="javascript:void(0)" onclick="window.openAboutModal()" style="cursor: pointer; text-decoration: none; font-weight: 500; font-size: 1rem; color: #fff; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Careers</a></li>
                     
                     <li><a href="#connect" style="text-decoration: none; font-weight: 500; font-size: 1rem; color: #fff; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Contact</a></li>
@@ -800,11 +800,6 @@
             <div class="copyright" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px; margin-top: 0;">
                 <p class="footer-bottom-row" style="margin-bottom: 10px;">
                     © <span id="current-year"></span> Copyright <strong>PylonVision</strong> | All rights reserved
-                    | <strong>Verified</strong>
-                    <span class="verified-badge-wrapper" title="Verified Entity">
-                        <i class="fa-solid fa-certificate badge-bg"></i>
-                        <i class="fa-solid fa-check badge-icon"></i>
-                    </span>
                 </p>
 
                 <p class="footer-eu-row" style="margin-top: 0; margin-bottom: 10px; opacity: 0.7;">
@@ -813,11 +808,9 @@
                 </p>
 
                 <div class="footer-legal-links" style="margin-top: 0; margin-bottom: 0;">
-                    <a href="javascript:void(0)" onclick="window.openPrivacyModal()" style="cursor: pointer;">Privacy
-                        Policy</a>
+                    <a href="#privacy" onclick="window.openPrivacyModal(); return false;" style="cursor: pointer;">Privacy Policy</a>
                     <span class="footer-legal-separator">|</span>
-                    <a href="javascript:void(0)" onclick="window.openTermsModal()" style="cursor: pointer;">Terms of
-                        Service</a>
+                    <a href="#terms" onclick="window.openTermsModal(); return false;" style="cursor: pointer;">Terms of Service</a>
                 </div>
             </div>
         </div>
@@ -843,75 +836,6 @@
                 privacy policy.</p>
             <div class="cookie-actions">
                 <button id="accept-cookies" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.85rem; width:100%;">Accept All</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Login Modal -->
-    <div id="login-modal" class="modal-overlay">
-        <div class="modal-content" style="max-width: 400px; text-align: center; border: 1px solid rgba(124, 58, 237, 0.5);">
-            <div class="modal-header" style="justify-content: flex-end; border: none; padding-bottom: 0;">
-                <button class="close-modal" onclick="window.closeLoginModal()" style="font-size: 1.5rem;">&times;</button>
-            </div>
-
-            <div class="modal-body" style="padding: 0 40px 40px 40px;">
-                <div style="margin-bottom: 20px;">
-                    <i class="fa-solid fa-circle-user" style="font-size: 3rem; color: #7C3AED;"></i>
-                </div>
-                <h2 style="color: #fff; margin-bottom: 10px;">Welcome Back</h2>
-                <p style="color: #9CA3AF; font-size: 0.9rem; margin-bottom: 30px;">Access your automation dashboard.</p>
-
-                <form onsubmit="event.preventDefault(); alert('Login system connecting...');">
-                    <div style="margin-bottom: 15px; text-align: left;">
-                        <input type="email" placeholder="Email Address" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; outline: none;">
-                    </div>
-                    <div style="margin-bottom: 25px; text-align: left;">
-                        <input type="password" placeholder="Password" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; outline: none;">
-                    </div>
-
-                    <button class="btn btn-primary" style="width: 100%; justify-content: center;">Sign In</button>
-                </form>
-
-                <div style="margin-top: 20px; font-size: 0.8rem; color: #9CA3AF;">
-                    Don't have an account?
-                    <a href="javascript:void(0)" onclick="window.switchToSignup()" style="color: #8B5CF6; font-weight: 700;">Join PylonVision</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Signup Modal -->
-    <div id="signup-modal" class="modal-overlay">
-        <div class="modal-content" style="max-width: 400px; text-align: center; border: 1px solid rgba(16, 185, 129, 0.5);">
-            <div class="modal-header" style="justify-content: flex-end; border: none; padding-bottom: 0;">
-                <button class="close-modal" onclick="window.closeSignupModal()" style="font-size: 1.5rem;">&times;</button>
-            </div>
-
-            <div class="modal-body" style="padding: 0 40px 40px 40px;">
-                <div style="margin-bottom: 20px;">
-                    <i class="fa-solid fa-user-plus" style="font-size: 3rem; color: #10B981;"></i>
-                </div>
-                <h2 style="color: #fff; margin-bottom: 10px;">Create Account</h2>
-                <p style="color: #9CA3AF; font-size: 0.9rem; margin-bottom: 30px;">Start your 7-day free trial.</p>
-
-                <form onsubmit="event.preventDefault(); alert('Registration system connecting...');">
-                    <div style="margin-bottom: 15px; text-align: left;">
-                        <input type="text" placeholder="Full Name" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; outline: none;">
-                    </div>
-                    <div style="margin-bottom: 15px; text-align: left;">
-                        <input type="email" placeholder="Email Address" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; outline: none;">
-                    </div>
-                    <div style="margin-bottom: 25px; text-align: left;">
-                        <input type="password" placeholder="Create Password" style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; outline: none;">
-                    </div>
-
-                    <button class="btn btn-primary" style="width: 100%; justify-content: center; background: #10B981; box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);">Register Now</button>
-                </form>
-
-                <div style="margin-top: 20px; font-size: 0.8rem; color: #9CA3AF;">
-                    Already a member?
-                    <a href="javascript:void(0)" onclick="window.switchToLogin()" style="color: #10B981; font-weight: 700;">Sign In</a>
-                </div>
             </div>
         </div>
     </div>
@@ -1208,7 +1132,7 @@
                 <h3>16. Contact Us</h3>
                 <p>If you have any questions about this Privacy Policy, please contact us:</p>
                 <ul>
-                    <li>By email: <strong class="protected-email">admin [at] pylonvision.com</strong></li>
+                    <li>By email: <strong class="protected-email">contact [at] pylonvision.com</strong></li>
                 </ul>
             </div>
             <div class="modal-footer">
@@ -1351,7 +1275,7 @@
                 <h3>15. DMCA Copyright Policy</h3>
                 <p>We respect the intellectual property rights of others. If you believe any materials accessible on our
                     Services infringe your copyright, you may request removal by contacting our agent at: <strong
-                        class="protected-email">admin [at] pylonvision.com</strong>.</p>
+                        class="protected-email">contact [at] pylonvision.com</strong>.</p>
 
                 <h3>16. Privacy Policy</h3>
                 <p>Your privacy is important to us. Our Privacy Policy is incorporated into these Terms by reference. By
@@ -1399,7 +1323,7 @@
                     collect only minimum data necessary (Email, Payment Info) to fulfill the contract.</p>
                 <p><strong>Your Rights:</strong> You have the Right to Access, Rectification, Erasure ("Right to be
                     Forgotten"), and Data Portability. To exercise these rights, contact: <strong
-                        class="protected-email">admin [at] pylonvision.com</strong>.</p>
+                        class="protected-email">contact [at] pylonvision.com</strong>.</p>
                 <p><strong>International Transfers:</strong> Data may be processed in Poland (EU). We ensure appropriate
                     safeguards for any transfers outside the EEA.</p>
 
@@ -1419,14 +1343,14 @@
 
                 <h3>Dispute Resolution and Arbitration</h3>
                 <p><strong>Informal Resolution:</strong> Before filing a claim, you agree to try to resolve the dispute
-                    informally by contacting <strong class="protected-email">admin [at] pylonvision.com</strong>.</p>
+                    informally by contacting <strong class="protected-email">contact [at] pylonvision.com</strong>.</p>
                 <p><strong>Arbitration:</strong> Any unresolved disputes shall be resolved through binding arbitration
                     in Poland, or small claims court if eligible. You waive the right to a class action lawsuit.</p>
 
                 <h3>28. Contact Information</h3>
                 <p>If you have any questions about these Terms, please contact us at:</p>
                 <ul>
-                    <li>Email: <strong class="protected-email">admin [at] pylonvision.com</strong></li>
+                    <li>Email: <strong class="protected-email">contact [at] pylonvision.com</strong></li>
                     <li>Entity: <strong>Cybernia Sp. z o.o.</strong></li>
                 </ul>
             </div>
@@ -1509,54 +1433,6 @@
                 <button class="btn btn-primary" onclick="window.closeStoryModal()" style="width: 100%; max-width: 300px;">
                     Continue
                 </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Roadmap Modal -->
-    <div id="roadmap-modal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Development Roadmap</h2>
-                <button class="close-modal" onclick="window.closeRoadmapModal()" aria-label="Close">&times;</button>
-            </div>
-            <div class="modal-body">
-                <p style="text-align: center; color: #9CA3AF; margin-bottom: 30px;">
-                    Our mission is continuous evolution. Here is what our <span style="color: #10B981;">Team</span> is
-                    building with your support.
-                </p>
-                <div class="roadmap-container" style="position: relative; padding-left: 20px; border-left: 2px solid rgba(255,255,255,0.1);">
-                    <div style="margin-bottom: 30px; position: relative;">
-                        <div style="position: absolute; left: -26px; top: 0; width: 10px; height: 10px; background: #10B981; border-radius: 50%; box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);"></div>
-                        <h4 style="color: #fff; margin: 0 0 5px 0;">Phase 1: Foundation (Deployed)</h4>
-                        <ul style="color: #9CA3AF; font-size: 0.9rem; padding-left: 20px; margin: 0;">
-                            <li>Launch of PylonVision Platform</li>
-                            <li>Release of "E-Commerce Mastery" Core</li>
-                            <li>Shopify & WooCommerce API Integrations</li>
-                        </ul>
-                    </div>
-                    <div style="margin-bottom: 30px; position: relative;">
-                        <div style="position: absolute; left: -26px; top: 0; width: 10px; height: 10px; background: #7C3AED; border-radius: 50%; box-shadow: 0 0 10px rgba(124, 58, 237, 0.6); animation: pulse 2s infinite;"></div>
-                        <h4 style="color: #fff; margin: 0 0 5px 0;">Phase 2: Expansion (In Progress) <span style="font-size: 0.7rem; background: #7C3AED; padding: 2px 6px; border-radius: 4px; margin-left: 10px;">NOW</span></h4>
-                        <ul style="color: #9CA3AF; font-size: 0.9rem; padding-left: 20px; margin: 0;">
-                            <li>Development of "Agency Architect" System</li>
-                            <li>Advanced Data Scraping Tools (Python)</li>
-                            <li>Discord Community Integration</li>
-                        </ul>
-                    </div>
-                    <div style="margin-bottom: 30px; position: relative; opacity: 0.6;">
-                        <div style="position: absolute; left: -26px; top: 0; width: 10px; height: 10px; background: #333; border-radius: 50%; border: 1px solid #666;"></div>
-                        <h4 style="color: #fff; margin: 0 0 5px 0;">Phase 3: Autonomy (Q3 2026)</h4>
-                        <ul style="color: #9CA3AF; font-size: 0.9rem; padding-left: 20px; margin: 0;">
-                            <li>Release of AI Autonomous Agents</li>
-                            <li>"Faceless Influencer" Video Generation AI</li>
-                            <li>Private PylonVision API for Developers</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" onclick="window.closeRoadmapModal()">Understood</button>
             </div>
         </div>
     </div>
