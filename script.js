@@ -594,7 +594,7 @@ const CourseLibrary = {
                         </div>
                         
                         <div style="width: 100%; text-align: center;">
-                            <a href="${course.url}" class="btn-card" style="display: block; width: 100%; text-align: center; padding: 12px 0;">Get Access</a>
+                            <a href="${course.url}" target="_blank" class="btn-card" style="display: block; width: 100%; text-align: center; padding: 12px 0;">Get Access</a>
                             
                             <span style="font-size: 0.65rem; color: #A78BFA; font-weight:600; display: block; margin-top: 8px;">
                                 <i class="fa-solid fa-bolt"></i> Instant Access
@@ -1639,6 +1639,19 @@ if ('performance' in window) {
 
 // ========== END OF SCRIPT ==========
 console.log('✅ Pylon Vision Enhanced Script Loaded Successfully');
+
+document.addEventListener('DOMContentLoaded', () => {
+    const allLinks = document.querySelectorAll('a');
+    
+    allLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        
+        if (href && !href.startsWith('#') && !href.startsWith('javascript')) {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+        }
+    });
+});
 
 // Export for debugging
 window.PylonVision = {
