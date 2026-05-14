@@ -84,7 +84,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: calc(var(--banner-height) + var(--header-height));
+    scroll-padding-top: var(--header-height);
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

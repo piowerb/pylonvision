@@ -148,7 +148,7 @@ const hash = window.location.hash;
     Constellation.init();
     Ticker.init();
     Countdown.init();
-    SubBanner.init();
+   //  SubBanner.init();
     TouchOptimizations.init();
     PerformanceMonitor.init();
 });
@@ -528,7 +528,7 @@ const CourseLibrary = {
         this.render(filtered);
     },
 
-    render(data) {
+render(data) {
         if (!this.grid) return;
         
         // Clear existing content
@@ -548,27 +548,35 @@ const CourseLibrary = {
 
         const currentDate = new Date().toLocaleString('en-US', { month: 'long', year: 'numeric' });
 
-        data.forEach((course, index) => {
+data.forEach((course, index) => {
             const stats = this.stats[course.id] || { rating: 4.5, reviews: 5, oldPrice: 100, badgeType: 'NONE' };
-            const currentVal = parseInt(course.price.replace('$', ''));
-            const discountPercent = Math.round(((stats.oldPrice - currentVal) / stats.oldPrice) * 100);
 
-            const card = document.createElement('div');
+            // 1. ZMIANA: Tworzymy znacznik <a> zamiast <div>
+            const card = document.createElement('a');
+            // 2. Dodajemy cel linku (scrolluje do sekcji z cennikiem)
+            card.href = "#subscription-hero"; 
             card.className = 'course-card';
-            card.style.animation = `fadeIn 0.5s ease forwards ${index * 0.1}s`;
             card.style.opacity = '0';
+            // Zabezpieczenie przed dziwnym formatowaniem linków przez przeglądarkę
+            card.style.textDecoration = 'none'; 
+            card.style.color = 'inherit';
 
             card.innerHTML = `
                 <div class="card-image-wrapper">
-                    ${this.getBadgeHTML(stats.badgeType)}
                     <img src="${course.image}" alt="${course.title}" class="card-image" loading="lazy">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title" style="margin-bottom:5px; font-size: 1.25rem;">${course.title}</h3>
                     
                     <div style="font-size: 0.8rem; color: #FBBF24; margin-bottom: 12px; display: flex; align-items: center; gap: 5px;">
-                        <div style="display:flex; gap:1px;">${this.getStarsHTML(stats.rating)}</div>
-                        <span style="color: var(--text-muted); font-weight: 500; margin-left: 4px;">${stats.rating} (${stats.reviews} Ratings)</span>
+                        <div style="display:flex; gap:2px;">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <span style="color: var(--text-muted); font-weight: 600; margin-left: 4px;">5.0 (${stats.reviews} Ratings)</span>
                     </div>
 
                     <div style="font-size: 0.75rem; color: #10B981; margin-bottom: 10px; font-weight:700; display:flex; align-items:center; gap:6px;">
@@ -577,30 +585,8 @@ const CourseLibrary = {
 
                     <p class="card-desc">${course.desc}</p>
                     
-                    <div class="card-footer" style="display: flex; flex-direction: column; gap: 15px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05);">
-                        
-                        <div class="price-box" style="display: flex; justify-content: space-between; align-items: flex-end; width: 100%;">
-                            <div>
-                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 2px;">
-                                    <span class="old-price" style="text-decoration: line-through; color: #9CA3AF; opacity: 0.8;">$${stats.oldPrice}</span>
-                                    <span style="background: rgba(16, 185, 129, 0.1); color: #10B981; border: 1px solid rgba(16, 185, 129, 0.25); font-size: 0.75rem; font-weight: 700; padding: 1px 6px; border-radius: 4px;">-${discountPercent}%</span>
-                                </div>
-                                <span class="card-price" style="font-size: 1.5rem; font-weight: 700; color: #fff;">${course.price}</span>
-                            </div>
-                            
-                            <div style="font-size: 0.65rem; color: #9CA3AF; margin-bottom: 6px; display:flex; align-items:center; gap:4px;">
-                                <i class="fa-solid fa-shield-halved"></i> 30-Day Guarantee
-                            </div>
-                        </div>
-                        
-                        <div style="width: 100%; text-align: center;">
-                            <a href="${course.url}" target="_blank" class="btn-card" style="display: block; width: 100%; text-align: center; padding: 12px 0;">Get Access</a>
-                            
-                            <span style="font-size: 0.65rem; color: #A78BFA; font-weight:600; display: block; margin-top: 8px;">
-                                <i class="fa-solid fa-bolt"></i> Instant Access
-                            </span>
-                        </div>
-
+                    <div class="card-footer" style="padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); width: 100%;">
+                        <div class="btn-card" style="display: block; width: 100%; text-align: center; padding: 12px 0;">Get Access</div>
                     </div>
                 </div>
             `;
@@ -1113,18 +1099,18 @@ const PromoText = {
         const month = new Date().getMonth();
 
         const promos = [
-            `🔥 NEW YEAR PROMO: 30% OFF – Ends at 11:59 Tonight! 💸`,
-            `🚀 FEBRUARY BOOST: 30%+ OFF – Ends at 11:59 Tonight! 💸`,
-            `💎 MARCH GROWTH: 30%+ OFF – Ends at 11:59 Tonight! 💸`,
-            `⚡ SPRING SALE: 30%+ OFF – Ends at 11:59 Tonight! 💸`,
-            `🛠️ MAY UPGRADE: 30%+ OFF – Ends at 11:59 Tonight! 💸`,
-            `☀️ SUMMER DEALS: 30%+ OFF – Ends at 11:59 Tonight! 💸`,
-            `🚀 JULY SPECIAL: 30%+ OFF – Ends at 11:59 Tonight! 💸`,
-            `🔥 AUGUST FINALE: 30%+ OFF – Ends at 11:59 Tonight! 💸`,
-            `💼 SEPTEMBER START: 30%+ OFF – Ends at 11:59 Tonight! 💸`,
-            `🎃 HALLOWEEN PROMO: 30%+ OFF – Ends at 11:59 Tonight! 💸`,
-            `⚫ BLACK FRIDAY DEALS: 30%+ OFF – Ends at 11:59 Tonight! 💸`,
-            `🎄 XMAS PROTOCOL: 30%+ OFF – Ends at 11:59 Tonight! 💸`
+            `🔥 NEW YEAR PROMO: 30% OFF – Offer Ends at 11:59 PM Tonight`,
+            `🚀 FEBRUARY BOOST: 30% OFF – Offer Ends at 11:59 PM Tonight`,
+            `💎 MARCH GROWTH: 30% OFF – Offer Ends at 11:59 PM Tonight`,
+            `⚡ SPRING SALE: 30% OFF – Offer Ends at 11:59 PM Tonight`,
+            `🛠️ MAY UPGRADE: 30% OFF – Offer Ends at 11:59 PM Tonight`,
+            `☀️ SUMMER DEALS: 30% OFF – Offer Ends at 11:59 PM Tonight`,
+            `🚀 JULY SPECIAL: 30% OFF – Offer Ends at 11:59 PM Tonight`,
+            `🔥 AUGUST FINALE: 30% OFF – Offer Ends at 11:59 PM Tonight`,
+            `💼 SEPTEMBER START: 30% OFF – Offer Ends at 11:59 PM Tonight`,
+            `🎃 HALLOWEEN PROMO: 30% OFF – Offer Ends at 11:59 PM Tonight`,
+            `⚫ BLACK FRIDAY DEALS: 30% OFF – Offer Ends at 11:59 PM Tonight`,
+            `🎄 XMAS PROTOCOL: 30% OFF – Offer Ends at 11:59 PM Tonight`
         ];
 
         this.promoEl.textContent = promos[month];
@@ -1639,19 +1625,6 @@ if ('performance' in window) {
 
 // ========== END OF SCRIPT ==========
 console.log('✅ Pylon Vision Enhanced Script Loaded Successfully');
-
-document.addEventListener('DOMContentLoaded', () => {
-    const allLinks = document.querySelectorAll('a');
-    
-    allLinks.forEach(link => {
-        const href = link.getAttribute('href');
-        
-        if (href && !href.startsWith('#') && !href.startsWith('javascript')) {
-            link.setAttribute('target', '_blank');
-            link.setAttribute('rel', 'noopener noreferrer');
-        }
-    });
-});
 
 // Export for debugging
 window.PylonVision = {

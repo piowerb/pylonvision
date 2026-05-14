@@ -37,15 +37,16 @@
 <body>
     <div id="scroll-progress" style="position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: #8B5CF6; z-index: 9999; transition: width 0.1s ease;"></div>
 
-    <div id="main-navigation-wrapper">
-    <div class="urgency-banner" role="button" aria-label="Limited time offer" onclick="window.open('TUTAJ_WKLEJ_SWOJ_LINK_DO_STRIPE', '_blank');">
-            <span class="banner-link">
-                <strong id="promo-text">🔥 LOADING EXCLUSIVE OFFER...</strong>
-            </span>
-            <span class="timer-box" id="countdown">00:00:00</span>
-        </div>
+<div id="main-navigation-wrapper">
 
         <div id="mega-overlay" class="mega-blur-overlay"></div>
+
+        <a href="https://pylonvision.systeme.io/school/course/all-access" class="urgency-banner" style="text-decoration: none; cursor: pointer;">
+            <span class="banner-link">
+                <strong id="promo-text">Checking active promos...</strong>
+            </span>
+            <div class="timer-box" id="countdown">23:59:59</div>
+        </a>
 
         <nav class="navbar">
             <div class="container nav-inner">
@@ -63,8 +64,11 @@
                 </div>
 
                 <div class="nav-actions">
-                <a href="https://pylonvision.systeme.io/school/course/all-access" class="btn btn-glass login-btn-desktop">Login</a>                    
-                <a href="#connect" class="btn btn-primary btn-nav-hide" style="padding: 10px 24px; font-size: 0.85rem;">Let's Start</a>
+                    <a href="https://pylonvision.systeme.io/school/course/all-access" class="btn btn-glass login-btn-desktop" style="padding: 8px 22px; gap: 8px;">
+                        Login <i class="fa-regular fa-user"></i>
+                    </a>                    
+                    
+                    <a href="#subscription-hero" class="btn btn-primary btn-nav-hide" style="padding: 10px 24px; font-size: 0.85rem;">Join Now</a>
 
                     <div class="mobile-header-actions">
                         <a href="https://pylonvision.systeme.io/school/course/all-access" class="mobile-user-icon" style="color: #fff; font-size: 1.2rem; margin-right: 0; text-decoration: none;">
@@ -143,7 +147,7 @@
                     Calculate Your ROI <i class="fa-solid fa-calculator"></i>
                 </a>
                 <a href="#library" class="btn btn-glass">
-                    View Courses
+                    View All Programs
                 </a>
             </div>
 
@@ -384,76 +388,89 @@
                 </p>
             </div>
 
-            <div id="subscription-hero" class="subscription-hero bento-card reveal" style="margin: 0 auto 50px; padding: 30px 40px; background: rgba(5, 5, 7, 0.8); border-radius: 20px; border: 1px solid rgba(124, 58, 237, 0.25); position: relative; max-width: 1050px; overflow: hidden; --mouse-x: 50%; --mouse-y: 50%; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); transform-style: preserve-3d; will-change: transform;">
+    <div id="subscription-hero" style="margin: 0 auto 50px; padding: 40px; background: #050507; border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.05); max-width: 1050px; display: flex; align-items: center; justify-content: space-between; gap: 50px; flex-wrap: wrap;">
 
-                <div style="position: absolute; inset: 0; background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(124, 58, 237, 0.06), transparent 50%); pointer-events: none; z-index: 1;"></div>
-
-                <div style="display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap; position: relative; z-index: 2;">
-
-                    <div style="flex: 1; min-width: 320px; text-align: left;">
-                        <div style="display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap;">
-                            <span style="background: rgba(16, 185, 129, 0.1); color: #10B981; padding: 4px 12px; border-radius: 50px; font-size: 0.65rem; font-weight: 800; border: 1px solid rgba(16, 185, 129, 0.3);">
-                                PROMO -30% APPLIED
-                            </span>
-                            <span style="background: rgba(255, 255, 255, 0.05); color: #fff; padding: 4px 12px; border-radius: 50px; font-size: 0.65rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1);">
-                                GET FOUNDER STATUS 👑
-                            </span>
-                        </div>
-
-                        <h2 style="font-size: clamp(1.5rem, 3.5vw, 2rem); margin-bottom: 10px; letter-spacing: -0.03em; color: #fff; line-height: 1.2;">
-                            Everything you need to <span class="text-gradient">start and scale</span> today.
-                        </h2>
-
-                        <p style="color: #9CA3AF; font-size: 0.9rem; line-height: 1.5; max-width: 500px; margin-bottom: 12px;">
-                            Use the same elite systems & methods proven to generate <strong style="color: #fff;">6-7
-                                figures</strong> online. The fastest way to launch your own profitable business.
-                        </p>
-
-                        <p style="color: #fff; font-size: 0.85rem; font-weight: 500; opacity: 0.95; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
-                            <i class="fa-solid fa-bolt" style="color: #FFD700;"></i>
-                            <span>Gain instant access to <span style="text-decoration: underline; text-underline-offset: 3px;">100+ AI automation
-                                    scripts</span> and every protocol.</span>
-                        </p>
-
-                        <div style="color: #8B5CF6; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.3px;">
-                            Secure the Founder's Rate before it ends!
-                        </div>
+                <div style="flex: 1; min-width: 320px;">
+                    <div style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; font-size: 0.75rem; font-weight: 600; color: #A1A1AA; margin-bottom: 24px; letter-spacing: 0.5px; text-transform: uppercase;">
+                        <i class="fa-solid fa-crown" style="color: #FBBF24;"></i> PREMIUM ACCESS 
                     </div>
 
-                    <div style="display: flex; align-items: center; gap: 25px; flex-wrap: wrap;">
-                        <div style="text-align: right;">
-                            <div style="font-size: 0.65rem; color: #9CA3AF; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; opacity: 0.7;">
-                                Total Market Value: <span style="color: #10B981;">$399+/mo</span>
-                            </div>
+                    <h2 style="font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.75rem); margin-bottom: 16px; letter-spacing: -0.04em; color: #FFFFFF; line-height: 1.1; font-weight: 700;">
+                        Everything you need to <span style="background-image: linear-gradient(90deg, #A855F7 0%, #D8B4FE 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;">start and scale</span>
+                    </h2>
 
-                            <div style="display: flex; align-items: baseline; gap: 8px; justify-content: flex-end;">
-                                <span style="text-decoration: line-through; color: #6B7280; font-size: 1.1rem; font-family: 'JetBrains Mono', monospace; opacity: 0.4;">$70</span>
-                                <div style="font-size: 3.2rem; font-weight: 900; color: #fff; font-family: 'JetBrains Mono', monospace; line-height: 1; letter-spacing: -1.5px;">
-                                    $49<span style="font-size: 0.9rem; color: #9CA3AF; font-weight: 400;">/mo</span>
-                                </div>
-                            </div>
-                            <p style="font-size: 0.65rem; color: #10B981; font-weight: 700; margin-top: 4px; text-transform: uppercase;">
-                                <i class="fa-solid fa-lock"></i> Lifetime Rate Locked
-                            </p>
-                        </div>
-
-                        <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
-                            <a href="#" class="btn btn-primary premium-shimmer" style="padding: 14px 35px; font-size: 0.9rem; min-width: 220px; border-radius: 100px; font-weight: 800; text-transform: uppercase; text-decoration: none; display: block; text-align: center;">
-                                Claim Full Access
-                            </a>
-
-                            <span style="font-size: 0.5rem; color: #3B82F6; opacity: 0.9; font-weight: 700; display: flex; align-items: center; gap: 4px; text-transform: uppercase; letter-spacing: 0.5px;">
-                                <i class="fa-solid fa-shield-halved"></i> Encrypted & Secure Checkout
-                            </span>
-
-                            <div style="display: flex; gap: 12px; opacity: 0.3; filter: grayscale(1); font-size: 1.3rem;">
-                                <i class="fa-brands fa-cc-stripe"></i>
-                                <i class="fa-brands fa-cc-visa"></i>
-                                <i class="fa-brands fa-cc-apple-pay"></i>
-                            </div>
-                        </div>
-                    </div>
+                    <p style="color: #A1A1AA; font-size: 1.05rem; line-height: 1.6; max-width: 480px; margin: 0;">
+                        Get instant access to premium operational systems, automation, and the exact frameworks used by the <br> best 6 & 7-figure businesses and entrepreneurs.
+                    </p>
                 </div>
+
+                <style>
+                    .premium-checkout-card {
+                        background: #09090B;
+                        border: 1px solid rgba(255, 255, 255, 0.08);
+                        border-radius: 20px;
+                        padding: 40px;
+                        min-width: 340px;
+                        display: flex;
+                        flex-direction: column;
+                        text-decoration: none;
+                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                        position: relative;
+                        overflow: hidden;
+                    }
+                    /* Efekt płynnego rozświetlenia ramki i uniesienia (jak w Stripe) */
+                    .premium-checkout-card:hover {
+                        border-color: rgba(168, 85, 247, 0.5);
+                        box-shadow: 0 0 0 1px rgba(168, 85, 247, 0.5), 0 20px 40px -10px rgba(0,0,0,0.5);
+                        transform: translateY(-4px);
+                    }
+                    .premium-checkout-btn {
+                        background: #FFFFFF;
+                        color: #000000;
+                        width: 100%;
+                        text-align: center;
+                        padding: 14px 0;
+                        border-radius: 12px;
+                        font-weight: 700;
+                        font-size: 0.95rem;
+                        transition: all 0.3s ease;
+                        margin-top: 24px;
+                    }
+                    /* Po najechaniu na całą kartę, przycisk zmienia kolor na fioletowy */
+                    .premium-checkout-card:hover .premium-checkout-btn {
+                        background: #A855F7;
+                        color: #FFFFFF;
+                    }
+                </style>
+
+                <a href="https://pylonvision.systeme.io/school/course/all-access" class="premium-checkout-card">
+                    
+                    <div style="margin-bottom: 24px;">
+                        <div style="display: flex; align-items: baseline; gap: 6px;">
+                        <span style="font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 2.8rem); font-weight: 700; color: #FFFFFF; line-height: 1; letter-spacing: -1px;">49 USD</span>
+                            <span style="font-size: 1rem; color: #A1A1AA; font-weight: 500;">/mo</span>
+                        </div>
+                        <div style="font-size: 0.85rem; color: #10B981; font-weight: 500; margin-top: 12px; display: flex; align-items: center; gap: 8px;">
+                            <i class="fa-solid fa-check" style="font-size: 0.9em;"></i> Lifetime Rate Guarantee
+                        </div>
+                    </div>
+
+                    <div class="premium-checkout-btn">
+                        Unlock Premium Access
+                    </div>
+
+                    <div style="width: 100%; text-align: center; margin-top: 20px;">
+                        <span style="font-size: 0.7rem; color: #71717A; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; line-height: 1.6;">
+                            <i class="fa-solid fa-lock" style="font-size: 0.9em; margin-right: 4px;"></i> Secure Checkout &bull; Instant Delivery &bull; <span style="white-space: nowrap;">✓ Cancel anytime</span>
+                        </span>
+                    </div>
+                        
+                            <div style="display: flex; justify-content: center; gap: 14px; margin-top: 14px; opacity: 0.3; font-size: 1.2rem; color: #fff;">
+                            <i class="fa-brands fa-cc-stripe"></i>
+                            <i class="fa-brands fa-cc-visa"></i>
+                            <i class="fa-brands fa-cc-apple-pay"></i>
+                        </div>
+                    </a>
             </div>
 
             <div class="library-controls">
@@ -666,7 +683,7 @@
                     <i class="fa-brands fa-youtube"></i><span>YouTube</span>
                 </a>
                 <a href="https://x.com/PylonVision" target="_blank" rel="noopener noreferrer" class="social-card sc-x">
-                    <i class="fa-brands fa-x-twitter"></i><span>Twitter/X</span>
+                    <i class="fa-brands fa-x-twitter"></i><span>X (Twitter)</span>
                 </a>
                 <a href="https://www.tiktok.com/@pylonvision" target="_blank" rel="noopener noreferrer" class="social-card sc-tt">
                     <i class="fa-brands fa-tiktok"></i><span>TikTok</span>
@@ -817,16 +834,22 @@
     </footer>
 
     <!-- Proof Pulse -->
-    <div id="proof-pulse">
+<a id="proof-pulse" href="https://pylonvision.systeme.io/school/course/all-access" style="text-decoration: none; cursor: pointer;">
         <div class="proof-img-container">
-            <img src="" alt="Client Avatar" class="proof-avatar" id="proof-img" width="48" height="48" loading="lazy">
+            <img id="proof-img" src="" alt="User Avatar" class="proof-avatar">
             <div class="status-dot"></div>
         </div>
         <div class="proof-info">
-            <div><span id="proof-name">Loading...</span> from <span id="proof-loc">...</span></div>
-            <div></div>
+            <div>
+                <span id="proof-name">Name</span> 
+                <span style="color: #6B7280; font-weight: 400; font-size: 0.85em; margin-left: 4px;">from <span id="proof-loc">Country</span></span>
+            </div>
+            <div>
+                Loading data...
+            </div>
         </div>
-    </div>
+    </a>
+
 
     <!-- Cookie Banner -->
     <div id="cookie-banner">
@@ -1407,35 +1430,42 @@
     <div id="story-modal" class="modal-overlay">
         <div class="modal-content" style="max-width: 800px;">
             <div class="modal-header">
-                <h2>The PylonVision Mission</h2>
+                <h2>Our Story</h2>
                 <button class="close-modal" onclick="window.closeStoryModal()" aria-label="Close">&times;</button>
             </div>
 
             <div class="modal-body" style="padding: 40px; font-family: 'Inter', sans-serif;">
                 <div style="text-align: center; margin-bottom: 40px; padding-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.1);">
-                    <i class="fa-solid fa-server" style="font-size: 2.5rem; color: #10B981; margin-bottom: 15px;"></i>
+                    <i class="fa-solid fa-bolt" style="font-size: 2.5rem; color: #10B981; margin-bottom: 15px;"></i>
                     <p style="font-size: 1.25rem; color: #fff; line-height: 1.5; font-weight: 500;">
-                        "We build the automation infrastructure <br>for the next generation of business."
+                        "Building the leverage you need<br>to do your life's best work."
                     </p>
                 </div>
 
-                <h3 style="color: #fff; font-size: 1.2rem; margin-top: 0;">The Efficiency Gap</h3>
+                <h3 style="color: #fff; font-size: 1.2rem; margin-top: 0;">The Internet's Promise</h3>
                 <p style="color: #9CA3AF; line-height: 1.7; margin-bottom: 25px;">
-                    In the modern economy, the divide between winners and losers is defined by one thing:
-                    <strong>Automation</strong>.
-                    Global enterprises dominate because they have replaced manual labor with intelligent, autonomous
-                    systems. We believe this level of performance should be accessible to every ambitious founder. We
-                    are here to bridge the technology gap.
+                    The internet promised us ultimate freedom, yet somehow, ambitious creators and founders still end up doing endless hours of repetitive admin work. The world's top tech companies don't just work harder—they have invisible systems doing the heavy lifting for them. We believe that kind of power shouldn't be locked behind enterprise engineering teams. It should be available to everyone.
+                </p>
+
+                <h3 style="color: #fff; font-size: 1.2rem; margin-top: 0;">Built Out of Necessity</h3>
+                <p style="color: #9CA3AF; line-height: 1.7; margin-bottom: 25px;">
+                    PylonVision started in our own workspaces. As builders, we were spending way too much time managing tools instead of creating products. So, we started writing code to automate our own lives. What began as a few late-night Python scripts quickly evolved into a global platform. We simply built the product we desperately wished existed when we first started out.
+                </p>
+
+                <h3 style="color: #fff; font-size: 1.2rem; margin-top: 0;">For the Global Creator</h3>
+                <p style="color: #9CA3AF; line-height: 1.7; margin-bottom: 25px;">
+                    Today, PylonVision is a growing ecosystem for minds worldwide. We build beautiful, quiet automation infrastructure so you can step away from the keyboard and focus on what actually matters: scaling your vision, creating art, and living your life. 
                 </p>
             </div>
 
             <div class="modal-footer" style="text-align: center;">
                 <button class="btn btn-primary" onclick="window.closeStoryModal()" style="width: 100%; max-width: 300px;">
-                    Continue
+                    Let's Build Together
                 </button>
             </div>
         </div>
     </div>
+
 
     <!-- Scripts -->
     <script src="script.js"></script>
