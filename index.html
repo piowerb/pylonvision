@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=2">
     
     <!-- Preload critical resources -->
     <link rel="preload" href="images/main-logo-pylonvision.png" as="image">
@@ -120,21 +120,42 @@
     <header class="hero">
         <canvas id="constellation-canvas"></canvas>
 
-        <div class="container hero-content">
-            <div class="badge reveal animated-glow-badge" style="padding: 6px 14px; gap: 8px; margin-bottom: 16px; background: rgba(124, 58, 237, 0.08); display: inline-flex; align-items: center; border-radius: 50px;">
-                <i class="fa-solid fa-crown" style="color: #FFD700; font-size: 0.9rem; filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.6));"></i>
-                <span style="font-size: 0.85rem; letter-spacing: 0.5px; font-weight: 700; color: #fff;">
-                    No. 1 Growth Platform <span id="badge-year"></span>
-                </span>
+<div class="container hero-content">
+            
+            <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; margin-bottom: 25px;">
+                
+                <!-- Pastylka 1: Korona (Fioletowa poświata) -->
+                <div class="badge reveal animated-glow-badge" style="padding: 6px 14px; gap: 8px; margin: 0; background: rgba(124, 58, 237, 0.08); border: 1px solid rgba(124, 58, 237, 0.3); display: inline-flex; align-items: center; border-radius: 50px; box-shadow: 0 0 20px rgba(124, 58, 237, 0.15);">
+                    <i class="fa-solid fa-crown" style="color: #FFD700; font-size: 0.9rem; filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.6));"></i>
+                    <span style="font-size: 0.85rem; letter-spacing: 0.5px; font-weight: 700; color: #fff;">
+                        No. 1 Growth Platform <span id="badge-year"></span>
+                    </span>
+                </div>
+
+                <!-- Pastylka 2: Gwiazdki (FIOLETOWA poświata + ZIELONA tarcza + ANIMOWANE gwiazdki) -->
+                <div class="badge reveal animated-glow-badge" style="padding: 6px 14px; gap: 10px; margin: 0; background: rgba(124, 58, 237, 0.08); border: 1px solid rgba(124, 58, 237, 0.3); display: inline-flex; align-items: center; border-radius: 50px; box-shadow: 0 0 20px rgba(124, 58, 237, 0.15);">
+                    <i class="fa-solid fa-shield-check" style="color: #10B981; font-size: 0.9rem; filter: drop-shadow(0 0 5px rgba(16, 185, 129, 0.4));"></i>
+                    <span style="font-family: var(--font-body); font-weight: 700; font-size: 0.85rem; color: #fff; letter-spacing: 0.5px;">
+                        100% Verified Results
+                    </span>
+                    <div style="width: 1px; height: 14px; background: rgba(255,255,255,0.2);"></div>
+                    
+                    <!-- Podmienione, animowane gwiazdki -->
+                    <div style="color: #FBBF24; font-size: 0.75rem; display: flex; gap: 2px;">
+                        <i class="fa-solid fa-star star-anim" style="animation-delay: 0s;"></i>
+                        <i class="fa-solid fa-star star-anim" style="animation-delay: 0.1s;"></i>
+                        <i class="fa-solid fa-star star-anim" style="animation-delay: 0.2s;"></i>
+                        <i class="fa-solid fa-star star-anim" style="animation-delay: 0.3s;"></i>
+                        <i class="fa-solid fa-star star-anim" style="animation-delay: 0.4s;"></i>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="hero-code reveal">
-                > Initializing Growth Protocols...<span class="cursor">|</span>
-            </div>
-
+            <!-- Tutaj zaczyna się Twój nagłówek Work Less, Earn More... -->
             <h1 class="hero-title reveal">
-                Work Less, Earn More.<br>
-                <span class="text-gradient">Automate Your Success.</span>
+                Work Less, Earn More<br>
+                <span class="text-gradient">Automate Your Success</span>
             </h1>
 
             <p class="hero-subtitle reveal">
@@ -143,8 +164,12 @@
             </p>
 
             <div class="hero-cta-group reveal">
-                <a href="#calculator" class="btn btn-primary">
-                    Calculate Your ROI <i class="fa-solid fa-calculator"></i>
+                <a href="#library" class="btn btn-primary btn-lock-hover">
+                    Get Free Access 
+                    <span class="lock-wrapper">
+                        <i class="fa-solid fa-lock icon-locked"></i>
+                        <i class="fa-solid fa-unlock icon-unlocked"></i>
+                    </span>
                 </a>
                 <a href="#library" class="btn btn-glass">
                     View All Programs
@@ -204,9 +229,9 @@
     <!-- Ticker Section -->
     <section class="ticker-wrap">
         <div class="container text-center reveal" style="margin-bottom: 40px;">
-            <h3 style="font-size: 1.5rem; margin-bottom: 10px; font-weight: 700; letter-spacing: -0.02em;">
+            <h2 style="font-size: 1.5rem; margin-bottom: 10px; font-weight: 700; letter-spacing: -0.02em;">
                 One Platform. <span style="color: #8B5CF6;">Total Control.</span>
-            </h3>
+            </h2>
             <p style="color: #9CA3AF; max-width: 700px; margin: 0 auto;">
                 Integrate & Automate your fragmented tech stack to save up to
                 <span style="color: #10B981; font-weight: 700; white-space: nowrap;">$10k+ and 150h+ / month</span>:
@@ -404,45 +429,6 @@
                     </p>
                 </div>
 
-                <style>
-                    .premium-checkout-card {
-                        background: #09090B;
-                        border: 1px solid rgba(255, 255, 255, 0.08);
-                        border-radius: 20px;
-                        padding: 40px;
-                        min-width: 340px;
-                        display: flex;
-                        flex-direction: column;
-                        text-decoration: none;
-                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                        position: relative;
-                        overflow: hidden;
-                    }
-                    /* Efekt płynnego rozświetlenia ramki i uniesienia (jak w Stripe) */
-                    .premium-checkout-card:hover {
-                        border-color: rgba(168, 85, 247, 0.5);
-                        box-shadow: 0 0 0 1px rgba(168, 85, 247, 0.5), 0 20px 40px -10px rgba(0,0,0,0.5);
-                        transform: translateY(-4px);
-                    }
-                    .premium-checkout-btn {
-                        background: #FFFFFF;
-                        color: #000000;
-                        width: 100%;
-                        text-align: center;
-                        padding: 14px 0;
-                        border-radius: 12px;
-                        font-weight: 700;
-                        font-size: 0.95rem;
-                        transition: all 0.3s ease;
-                        margin-top: 24px;
-                    }
-                    /* Po najechaniu na całą kartę, przycisk zmienia kolor na fioletowy */
-                    .premium-checkout-card:hover .premium-checkout-btn {
-                        background: #A855F7;
-                        color: #FFFFFF;
-                    }
-                </style>
-
                 <a href="https://pylonvision.systeme.io/school/course/all-access" class="premium-checkout-card">
                     
                     <div style="margin-bottom: 24px;">
@@ -461,7 +447,7 @@
 
                     <div style="width: 100%; text-align: center; margin-top: 20px;">
                         <span style="font-size: 0.7rem; color: #71717A; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; line-height: 1.6;">
-                            <i class="fa-solid fa-lock" style="font-size: 0.9em; margin-right: 4px;"></i> Secure Checkout &bull; Instant Delivery &bull; <span style="white-space: nowrap;">✓ Cancel anytime</span>
+                            <i class="fa-solid fa-lock" style="font-size: 0.9em; margin-right: 4px;"></i> Secure Checkout &bull; Instant Delivery <span style="white-space: nowrap;">✓ Cancel anytime</span>
                         </span>
                     </div>
                         
@@ -683,7 +669,7 @@
                     <i class="fa-brands fa-youtube"></i><span>YouTube</span>
                 </a>
                 <a href="https://x.com/PylonVision" target="_blank" rel="noopener noreferrer" class="social-card sc-x">
-                    <i class="fa-brands fa-x-twitter"></i><span>X (Twitter)</span>
+                    <i class="fa-brands fa-x-twitter"></i><span>X / Twitter</span>
                 </a>
                 <a href="https://www.tiktok.com/@pylonvision" target="_blank" rel="noopener noreferrer" class="social-card sc-tt">
                     <i class="fa-brands fa-tiktok"></i><span>TikTok</span>
@@ -698,8 +684,8 @@
                     <i class="fa-brands fa-pinterest-p"></i><span>Pinterest</span>
                 </a>
                 <a href="https://gravatar.com/pylonvision" target="_blank" rel="me noopener noreferrer" class="social-card sc-others" style="--hover-bg: #208EBE;">
-                    <i style="width: 48px; height: 48px; display: inline-block; background-color: currentColor; -webkit-mask: url('https://cdn.simpleicons.org/gravatar') no-repeat center / contain; mask: url('https://cdn.simpleicons.org/gravatar') no-repeat center / contain;"></i>
-                    <span>Gravatar</span>
+                <i class="gravatar-icon-mask"></i>
+                <span>Gravatar</span>
                 </a>
             </div>
         </div>
@@ -836,7 +822,7 @@
     <!-- Proof Pulse -->
 <a id="proof-pulse" href="https://pylonvision.systeme.io/school/course/all-access" style="text-decoration: none; cursor: pointer;">
         <div class="proof-img-container">
-            <img id="proof-img" src="" alt="User Avatar" class="proof-avatar">
+            <img id="proof-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="User Avatar" class="proof-avatar">
             <div class="status-dot"></div>
         </div>
         <div class="proof-info">
@@ -854,7 +840,7 @@
     <!-- Cookie Banner -->
     <div id="cookie-banner">
         <div class="cookie-content">
-            <h4><i class="fa-solid fa-cookie-bite" style="color:#C084FC; margin-right:5px;"></i> Privacy Settings</h4>
+            <h3><i class="fa-solid fa-cookie-bite" style="color:#C084FC; margin-right:5px;"></i> Privacy Settings</h3>
             <p>We use cookies to analyze site traffic and optimize your experience. By accepting, you agree to our
                 privacy policy.</p>
             <div class="cookie-actions">

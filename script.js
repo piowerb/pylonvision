@@ -1463,9 +1463,19 @@ const ROICalculator = {
         this.hoursDisplay.textContent = hours;
         this.rateDisplay.textContent = `$${rate}`;
 
-        // Calculate annual revenue
-        const monthlyRevenue = hours * rate;
-        const annualRevenue = monthlyRevenue * 12;
+        // --- BARDZIEJ REALISTYCZNE WYLICZENIA ---
+        
+        // 1. Współczynnik efektywności (75%)
+        // Zakładamy, że tylko 3/4 zaoszczędzonego czasu to czysty, bilingowy zysk
+        const efficiencyRate = 0.75; 
+        
+        // 2. Realne miesiące pracy
+        // Zakładamy 11.5 miesiąca w roku ze względu na urlopy, święta itp.
+        const workingMonths = 11.5; 
+
+        // Wyliczenie realnego zysku
+        const realisticMonthlyRevenue = hours * rate * efficiencyRate;
+        const annualRevenue = Math.floor(realisticMonthlyRevenue * workingMonths);
 
         // Update result with animation
         if (this.resultDisplay) {

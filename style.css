@@ -787,7 +787,7 @@ button {
     display: flex;
     width: max-content;
     will-change: transform;
-    animation: ticker 80s linear infinite;
+    animation: ticker 20s linear infinite;
 }
 
 .ticker.paused {
@@ -1223,7 +1223,7 @@ button {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 40%);
+    background: radial-gradient(circle 800px at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 40%);
     z-index: 1;
     opacity: 0;
     transition: opacity 0.3s;
@@ -1349,6 +1349,8 @@ button {
     fill: var(--primary);
     filter: drop-shadow(0 0 5px var(--primary));
     opacity: 0;
+    /* Dodany punkt środkowy skalowania (zgodny z koordynatami kropki z HTML) */
+    transform-origin: 350px 20px; 
     animation: fadeInDot 0.5s ease-out 3s forwards infinite, pulseDot 2s infinite;
 }
 
@@ -1365,10 +1367,11 @@ button {
     to { opacity: 1; }
 }
 
+/* POPRAWIONA ANIMACJA KROPKI (Zgodna ze standardami W3C) */
 @keyframes pulseDot {
-    0% { r: 4; opacity: 1; }
-    50% { r: 7; opacity: 0.5; }
-    100% { r: 4; opacity: 1; }
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.75); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
 }
 
 /* ========== 10. TERMINAL ========== */
@@ -1819,7 +1822,7 @@ input[type=range]::-webkit-slider-runnable-track {
     opacity: 1;
 }
 
-.cookie-content h4 {
+.cookie-content h3 {
     margin-bottom: 8px;
     font-size: 1rem;
 }
@@ -2541,7 +2544,7 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 
 /* High contrast mode support */
-@media (prefers-contrast: high) {
+@media (prefers-contrast: more) {
     :root {
         --glass-border: 1px solid rgba(255, 255, 255, 0.3);
         --text-muted: #CCCCCC;
@@ -3052,6 +3055,330 @@ input[type=range]::-webkit-slider-runnable-track {
         position: relative !important; 
         z-index: 2147483647 !important; 
     }
+}
+
+/* ZABLOKOWANIE PRZEWIJANIA NA BOKI (STIFF MOBILE) - WERSJA BEZPIECZNA */
+html, body {
+    width: 100%;
+    /* Używamy 'clip' zamiast 'hidden'. 
+       'clip' ucina boki, ale pozwala menu (position: sticky) dalej działać na PC! */
+    overflow-x: clip !important; 
+    overscroll-behavior-x: none !important;
+}
+
+/* Wymuszenie na urządzeniach dotykowych tylko pionowego przewijania */
+.touch-device {
+    touch-action: pan-y !important;
+}
+
+/* Wymuszenie na urządzeniach dotykowych tylko pionowego przewijania */
+.touch-device {
+    touch-action: pan-y !important;
+}
+
+/* Zabezpieczenie, aby żaden element nie "rozpychał" strony */
+* {
+    max-width: 100vw;
+}
+
+/* WYŚRODKOWANIE SEKCJI PREMIUM (49 USD) NA TELEFONACH */
+@media (max-width: 768px) {
+    #subscription-hero {
+        flex-direction: column !important;
+        text-align: center !important;
+        padding: 30px 20px !important;
+        gap: 30px !important;
+        justify-content: center !important;
+        border-radius: 20px !important;
+    }
+
+    /* Wyśrodkowanie lewej kolumny z tekstem ("Everything you need...") */
+    #subscription-hero > div:first-child {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        min-width: 100% !important;
+    }
+
+    /* Naprawa wyrównania paragrafu z opisem */
+    #subscription-hero p {
+        margin: 0 auto !important;
+        text-align: center !important;
+    }
+
+    /* Wyśrodkowanie samej karty z ceną i przyciskiem */
+    .premium-checkout-card {
+        width: 100% !important;
+        max-width: 350px !important;
+        margin: 0 auto !important;
+        min-width: unset !important; /* Nadpisuje inline min-width: 340px z HTML */
+        align-items: center !important; /* Środkuje zawartość samej karty */
+    }
+
+    /* Upewnienie się, że napis "49 USD" też jest na środku */
+    .premium-checkout-card > div:first-child {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .premium-checkout-card > div:first-child > div {
+        justify-content: center;
+    }
+}
+
+/* NAPRAWA GÓRNEGO PASKA PROMOCJI NA TELEFONY (CIENKI I OBOK SIEBIE) */
+@media (max-width: 768px) {
+    .urgency-banner {
+        /* Wymuszamy jedną, zgrabną linię */
+        display: flex !important;
+        flex-direction: row !important; 
+        flex-wrap: nowrap !important; /* Zakaz łamania do nowej linii */
+        align-items: center !important;
+        justify-content: center !important;
+        
+        /* Zabezpieczenie przed wychodzeniem za ekran */
+        width: 100% !important;
+        max-width: 100vw !important;
+        box-sizing: border-box !important;
+        
+        /* Wyszczuplenie paska */
+        padding: 6px 10px !important;
+        min-height: 30px !important;
+        height: auto !important;
+        gap: 8px !important;
+        
+        /* Uspokojenie kolorów (mniej agresywne i bez pomarańczowej poświaty) */
+        background: linear-gradient(90deg, #3B1671 0%, #5B29B2 100%) !important;
+        text-shadow: none !important; 
+    }
+
+    .banner-link {
+        /* Tekst zajmuje tylko tyle miejsca, ile trzeba */
+        flex: 0 1 auto !important;
+        min-width: 0 !important; 
+        display: flex !important;
+        align-items: center !important;
+    }
+
+    .banner-link strong {
+        font-size: 0.65rem !important; /* Dyskretniejsza czcionka */
+        font-weight: 500 !important; /* Mniej "krzycząca" grubość */
+        display: block !important;
+        
+        /* Jeśli ktoś ma ekstremalnie mały ekran, tekst doda "..." zamiast rozwalić pasek */
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        margin: 0 !important;
+    }
+
+    .timer-box {
+        /* Zegar sztywno obok tekstu */
+        flex: 0 0 auto !important;
+        font-size: 0.65rem !important;
+        padding: 2px 6px !important;
+        margin: 0 !important;
+        
+        /* Dyskretny, techniczny wygląd */
+        background: rgba(0, 0, 0, 0.25) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 4px !important;
+        font-weight: 600 !important;
+    }
+}
+
+/* DOPASOWANIA UX/UI DLA TELEFONÓW (FAQ, TERMINAL, SUWAKI) */
+@media (max-width: 768px) {
+    
+    /* 1. Odchudzenie marginesów FAQ */
+    .faq-item {
+        padding: 0 16px !important;
+    }
+    .faq-question {
+        padding: 20px 0 !important;
+        font-size: 1rem !important; /* Lepsza czytelność na małym ekranie */
+    }
+
+    /* 2. Poszerzenie miejsca na kod w Terminalu */
+    .terminal-body {
+        padding: 20px !important; /* Mniejszy padding */
+        font-size: 0.8rem !important; /* Odpowiedni rozmiar dla kodu */
+        overflow-x: auto !important; /* Gdyby kod był bardzo długi, pozwoli na poziomy scroll wewn. bloku */
+    }
+
+    /* 3. Powiększenie uchwytów suwaków ROI pod palec (Touch Target) */
+    input[type=range]::-webkit-slider-thumb {
+        width: 32px !important;
+        height: 32px !important;
+        margin-top: -14px !important; /* Środkowanie powiększonego suwaka względem linii */
+    }
+    input[type=range]::-moz-range-thumb {
+        width: 32px !important;
+        height: 32px !important;
+    }
+}
+
+/* SUBTELNA ANIMACJA GWIAZDEK (FALA) */
+.star-anim {
+    animation: star-wave-effect 3s infinite ease-in-out;
+    will-change: transform, filter; /* Optymalizacja płynności na telefonach */
+}
+
+@keyframes star-wave-effect {
+    /* 0%, 30%, i 100% to czas, gdy gwiazdki stoją w miejscu (żeby nie skakały jak szalone) */
+    0%, 30%, 100% { 
+        transform: translateY(0) scale(1); 
+        filter: drop-shadow(0 0 0 rgba(251, 191, 36, 0)); 
+        color: #FBBF24; 
+    }
+    /* Złoty środek podskoku (15% czasu animacji) */
+    15% { 
+        transform: translateY(-2px) scale(1.15); /* Podskok do góry i leciutkie powiększenie */
+        filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.8)); /* Złota poświata */
+        color: #FFF3C4; /* Chwilowe rozjaśnienie (złoty błysk) */
+    }
+}
+
+/* OSTATECZNA ANIMACJA KŁÓDKI (BEZ ABSOLUTE - CSS GRID) */
+.btn-lock-hover {
+    gap: 8px !important; /* Odstęp od tekstu */
+}
+
+.btn-lock-hover .lock-wrapper {
+    /* Używamy Grida zamiast pozycjonowania! To trzyma ikony w ryzach po prawej stronie */
+    display: inline-grid !important;
+    place-items: center !important;
+    width: 16px !important;
+    height: 16px !important;
+}
+
+.btn-lock-hover .icon-locked,
+.btn-lock-hover .icon-unlocked {
+    /* Magia Grida: obie ikony są w tej samej kratce (1 na 1), nakładając się na siebie */
+    grid-area: 1 / 1 !important;
+    position: static !important; /* Kategoryczny zakaz uciekania na środek (absolute) */
+    margin: 0 !important;
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+/* STAN DOMYŚLNY */
+.btn-lock-hover .icon-locked {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) rotate(0deg) !important;
+}
+
+.btn-lock-hover .icon-unlocked {
+    opacity: 0 !important;
+    transform: translateY(12px) scale(0.5) rotate(-20deg) !important;
+}
+
+/* STAN PO NAJECHANIU (HOVER) */
+.btn-lock-hover:hover .icon-locked {
+    opacity: 0 !important;
+    /* Zamknięta odskakuje do góry */
+    transform: translateY(-15px) scale(1.3) rotate(20deg) !important;
+}
+
+.btn-lock-hover:hover .icon-unlocked {
+    opacity: 1 !important;
+    /* Otwarta uderza na swoje miejsce */
+    transform: translateY(0) scale(1.1) rotate(0deg) !important;
+}
+
+/* FIOLETOWA FALA ŚWIATŁA (HOVER) DLA PRZYCISKU "VIEW ALL PROGRAMS" */
+.btn-glass::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 80%;
+    height: 100%;
+    /* Luksusowy, fioletowy strumień światła */
+    background: linear-gradient(
+        90deg, 
+        transparent, 
+        rgba(124, 58, 237, 0.1), 
+        rgba(168, 85, 247, 0.7), 
+        rgba(124, 58, 237, 0.1), 
+        transparent
+    );
+    transform: skewX(-25deg);
+    z-index: -1;
+}
+
+.btn-glass:hover {
+    /* Aktywacja szklanego fioletu po najechaniu */
+    border-color: rgba(168, 85, 247, 0.5) !important;
+    background: rgba(124, 58, 237, 0.08) !important;
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.2) !important;
+}
+
+.btn-glass:hover::before {
+    /* Uruchomienie animacji fali */
+    animation: glass-purple-wave 1.5s infinite;
+}
+
+@keyframes glass-purple-wave {
+    0% { left: -150%; }
+    60% { left: 150%; }
+    100% { left: 150%; } /* Krótka pauza przed kolejnym przelotem dla naturalności */
+}
+
+/* PREMIUM CHECKOUT CARD (Przeniesione z HTML) */
+.premium-checkout-card {
+    background: #09090B;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 40px;
+    min-width: 340px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.premium-checkout-card:hover {
+    border-color: rgba(168, 85, 247, 0.5);
+    box-shadow: 0 0 0 1px rgba(168, 85, 247, 0.5), 0 20px 40px -10px rgba(0,0,0,0.5);
+    transform: translateY(-4px);
+}
+
+.premium-checkout-btn {
+    background: #FFFFFF;
+    color: #000000;
+    width: 100%;
+    text-align: center;
+    padding: 14px 0;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    margin-top: 24px;
+}
+
+.premium-checkout-card:hover .premium-checkout-btn {
+    background: #A855F7;
+    color: #FFFFFF;
+}
+
+/* POPRAWNA MASKA DLA IKONY GRAVATAR */
+.gravatar-icon-mask {
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    background-color: currentColor;
+    -webkit-mask-image: url('https://cdn.simpleicons.org/gravatar');
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+    mask-image: url('https://cdn.simpleicons.org/gravatar');
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
 }
 
 /* ========== END OF STYLES ========== */
