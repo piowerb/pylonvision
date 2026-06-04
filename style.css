@@ -2878,10 +2878,10 @@ input[type=range]::-webkit-slider-runnable-track {
 
     /* 2. Tytuł (Duży i Mocny) */
     .hero-title {
-        font-size: 3.1rem !important;
+        font-size: 2.5rem !important; /* Zmniejszone z 3.1rem dla lepszych proporcji */
         margin-top: 10px !important; 
-        line-height: 1.1 !important;
-        margin-bottom: 15px !important; /* Mały odstęp od podtytułu */
+        line-height: 1.15 !important; /* Trochę więcej oddechu między liniami */
+        margin-bottom: 20px !important; /* Nieco większy odstęp od podtytułu */
     }
     
     /* 3. Podtytuł (Mniejszy i zgrabniejszy) */

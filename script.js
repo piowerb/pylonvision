@@ -1109,7 +1109,7 @@ const PromoText = {
             `AUGUST FINALE: 30% OFF – Ends 11:59 PM Tonight`,
             `SEPTEMBER START: 30% OFF – Ends 11:59 PM Tonight`,
             `HALLOWEEN PROMO: 30% OFF – Ends 11:59 PM Tonight`,
-            `BLACK FRIDAY DEALS: 30% OFF – Ends 11:59 PM Tonight`,
+            `BLACK FRIDAY: 30% OFF – Ends 11:59 PM Tonight`,
             `XMAS PROTOCOL: 30% OFF – Ends 11:59 PM Tonight`
         ];
 
