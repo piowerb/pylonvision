@@ -1099,18 +1099,18 @@ const PromoText = {
         const month = new Date().getMonth();
 
         const promos = [
-            `🔥 NEW YEAR PROMO: 30% OFF – Offer Ends at 11:59 PM Tonight`,
-            `🚀 FEBRUARY BOOST: 30% OFF – Offer Ends at 11:59 PM Tonight`,
-            `💎 MARCH GROWTH: 30% OFF – Offer Ends at 11:59 PM Tonight`,
-            `⚡ SPRING SALE: 30% OFF – Offer Ends at 11:59 PM Tonight`,
-            `🛠️ MAY UPGRADE: 30% OFF – Offer Ends at 11:59 PM Tonight`,
-            `☀️ SUMMER DEALS: 30% OFF – Offer Ends at 11:59 PM Tonight`,
-            `🚀 JULY SPECIAL: 30% OFF – Offer Ends at 11:59 PM Tonight`,
-            `🔥 AUGUST FINALE: 30% OFF – Offer Ends at 11:59 PM Tonight`,
-            `💼 SEPTEMBER START: 30% OFF – Offer Ends at 11:59 PM Tonight`,
-            `🎃 HALLOWEEN PROMO: 30% OFF – Offer Ends at 11:59 PM Tonight`,
-            `⚫ BLACK FRIDAY DEALS: 30% OFF – Offer Ends at 11:59 PM Tonight`,
-            `🎄 XMAS PROTOCOL: 30% OFF – Offer Ends at 11:59 PM Tonight`
+            `NEW YEAR PROMO: 30% OFF – Ends 11:59 PM Tonight`,
+            `FEBRUARY BOOST: 30% OFF – Ends 11:59 PM Tonight`,
+            `MARCH GROWTH: 30% OFF – Ends 11:59 PM Tonight`,
+            `SPRING SALE: 30% OFF – Ends 11:59 PM Tonight`,
+            `MAY UPGRADE: 30% OFF – Ends 11:59 PM Tonight`,
+            `SUMMER DEALS: 30% OFF – Ends 11:59 PM Tonight`,
+            `JULY SPECIAL: 30% OFF – Ends 11:59 PM Tonight`,
+            `AUGUST FINALE: 30% OFF – Ends 11:59 PM Tonight`,
+            `SEPTEMBER START: 30% OFF – Ends 11:59 PM Tonight`,
+            `HALLOWEEN PROMO: 30% OFF – Ends 11:59 PM Tonight`,
+            `BLACK FRIDAY DEALS: 30% OFF – Ends 11:59 PM Tonight`,
+            `XMAS PROTOCOL: 30% OFF – Ends 11:59 PM Tonight`
         ];
 
         this.promoEl.textContent = promos[month];
