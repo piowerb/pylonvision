@@ -401,39 +401,19 @@ const SubBanner = {
 const Ticker = {
     init() {
         this.ticker = utils.getElement('logoTicker');
-        this.wrap = utils.query('.ticker-wrap');
-
         if (!this.ticker) return;
 
         // Clone items for infinite scroll
+        // Dzięki temu mamy dwa zestawy ikon – klucz do płynnego przejścia
         const items = Array.from(this.ticker.children);
         items.forEach(item => {
             const clone = item.cloneNode(true);
             clone.setAttribute('aria-hidden', 'true');
             this.ticker.appendChild(clone);
         });
-
-        // Pause when off-screen (performance optimization)
-        if (this.wrap && 'IntersectionObserver' in window) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    this.ticker.classList.toggle('paused', !entry.isIntersecting);
-                });
-            }, { threshold: 0 });
-
-            observer.observe(this.wrap);
-        }
-
-        // Pause on hover (desktop only)
-        if (!utils.isMobile()) {
-            this.ticker.addEventListener('mouseenter', () => {
-                this.ticker.classList.add('paused');
-            });
-            
-            this.ticker.addEventListener('mouseleave', () => {
-                this.ticker.classList.remove('paused');
-            });
-        }
+        
+        // Usunąłem IntersectionObserver i EventListenery (mouseenter/leave)
+        // Dzięki temu ticker nigdy się nie zatrzyma, co eliminuje szarpnięcia
     }
 };
 
