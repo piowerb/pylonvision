@@ -435,16 +435,16 @@ const CourseLibrary = {
         { id: 9, title: "The Founder Playbook", category: "business", price: "$197", image: "images/image9.png", desc: "Learn how to build a paid community around your brand. We guide you through the process of turning your knowledge into a subscription business.", url: "#" }
     ],
 
-    stats: {
-        1: { rating: 4.9, reviews: 28, oldPrice: 80, badgeType: 'USER_FAV' },
-        2: { rating: "5.0", reviews: 7, oldPrice: 155, badgeType: 'ELITE_PICK' },
-        3: { rating: 4.7, reviews: 14, oldPrice: 50, badgeType: 'NONE' },
-        4: { rating: 4.8, reviews: 9, oldPrice: 125, badgeType: 'NONE' },
-        5: { rating: 4.6, reviews: 32, oldPrice: 65, badgeType: 'TRENDING' },
-        6: { rating: 4.8, reviews: 21, oldPrice: 80, badgeType: 'NONE' },
-        7: { rating: 4.9, reviews: 5, oldPrice: 155, badgeType: 'TOP_RATED' },
-        8: { rating: 4.7, reviews: 54, oldPrice: 36, badgeType: 'BESTSELLER' },
-        9: { rating: "5.0", reviews: 3, oldPrice: 302, badgeType: 'ELITE_PICK' }
+stats: {
+        1: { rating: 4.9, reviews: 28, badgeType: 'BESTSELLER' },
+        2: { rating: 4.8, reviews: 12, badgeType: 'NONE' },
+        3: { rating: 4.7, reviews: 24, badgeType: 'NONE' },
+        4: { rating: 4.6, reviews: 18, badgeType: 'NONE' },
+        5: { rating: 4.5, reviews: 35, badgeType: 'TRENDING' },
+        6: { rating: 4.8, reviews: 21, badgeType: 'NONE' },
+        7: { rating: 4.9, reviews: 8, badgeType: 'NONE' },
+        8: { rating: 4.7, reviews: 68, badgeType: 'NONE' },
+        9: { rating: 4.9, reviews: 5, badgeType: 'ELITE_PICK' }
     },
 
     init() {
@@ -512,7 +512,7 @@ const CourseLibrary = {
         this.render(filtered);
     },
 
-render(data) {
+    render(data) {
         if (!this.grid) return;
         
         // Clear existing content
@@ -532,20 +532,23 @@ render(data) {
 
         const currentDate = new Date().toLocaleString('en-US', { month: 'long', year: 'numeric' });
 
-data.forEach((course, index) => {
-            const stats = this.stats[course.id] || { rating: 4.5, reviews: 5, oldPrice: 100, badgeType: 'NONE' };
+        data.forEach((course, index) => {
+            // 1. Pobieramy statystyki dla danego ID
+            const stats = this.stats[course.id] || { rating: 4.5, reviews: 0, oldPrice: 0, badgeType: 'NONE' };
+            
+            // 2. Generujemy HTML dla badge'a i gwiazdek za pomocą Twoich funkcji pomocniczych
+            const badgeHtml = this.getBadgeHTML(stats.badgeType);
+            const starsHtml = this.getStarsHTML(stats.rating);
 
-            // 1. ZMIANA: Tworzymy znacznik <a> zamiast <div>
             const card = document.createElement('a');
-            // 2. Dodajemy cel linku (scrolluje do sekcji z cennikiem)
             card.href = "#subscription-hero"; 
             card.className = 'course-card';
             card.style.opacity = '0';
-            // Zabezpieczenie przed dziwnym formatowaniem linków przez przeglądarkę
             card.style.textDecoration = 'none'; 
             card.style.color = 'inherit';
 
             card.innerHTML = `
+                ${badgeHtml} 
                 <div class="card-image-wrapper">
                     <img src="${course.image}" alt="${course.title}" class="card-image" loading="lazy">
                 </div>
@@ -554,13 +557,11 @@ data.forEach((course, index) => {
                     
                     <div style="font-size: 0.8rem; color: #FBBF24; margin-bottom: 12px; display: flex; align-items: center; gap: 5px;">
                         <div style="display:flex; gap:2px;">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
+                            ${starsHtml}
                         </div>
-                        <span style="color: var(--text-muted); font-weight: 600; margin-left: 4px;">5.0 (${stats.reviews} Ratings)</span>
+                        <span style="color: var(--text-muted); font-weight: 600; margin-left: 4px;">
+                            ${stats.rating} (${stats.reviews} Ratings)
+                        </span>
                     </div>
 
                     <div style="font-size: 0.75rem; color: #10B981; margin-bottom: 10px; font-weight:700; display:flex; align-items:center; gap:6px;">
@@ -577,7 +578,6 @@ data.forEach((course, index) => {
             this.grid.appendChild(card);
         });
 
-        // Animate cards in
         this.animateCardsIn();
     },
 
