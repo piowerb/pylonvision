@@ -302,28 +302,32 @@ const CookieBanner = {
     init() {
         this.banner = utils.getElement('cookie-banner');
         this.acceptBtn = utils.getElement('accept-cookies');
+        this.declineBtn = utils.getElement('decline-cookies'); // Dodany przycisk odrzucenia
 
         if (!this.banner) return;
 
-        // Show banner if not accepted
+        // Pokaż banner, jeśli użytkownik nie dokonał wyboru
         if (!utils.storage.get('pylon_cookie_consent')) {
             setTimeout(() => {
                 this.banner.classList.add('show');
-            }, 2000);
+            }, 1000); // Pokazuje się nieco szybciej (po 1s zamiast 2s)
         }
 
-        // Accept cookies
+        // Akceptacja wszystkich ciasteczek
         this.acceptBtn?.addEventListener('click', () => {
-            utils.storage.set('pylon_cookie_consent', 'true');
+            utils.storage.set('pylon_cookie_consent', 'accepted');
             this.banner.classList.remove('show');
+            // Miejsce na uruchomienie skryptów analitycznych (np. Google Analytics)
         });
 
-        // Auto-hide after 10 seconds if not interacted
-        setTimeout(() => {
-            if (!utils.storage.get('pylon_cookie_consent')) {
-                this.banner.classList.remove('show');
-            }
-        }, 10000);
+        // Odrzucenie opcjonalnych ciasteczek (tylko niezbędne techniczne)
+        this.declineBtn?.addEventListener('click', () => {
+            utils.storage.set('pylon_cookie_consent', 'declined');
+            this.banner.classList.remove('show');
+            // Użytkownik odrzucił tracking, strona działa normalnie, ale bez analityki
+        });
+
+        // USUNIĘTO timer znikający po 10s. Baner musi wisieć, aż użytkownik kliknie.
     }
 };
 

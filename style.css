@@ -1784,42 +1784,66 @@ input[type=range]::-webkit-slider-runnable-track {
 #cookie-banner {
     position: fixed;
     bottom: 30px;
-    right: 30px;
-    background: rgba(18, 18, 23, 0.95);
+    left: 50%;
+    transform: translate(-50%, 20px); /* Ustawiony na środku, lekko obniżony przed animacją */
+    background: rgba(10, 10, 14, 0.98);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.08);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(124, 58, 237, 0.4);
     border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+    padding: 30px; /* Więcej oddechu */
+    box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 30px rgba(124, 58, 237, 0.15);
     z-index: 99999;
-    max-width: 360px;
+    width: 90%;
+    max-width: 600px; /* Znacznie szerszy niż poprzednie 360px */
     display: none;
-    transform: translateY(20px);
     opacity: 0;
-    transition: all 0.5s ease;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #cookie-banner.show {
     display: block;
-    transform: translateY(0);
+    transform: translate(-50%, 0); /* Wyjeżdża płynnie na pozycję wyjściową */
     opacity: 1;
 }
 
 .cookie-content h3 {
-    margin-bottom: 8px;
-    font-size: 1rem;
+    margin-bottom: 12px;
+    font-size: 1.15rem;
+    color: #fff;
+    display: flex;
+    align-items: center;
 }
 
 .cookie-content p {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--text-muted);
-    margin-bottom: 16px;
-    line-height: 1.5;
+    margin-bottom: 24px;
+    line-height: 1.6;
 }
 
 .cookie-actions {
     display: flex;
-    gap: 10px;
+    gap: 15px;
+    width: 100%;
+}
+
+/* Dostosowanie RWD na telefony dla sekcji banera */
+@media (max-width: 768px) {
+    #cookie-banner {
+        bottom: 20px;
+        padding: 24px;
+        width: calc(100% - 40px); /* Bezpieczny margines 20px po bokach */
+    }
+    
+    .cookie-actions {
+        flex-direction: column-reverse; /* Przycisk 'Decline' ląduje pod 'Accept All' */
+        gap: 10px;
+    }
+    
+    .cookie-actions button {
+        width: 100%; /* Przyciski na całą szerokość */
+    }
 }
 
 /* ========== 16. MODALS ========== */
@@ -2267,12 +2291,34 @@ input[type=range]::-webkit-slider-runnable-track {
         font-size: 0.85rem !important;
     }
     
-    /* Cookie banner mobile */
+    /* Cookie banner mobile - OSTATECZNA WERSJA */
     #cookie-banner {
-        left: 15px;
-        right: 15px;
-        bottom: 80px;
-        width: auto;
+        left: 50% !important;
+        right: auto !important;
+        bottom: 20px !important;
+        width: calc(100% - 30px) !important; /* Idealne marginesy boczne 15px */
+        transform: translate(-50%, 0) !important;
+        padding: 20px !important;
+    }
+    
+    .cookie-content h3 {
+        font-size: 1.05rem !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .cookie-content p {
+        font-size: 0.85rem !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .cookie-actions {
+        flex-direction: column !important; /* Przyciski lądują jeden pod drugim */
+        gap: 10px !important;
+    }
+    
+    .cookie-actions button {
+        width: 100% !important; /* Przyciski rozciągają się na całą szerokość */
+        padding: 12px !important; /* Grubsze przyciski, łatwiejsze do kliknięcia na dotyk */
     }
     
     /* Modal mobile optimization */
