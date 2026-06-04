@@ -847,41 +847,6 @@ const Dashboard = {
             // Stagger animations
             setTimeout(() => requestAnimationFrame(step), stats.indexOf(stat) * 200);
         });
-
-        // Animate log
-        this.animateLog();
-    },
-
-    animateLog() {
-        const logContainer = utils.getElement('dash-log-lines');
-        if (!logContainer) return;
-
-        logContainer.innerHTML = '';
-        const logLines = [
-            "System initialized...",
-            "Deployment successful.",
-            "72 Active automations verified.",
-            "Syncing Shopify API...",
-            "144 Hours recovered this month."
-        ];
-
-        let lineIdx = 0;
-        const addLog = () => {
-            if (lineIdx < logLines.length) {
-                const div = document.createElement('div');
-                div.className = 'log-line';
-                div.textContent = "> " + logLines[lineIdx];
-                logContainer.appendChild(div);
-                
-                // Scroll to bottom
-                logContainer.scrollTop = logContainer.scrollHeight;
-                
-                lineIdx++;
-                setTimeout(addLog, 800);
-            }
-        };
-
-        setTimeout(addLog, 1000);
     }
 };
 
