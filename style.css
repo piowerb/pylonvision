@@ -2870,37 +2870,31 @@ input[type=range]::-webkit-slider-runnable-track {
 
 /* ========== 25. HERO MOBILE ADJUSTMENTS (FINAL) ========== */
 @media (max-width: 768px) {
-    /* 1. Odstęp od góry (Twoje ustawienie) */
+    /* 1. Odstęp od góry */
     .hero {
         padding-top: 35px !important; 
         margin-top: 35px !important;
     }
 
-    /* 2. Tytuł (Duży i Mocny) */
+    /* 2. Tytuł - Clamp zapewnia, że zawsze będzie w jednej linii */
     .hero-title {
-        font-size: 2.5rem !important; /* Zmniejszone z 3.1rem dla lepszych proporcji */
+        /* Min 1.7rem, preferowane 8vw (szerokość ekranu), Max 2.3rem */
+        font-size: clamp(1.7rem, 8vw, 2.3rem) !important; 
+        letter-spacing: -0.04em !important;
         margin-top: 10px !important; 
-        line-height: 1.15 !important; /* Trochę więcej oddechu między liniami */
-        margin-bottom: 20px !important; /* Nieco większy odstęp od podtytułu */
+        line-height: 1.15 !important;
+        margin-bottom: 20px !important; 
+        white-space: nowrap !important; /* To wymusza jedną linię! */
     }
     
-    /* 3. Podtytuł (Mniejszy i zgrabniejszy) */
+    /* 3. Podtytuł */
     .hero-subtitle {
-        /* Zmniejszamy czcionkę do ok. 14px */
         font-size: 0.9rem !important; 
-        
-        /* Zwiększamy interlinię dla czytelności */
         line-height: 1.6 !important;
-        
-        /* Zwężamy go, żeby nie rozlewał się od krawędzi do krawędzi */
         max-width: 90% !important;
         margin-left: auto !important;
         margin-right: auto !important;
-        
-        /* Kolor lekko przygaszony dla kontrastu */
         color: #9CA3AF !important; 
-        
-        /* Odstęp od przycisków */
         margin-bottom: 30px !important;
     }
     
