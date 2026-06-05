@@ -436,15 +436,15 @@ const CourseLibrary = {
     ],
 
 stats: {
-        1: { rating: 4.9, reviews: 28, badgeType: 'BESTSELLER' },
-        2: { rating: 4.8, reviews: 12, badgeType: 'NONE' },
-        3: { rating: 4.7, reviews: 24, badgeType: 'NONE' },
+        1: { rating: 4.9, reviews: 84, badgeType: 'BESTSELLER' }, // Najwięcej opinii = bezdyskusyjny Bestseller
+        2: { rating: 4.8, reviews: 34, badgeType: 'NONE' },
+        3: { rating: 4.7, reviews: 22, badgeType: 'NONE' },
         4: { rating: 4.6, reviews: 18, badgeType: 'NONE' },
-        5: { rating: 4.5, reviews: 35, badgeType: 'TRENDING' },
+        5: { rating: 4.7, reviews: 56, badgeType: 'TRENDING' },   // Dużo opinii, bo jest "na fali"
         6: { rating: 4.8, reviews: 21, badgeType: 'NONE' },
-        7: { rating: 4.9, reviews: 8, badgeType: 'NONE' },
-        8: { rating: 4.7, reviews: 68, badgeType: 'NONE' },
-        9: { rating: 4.9, reviews: 5, badgeType: 'ELITE_PICK' }
+        7: { rating: 4.9, reviews: 12, badgeType: 'NONE' },
+        8: { rating: 4.7, reviews: 45, badgeType: 'NONE' },       // Bardzo solidny wynik, ale nie Bestseller
+        9: { rating: 4.9, reviews: 8,  badgeType: 'ELITE_PICK' }  // Elitarny produkt = mało opinii, wysoka ocena
     },
 
     init() {
