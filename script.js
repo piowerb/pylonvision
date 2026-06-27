@@ -541,7 +541,7 @@ stats: {
             const starsHtml = this.getStarsHTML(stats.rating);
 
             const card = document.createElement('a');
-            card.href = "#subscription-hero"; 
+            card.href = "https://buy.stripe.com/7sY7sM0Ax0dVffB4fFgfu00"; 
             card.className = 'course-card';
             card.style.opacity = '0';
             card.style.textDecoration = 'none'; 
@@ -1608,3 +1608,16 @@ window.PylonVision = {
     TouchOptimizations,
     PerformanceMonitor
 };
+
+// Opcjonalne: Śledzenie kliknięć w przyciski zakupu
+document.addEventListener('DOMContentLoaded', () => {
+    const buyButtons = document.querySelectorAll('a[href*="buy.stripe.com"]');
+    
+    buyButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            console.log('Użytkownik kliknął przycisk zakupu!');
+            // Jeśli używasz Google Analytics, możesz dodać tutaj:
+            // gtag('event', 'click_checkout', {'event_category': 'conversion'});
+        });
+    });
+});

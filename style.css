@@ -2612,101 +2612,80 @@ input[type=range]::-webkit-slider-runnable-track {
     }
 }
 
-/* ========== 21. BANNER RESPONSIVE FIX ========== */
+/* ========== 21. BANNER & NAVBAR RESPONSIVE ========== */
 @media (max-width: 768px) {
     .urgency-banner {
-        flex-direction: column !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        box-sizing: border-box !important;
+        padding: 6px 10px !important;
+        gap: 8px !important;
         height: auto !important;
-        padding: 8px 10px !important;
-        gap: 4px !important;
-        white-space: normal !important;
-        line-height: 1.3 !important;
-        min-height: auto;
-        
-        /* DODAJ TO - Naprawia znikający header */
-        position: relative !important; 
+        min-height: 30px !important;
+        background: linear-gradient(90deg, #3B1671 0%, #5B29B2 100%) !important;
+        text-shadow: none !important;
+        position: relative !important;
     }
-    
+
+    .banner-link {
+        flex: 0 1 auto !important;
+        min-width: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        text-align: center;
+    }
+
     .banner-link strong {
-        font-size: 0.75rem !important;
-        display: block;
-        margin-bottom: 2px;
+        font-size: 0.65rem !important;
+        font-weight: 500 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        margin: 0 !important;
+        display: block !important;
     }
-    
+
     .timer-box {
-        font-size: 0.7rem !important;
-        padding: 2px 8px !important;
-        width: fit-content;
-        margin: 0 auto;
+        flex: 0 0 auto !important;
+        font-size: 0.65rem !important;
+        padding: 2px 6px !important;
+        margin: 0 !important;
+        background: rgba(0, 0, 0, 0.25) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 4px !important;
+        font-weight: 600 !important;
+        height: auto !important;
+        line-height: 1 !important;
+        align-self: center;
     }
-    
-    /* Adjust navbar position for taller banner */
+
     .navbar {
-        /* ZMIANA TUTAJ - Upewniamy się, że navbar jest przyklejony do góry */
         top: 0 !important;
         position: sticky !important;
         margin-top: 0 !important;
+        height: 60px !important;
+        z-index: 2147483647 !important; /* Fix for layer issue */
     }
-    
-    body {
-        padding-top: 0;
-    }
-    
-    /* Adjust scroll padding */
-    html {
-        scroll-padding-top: 70px;
-    }
+
+    body { padding-top: 0; }
+    html { scroll-padding-top: 110px; }
 }
 
-/* ========== 22. FINAL STICKY FIX (PANCERNY) ========== */
-#sticky-master-wrapper {
+/* ========== 22. STICKY NAVIGATION WRAPPER ========== */
+#main-navigation-wrapper {
     position: sticky;
     position: -webkit-sticky;
     top: 0;
-    z-index: 1000;
-    width: 100%;
-}
-
-#sticky-master-wrapper .urgency-banner {
-    position: relative !important;
-    top: auto !important;
-    z-index: 1002;
-}
-
-#sticky-master-wrapper .navbar {
-    position: relative !important;
-    top: auto !important;
-    margin-top: 0 !important;
-    z-index: 1001;
-    background: rgba(5, 5, 7, 0.95); 
-    backdrop-filter: blur(20px);
-}
-
-@media (max-width: 768px) {
-    .nav-links-mobile {
-        position: fixed !important;
-        top: 0; 
-        padding-top: 120px;
-        height: 100vh;
-        z-index: 999;
-    }
-}
-
-/* =========================================
-   FUNKCJONALNOŚĆ JAK W DROPCOURSE (Sticky)
-   ========================================= */
-
-/* 1. Główny Wrapper - Przykleja całość do sufitu */
-#main-navigation-wrapper {
-    position: sticky;
-    position: -webkit-sticky; /* Wsparcie dla iPhone (Safari) */
-    top: 0;
     z-index: 9999;
     width: 100%;
-    background: transparent; /* Tło przezroczyste, elementy mają swoje tła */
+    background: transparent;
 }
 
-/* 2. Resetujemy pozycje dzieci, żeby nie "walczyły" z wrapperem */
 #main-navigation-wrapper .urgency-banner {
     position: relative !important;
     top: auto !important;
@@ -2719,126 +2698,96 @@ input[type=range]::-webkit-slider-runnable-track {
     position: relative !important;
     top: auto !important;
     margin-top: 0 !important;
-    z-index: 1;
+    z-index: 10 !important; /* HIGHER THAN BLUR OVERLAY */
     width: 100%;
-    /* Dodajemy tło, żeby treść strony nie prześwitywała pod menu podczas przewijania */
     background: rgba(5, 5, 7, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* 3. Poprawka dla Menu Mobilnego */
+/* MEGA BLUR LAYER FIX */
+#main-navigation-wrapper .mega-blur-overlay {
+    z-index: 1 !important; /* UNDER NAVBAR */
+}
+
 @media (max-width: 768px) {
-    /* Menu mobilne musi być "oderwane" od wrappera sticky */
     .nav-links-mobile {
-        position: fixed !important; 
+        position: fixed !important;
         top: 0 !important;
         left: 0;
         width: 100%;
         height: 100vh;
-        z-index: 9998; /* Poniżej wrappera, ale wysoko */
-        padding-top: 130px; /* Miejsce na nagłówek, żeby nie zasłaniał linków */
+        z-index: 9998;
+        padding-top: 130px;
     }
-    
-    /* Mega menu overlay */
-    .mega-blur-overlay {
-        position: fixed !important;
-    }
-}
 
-/* ========== 21. BANNER & NAVBAR RESPONSIVE (FULL TEXT VISIBLE) ========== */
-@media (max-width: 768px) {
-    /* 1. Baner - Elastyczny, mieści cały tekst */
-    .urgency-banner {
+    .nav-links-mobile.active {
         display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: wrap !important; /* KLUCZOWE: Pozwala elementom spaść niżej jeśli trzeba */
-        align-items: center !important;
-        justify-content: center !important;
-        
-        /* Minimalne, estetyczne odstępy */
-        padding: 8px 12px !important; 
-        gap: 8px !important;
-        
-        height: auto !important; /* Wysokość dopasuje się do ilości tekstu */
-        min-height: 44px !important;
+        flex-direction: column !important;
+        background: #050507 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        gap: 20px !important;
     }
 
-    /* 2. Tekst Promocji */
-    .banner-link {
-        flex: 0 1 auto;
-        min-width: 0;
-        /* Wyśrodkowanie tekstu */
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .nav-links-mobile.active a {
+        font-size: 1.5rem !important;
+        color: #ffffff !important;
+        text-align: center !important;
+        display: block !important;
+        padding: 15px !important;
+        opacity: 1 !important;
     }
 
-    .banner-link strong {
-        font-size: 0.75rem !important; /* Czytelny rozmiar (12px) */
-        line-height: 1.3 !important; /* Lekki odstęp między liniami */
-        
-        /* POKAZUJE CAŁY TEKST */
-        white-space: normal !important; 
-        overflow: visible !important;
-        text-overflow: clip !important;
-        max-width: 100% !important;
-        display: inline-block !important;
-    }
-
-    /* 3. Zegar - estetyczny dodatek */
-    .timer-box {
-        font-size: 0.7rem !important;
-        padding: 3px 6px !important;
-        margin: 0 !important;
-        
-        /* Wygląd */
-        background: rgba(0, 0, 0, 0.2) !important;
-        border: 1px solid rgba(255, 255, 255, 0.15) !important;
-        border-radius: 4px !important;
-        
-        /* Ustawienia techniczne */
-        flex-shrink: 0;
+    .mega-blur-overlay { position: fixed !important; z-index: 1 !important; }
+    .mobile-menu-btn { position: relative !important; z-index: 2147483647 !important; }
+    
+    /* MEGA MENU MOBILE FIX */
+    .mega-menu {
+        position: fixed !important;
+        top: 85px !important; 
+        left: 50% !important;
+        transform: translateX(-50%) translateY(-10px) !important;
+        width: 95vw !important; 
         height: auto !important;
-        line-height: 1 !important;
-        align-self: center;
+        max-height: 80vh !important;
+        overflow-y: auto !important;
+        background: rgba(10, 10, 15, 0.98) !important;
+        backdrop-filter: blur(30px) !important;
+        border: 1px solid rgba(124, 58, 237, 0.4) !important;
+        border-radius: 20px !important;
+        padding: 20px !important;
+        z-index: 2147483647 !important;
     }
-    
-    /* Navbar ustawienia */
-    .navbar {
-        top: auto !important;
-        position: relative !important;
-        margin-top: 0 !important;
-        height: 60px !important;
-    }
-    
-    body {
-        padding-top: 0;
-    }
-    
-    html {
-        scroll-padding-top: 110px;
+
+    .mega-menu.show {
+        transform: translateX(-50%) translateY(0) !important;
     }
 }
 
-/* ========== ANIMACJA: WSUWANIE Z BOKU (MOBILE) ========== */
+/* Wymuszenie widoczności Mega Menu po kliknięciu (Global) */
+.mega-menu.show {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateX(-50%) translateY(0) !important;
+    pointer-events: auto !important;
+}
+.mega-blur-overlay.show {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* ========== 23. ANIMATION: PROOF PULSE (MOBILE) ========== */
 @media (max-width: 768px) {
     #proof-pulse {
-        /* 1. POZYCJA STARTOWA (SCHOWANY) */
-        left: 20px !important; /* Odstęp od lewej krawędzi */
+        left: 20px !important;
         bottom: 20px !important;
-        
-        /* To wyrzuca go poza ekran w lewo (-120%) */
-        transform: translateX(-120%) !important; 
+        transform: translateX(-120%) !important;
         opacity: 0 !important;
-        
-        /* 2. ANIMACJA (PŁYNNY WJAZD) */
-        /* cubic-bezier daje efekt lekkiego "sprężystego" wyhamowania */
         transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
-
-        /* 3. WYGLĄD (Zgrabna pastylka) */
         width: auto !important;
         max-width: 85% !important;
         padding: 10px 14px !important;
@@ -2846,562 +2795,93 @@ input[type=range]::-webkit-slider-runnable-track {
         background: rgba(15, 15, 20, 0.95) !important;
         border: 1px solid rgba(255, 255, 255, 0.15) !important;
         box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important;
-        
-        /* 4. UKŁAD WEWNĄTRZ */
         display: flex !important;
         align-items: center !important;
         gap: 12px !important;
         z-index: 99999 !important;
     }
 
-    /* 5. STAN WIDOCZNY (To klasa, którą dodaje Twój JavaScript) */
     #proof-pulse.visible {
-        transform: translateX(0) !important; /* Wjeżdża na swoje miejsce */
+        transform: translateX(0) !important;
         opacity: 1 !important;
     }
 
-    /* Reszta stylów (tekst/zdjęcie) bez zmian dla zachowania czytelności */
-    .proof-img-container {
-        width: 38px !important;
-        height: 38px !important;
-        min-width: 38px !important;
-        margin: 0 !important;
-    }
-    
+    .proof-img-container { width: 38px !important; height: 38px !important; min-width: 38px !important; margin: 0 !important; }
     .proof-avatar { border-radius: 50% !important; }
-
-    .proof-info {
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: center !important;
-        text-align: left !important;
-        gap: 2px !important;
-    }
-
-    .proof-info div:first-child {
-        font-size: 0.8rem !important;
-        font-weight: 700 !important;
-        color: #fff !important;
-        line-height: 1.1 !important;
-        white-space: nowrap !important;
-    }
-
-    .proof-info div:last-child {
-        font-size: 0.7rem !important;
-        color: #9CA3AF !important;
-        line-height: 1.1 !important;
-        white-space: nowrap !important;
-        display: block !important;
-    }
-    
+    .proof-info { display: flex !important; flex-direction: column !important; justify-content: center !important; text-align: left !important; gap: 2px !important; }
+    .proof-info div:first-child { font-size: 0.8rem !important; font-weight: 700 !important; color: #fff !important; line-height: 1.1 !important; white-space: nowrap !important; }
+    .proof-info div:last-child { font-size: 0.7rem !important; color: #9CA3AF !important; line-height: 1.1 !important; white-space: nowrap !important; display: block !important; }
     .status-dot { display: none !important; }
 }
 
-/* ========== 25. HERO MOBILE ADJUSTMENTS (FINAL) ========== */
+/* ========== 24. HERO & LAYOUT ADJUSTMENTS ========== */
 @media (max-width: 768px) {
-    /* 1. Odstęp od góry */
-    .hero {
-        padding-top: 35px !important; 
-        margin-top: 35px !important;
-    }
+    .hero { padding-top: 35px !important; margin-top: 35px !important; }
+    .hero-title { font-size: clamp(1.7rem, 8vw, 2.3rem) !important; letter-spacing: -0.04em !important; margin-top: 10px !important; line-height: 1.15 !important; margin-bottom: 20px !important; white-space: nowrap !important; }
+    .hero-subtitle { font-size: 0.9rem !important; line-height: 1.6 !important; max-width: 90% !important; margin-left: auto !important; margin-right: auto !important; color: #9CA3AF !important; margin-bottom: 30px !important; }
+    .hero-content { padding-top: 0 !important; }
+    .hero-dashboard-wrapper { margin-top: 150px !important; }
 
-    /* 2. Tytuł - Clamp zapewnia, że zawsze będzie w jednej linii */
-    .hero-title {
-        /* Min 1.7rem, preferowane 8vw (szerokość ekranu), Max 2.3rem */
-        font-size: clamp(1.7rem, 8vw, 2.3rem) !important; 
-        letter-spacing: -0.04em !important;
-        margin-top: 10px !important; 
-        line-height: 1.15 !important;
-        margin-bottom: 20px !important; 
-        white-space: nowrap !important; /* To wymusza jedną linię! */
-    }
+    #subscription-hero { flex-direction: column !important; text-align: center !important; padding: 30px 20px !important; gap: 30px !important; justify-content: center !important; border-radius: 20px !important; }
+    #subscription-hero > div:first-child { display: flex !important; flex-direction: column !important; align-items: center !important; min-width: 100% !important; }
+    #subscription-hero p { margin: 0 auto !important; text-align: center !important; }
+
+    .premium-checkout-card { width: 100% !important; max-width: 350px !important; margin: 0 auto !important; min-width: unset !important; align-items: center !important; }
+    .premium-checkout-card > div:first-child { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .premium-checkout-card > div:first-child > div { justify-content: center; }
     
-    /* 3. Podtytuł */
-    .hero-subtitle {
-        font-size: 0.9rem !important; 
-        line-height: 1.6 !important;
-        max-width: 90% !important;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        color: #9CA3AF !important; 
-        margin-bottom: 30px !important;
-    }
-    
-    /* 4. Reset kontenera */
-    .hero-content {
-        padding-top: 0 !important;
-    }
+    .faq-item { padding: 0 16px !important; }
+    .faq-question { padding: 20px 0 !important; font-size: 1rem !important; }
+
+    .terminal-body { padding: 20px !important; font-size: 0.8rem !important; overflow-x: auto !important; }
+    input[type=range]::-webkit-slider-thumb { width: 32px !important; height: 32px !important; margin-top: -14px !important; }
+    input[type=range]::-moz-range-thumb { width: 32px !important; height: 32px !important; }
 }
 
-/* ========== DESKTOP HERO GAP FIX (ZMNIEJSZENIE DZIURY) ========== */
-@media (min-width: 769px) {
-    .hero {
-        /* Tu sterujesz wielkością "czarnej dziury" na komputerze. */
-        /* Spróbuj wartości między 40px a 80px */
-        padding-top: 60px !important; 
-    }
-}
+@media (min-width: 769px) { .hero { padding-top: 60px !important; } }
+@media (min-width: 1025px) { .hero-dashboard:hover .log-line { opacity: 0; transform: translateY(10px); transition: all 0.3s ease; } }
 
-/* ========== PUSH DASHBOARD DOWN (MOBILE) ========== */
-@media (max-width: 768px) {
-    .hero-dashboard-wrapper {
-        /* To wypycha dashboard w dół. 
-           Zwiększ tę liczbę (np. na 200px), jeśli chcesz, żeby był jeszcze niżej. */
-        margin-top: 150px !important; 
-    }
+/* ========== 25. TICKER, FAQ & ANIMATIONS ========== */
+.ticker:hover { animation-play-state: running !important; }
+.ticker-item:hover { transform: none !important; opacity: 0.7 !important; }
+.ticker-wrap { -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%); background: transparent !important; border: none !important; }
+.ticker-fade { display: none !important; }
 
-}
+.faq-answer { transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; }
+.faq-question i { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; }
+.faq-item { transition: background-color 0.25s ease-out, border-color 0.25s ease-out !important; }
 
-/* ========== HIDE GLITCHY LOG TEXT ON HOVER (DESKTOP) ========== */
-@media (min-width: 1025px) {
-    /* Kiedy najeżdżasz na dashboard... */
-    .hero-dashboard:hover .log-line {
-        /* ...ukryj zielony tekst "> System initialized..." */
-        opacity: 0;
-        
-        /* Opcjonalnie: lekkie przesunięcie w dół dla lepszego efektu znikania */
-        transform: translateY(10px);
-        
-        /* Płynne przejście */
-        transition: all 0.3s ease;
-    }
-}
+.star-anim { animation: star-wave-effect 3s infinite ease-in-out; will-change: transform, filter; }
+@keyframes star-wave-effect { 0%, 30%, 100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 0 rgba(251, 191, 36, 0)); color: #FBBF24; } 15% { transform: translateY(-2px) scale(1.15); filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.8)); color: #FFF3C4; } }
 
-/* ========== TICKER FIXES (NO PAUSE & SIDE FADE) ========== */
+.btn-lock-hover { gap: 8px !important; }
+.btn-lock-hover .lock-wrapper { display: inline-grid !important; place-items: center !important; width: 16px !important; height: 16px !important; }
+.btn-lock-hover .icon-locked, .btn-lock-hover .icon-unlocked { grid-area: 1 / 1 !important; position: static !important; margin: 0 !important; transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important; }
+.btn-lock-hover .icon-locked { opacity: 1 !important; transform: translateY(0) scale(1) rotate(0deg) !important; }
+.btn-lock-hover .icon-unlocked { opacity: 0 !important; transform: translateY(12px) scale(0.5) rotate(-20deg) !important; }
+.btn-lock-hover:hover .icon-locked { opacity: 0 !important; transform: translateY(-15px) scale(1.3) rotate(20deg) !important; }
+.btn-lock-hover:hover .icon-unlocked { opacity: 1 !important; transform: translateY(0) scale(1.1) rotate(0deg) !important; }
 
-/* 1. NIE ZATRZYMUJ animacji po najechaniu myszką */
-.ticker:hover {
-    animation-play-state: running !important;
-}
+.btn-glass::before { content: ""; position: absolute; top: 0; left: -150%; width: 80%; height: 100%; background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.1), rgba(168, 85, 247, 0.7), rgba(124, 58, 237, 0.1), transparent); transform: skewX(-25deg); z-index: -1; }
+.btn-glass:hover { border-color: rgba(168, 85, 247, 0.5) !important; background: rgba(124, 58, 237, 0.08) !important; box-shadow: 0 0 20px rgba(124, 58, 237, 0.2) !important; }
+.btn-glass:hover::before { animation: glass-purple-wave 1.5s infinite; }
+@keyframes glass-purple-wave { 0% { left: -150%; } 60% { left: 150%; } 100% { left: 150%; } }
 
-/* Wyłączamy też powiększanie się ikonek przy najechaniu, 
-   bo to wygląda dziwnie, gdy pasek się rusza */
-.ticker-item:hover {
-    transform: none !important;
-    opacity: 0.7 !important; /* Zostawiamy standardową jasność */
-}
+/* ========== 26. CUSTOM COMPONENTS & UTILITIES ========== */
+.premium-checkout-card { background: #09090B; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 40px; min-width: 340px; display: flex; flex-direction: column; text-decoration: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; }
+.premium-checkout-card:hover { border-color: rgba(168, 85, 247, 0.5); box-shadow: 0 0 0 1px rgba(168, 85, 247, 0.5), 0 20px 40px -10px rgba(0,0,0,0.5); transform: translateY(-4px); }
+.premium-checkout-btn { background: #FFFFFF; color: #000000; width: 100%; text-align: center; padding: 14px 0; border-radius: 12px; font-weight: 700; font-size: 0.95rem; transition: all 0.3s ease; margin-top: 24px; }
+.premium-checkout-card:hover .premium-checkout-btn { background: #A855F7; color: #FFFFFF; }
 
-/* 2. EFEKT ZANIKANIA PO BOKACH (Maska Gradientowa) */
-.ticker-wrap {
-    /* To sprawia, że krawędzie (0% i 100%) są niewidoczne, a środek widoczny */
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
-    
-    /* Upewniamy się, że tło strony jest widoczne */
-    background: transparent !important;
-    border: none !important; /* Usuwamy ewentualne kreski góra/dół jeśli chcesz czysto */
-}
+.gravatar-icon-mask { width: 48px; height: 48px; display: inline-block; background-color: currentColor; -webkit-mask-image: url('https://cdn.simpleicons.org/gravatar'); -webkit-mask-repeat: no-repeat; -webkit-mask-position: center; -webkit-mask-size: contain; mask-image: url('https://cdn.simpleicons.org/gravatar'); mask-repeat: no-repeat; mask-position: center; mask-size: contain; }
 
-/* 3. Ukrywamy stare elementy cienia, jeśli istnieją (bo maska jest lepsza) */
-.ticker-fade {
-    display: none !important;
-}
+html, body { width: 100%; overflow-x: clip !important; overscroll-behavior-x: none !important; }
+.touch-device { touch-action: pan-y !important; }
+* { max-width: 100vw; }
 
-/* ========== FAQ PREMIUM FEEL (SZYBKO + PŁYNNIE) ========== */
-.faq-answer {
-    /* 0.3s to idealny czas - oko widzi ruch, ale mózg nie czeka.
-       cubic-bezier(0.4, 0, 0.2, 1) to standardowa krzywa "Material Design",
-       która daje wrażenie naturalnego przyspieszenia i miękkiego lądowania. */
-    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.faq-question i {
-    /* Strzałka obraca się w tym samym tempie */
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-/* Podświetlenie przy najechaniu */
-.faq-item {
-    transition: background-color 0.25s ease-out, border-color 0.25s ease-out !important;
-}
-
-/* ========== MEGA MENU FIX (WARSTWY) ========== */
-
-/* 1. Navbar musi być NAJWYŻEJ, ponad rozmytym tłem */
-.navbar {
-    z-index: 2147483647 !important; /* Maksymalna możliwa wartość */
-    position: relative !important; /* Wymagane, żeby z-index zadziałał */
-}
-
-/* 2. Menu wewnątrz navbara też musi być na wierzchu */
-.mega-menu {
-    z-index: 2147483647 !important;
-}
-
-/* 3. Tło (blur) musi być NIŻEJ niż navbar, żeby go nie przykrywało */
-.mega-blur-overlay {
-    z-index: 2147483600 !important; /* Mniejsza liczba niż navbar */
-}
-
-/* ========== MOBILE MENU FINAL REPAIR ========== */
-@media (max-width: 768px) {
-    /* 1. Wygląd otwartego menu (Klasa .active jest dodawana przez JS) */
-    .nav-links-mobile.active {
-        display: flex !important;
-        flex-direction: column !important;
-        
-        /* Pozycjonowanie na cały ekran */
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100vh !important;
-        
-        /* WARSTWY - Menu musi być wyżej niż wszystko inne */
-        z-index: 2147483647 !important; 
-        
-        /* Wygląd tła - musi być pełne, żeby zakryć stronę */
-        background: #050507 !important;
-        
-        /* Widoczność */
-        opacity: 1 !important;
-        visibility: visible !important;
-        
-        /* Odstęp od góry, żeby linki nie weszły na logo/X */
-        padding-top: 100px !important;
-        gap: 20px !important;
-    }
-
-    /* 2. Wygląd linków wewnątrz menu */
-    .nav-links-mobile.active a {
-        font-size: 1.5rem !important;
-        color: #ffffff !important; /* Biały tekst */
-        text-align: center !important;
-        display: block !important;
-        padding: 15px !important;
-        opacity: 1 !important;
-    }
-
-    /* 3. Przycisk X (Hamburger zmienia się w X) */
-    /* Upewniamy się, że przycisk też jest na wierzchu, żeby można było zamknąć */
-    .mobile-menu-btn {
-        position: relative !important; 
-        z-index: 2147483647 !important; 
-    }
-}
-
-/* ZABLOKOWANIE PRZEWIJANIA NA BOKI (STIFF MOBILE) - WERSJA BEZPIECZNA */
-html, body {
-    width: 100%;
-    /* Używamy 'clip' zamiast 'hidden'. 
-       'clip' ucina boki, ale pozwala menu (position: sticky) dalej działać na PC! */
-    overflow-x: clip !important; 
-    overscroll-behavior-x: none !important;
-}
-
-/* Wymuszenie na urządzeniach dotykowych tylko pionowego przewijania */
-.touch-device {
-    touch-action: pan-y !important;
-}
-
-/* Wymuszenie na urządzeniach dotykowych tylko pionowego przewijania */
-.touch-device {
-    touch-action: pan-y !important;
-}
-
-/* Zabezpieczenie, aby żaden element nie "rozpychał" strony */
-* {
-    max-width: 100vw;
-}
-
-/* WYŚRODKOWANIE SEKCJI PREMIUM (49 USD) NA TELEFONACH */
-@media (max-width: 768px) {
-    #subscription-hero {
-        flex-direction: column !important;
-        text-align: center !important;
-        padding: 30px 20px !important;
-        gap: 30px !important;
-        justify-content: center !important;
-        border-radius: 20px !important;
-    }
-
-    /* Wyśrodkowanie lewej kolumny z tekstem ("Everything you need...") */
-    #subscription-hero > div:first-child {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        min-width: 100% !important;
-    }
-
-    /* Naprawa wyrównania paragrafu z opisem */
-    #subscription-hero p {
-        margin: 0 auto !important;
-        text-align: center !important;
-    }
-
-    /* Wyśrodkowanie samej karty z ceną i przyciskiem */
-    .premium-checkout-card {
-        width: 100% !important;
-        max-width: 350px !important;
-        margin: 0 auto !important;
-        min-width: unset !important; /* Nadpisuje inline min-width: 340px z HTML */
-        align-items: center !important; /* Środkuje zawartość samej karty */
-    }
-
-    /* Upewnienie się, że napis "49 USD" też jest na środku */
-    .premium-checkout-card > div:first-child {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .premium-checkout-card > div:first-child > div {
-        justify-content: center;
-    }
-}
-
-/* NAPRAWA GÓRNEGO PASKA PROMOCJI NA TELEFONY (CIENKI I OBOK SIEBIE) */
-@media (max-width: 768px) {
-    .urgency-banner {
-        /* Wymuszamy jedną, zgrabną linię */
-        display: flex !important;
-        flex-direction: row !important; 
-        flex-wrap: nowrap !important; /* Zakaz łamania do nowej linii */
-        align-items: center !important;
-        justify-content: center !important;
-        
-        /* Zabezpieczenie przed wychodzeniem za ekran */
-        width: 100% !important;
-        max-width: 100vw !important;
-        box-sizing: border-box !important;
-        
-        /* Wyszczuplenie paska */
-        padding: 6px 10px !important;
-        min-height: 30px !important;
-        height: auto !important;
-        gap: 8px !important;
-        
-        /* Uspokojenie kolorów (mniej agresywne i bez pomarańczowej poświaty) */
-        background: linear-gradient(90deg, #3B1671 0%, #5B29B2 100%) !important;
-        text-shadow: none !important; 
-    }
-
-    .banner-link {
-        /* Tekst zajmuje tylko tyle miejsca, ile trzeba */
-        flex: 0 1 auto !important;
-        min-width: 0 !important; 
-        display: flex !important;
-        align-items: center !important;
-    }
-
-    .banner-link strong {
-        font-size: 0.65rem !important; /* Dyskretniejsza czcionka */
-        font-weight: 500 !important; /* Mniej "krzycząca" grubość */
-        display: block !important;
-        
-        /* Jeśli ktoś ma ekstremalnie mały ekran, tekst doda "..." zamiast rozwalić pasek */
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-        margin: 0 !important;
-    }
-
-    .timer-box {
-        /* Zegar sztywno obok tekstu */
-        flex: 0 0 auto !important;
-        font-size: 0.65rem !important;
-        padding: 2px 6px !important;
-        margin: 0 !important;
-        
-        /* Dyskretny, techniczny wygląd */
-        background: rgba(0, 0, 0, 0.25) !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        border-radius: 4px !important;
-        font-weight: 600 !important;
-    }
-}
-
-/* DOPASOWANIA UX/UI DLA TELEFONÓW (FAQ, TERMINAL, SUWAKI) */
-@media (max-width: 768px) {
-    
-    /* 1. Odchudzenie marginesów FAQ */
-    .faq-item {
-        padding: 0 16px !important;
-    }
-    .faq-question {
-        padding: 20px 0 !important;
-        font-size: 1rem !important; /* Lepsza czytelność na małym ekranie */
-    }
-
-    /* 2. Poszerzenie miejsca na kod w Terminalu */
-    .terminal-body {
-        padding: 20px !important; /* Mniejszy padding */
-        font-size: 0.8rem !important; /* Odpowiedni rozmiar dla kodu */
-        overflow-x: auto !important; /* Gdyby kod był bardzo długi, pozwoli na poziomy scroll wewn. bloku */
-    }
-
-    /* 3. Powiększenie uchwytów suwaków ROI pod palec (Touch Target) */
-    input[type=range]::-webkit-slider-thumb {
-        width: 32px !important;
-        height: 32px !important;
-        margin-top: -14px !important; /* Środkowanie powiększonego suwaka względem linii */
-    }
-    input[type=range]::-moz-range-thumb {
-        width: 32px !important;
-        height: 32px !important;
-    }
-}
-
-/* SUBTELNA ANIMACJA GWIAZDEK (FALA) */
-.star-anim {
-    animation: star-wave-effect 3s infinite ease-in-out;
-    will-change: transform, filter; /* Optymalizacja płynności na telefonach */
-}
-
-@keyframes star-wave-effect {
-    /* 0%, 30%, i 100% to czas, gdy gwiazdki stoją w miejscu (żeby nie skakały jak szalone) */
-    0%, 30%, 100% { 
-        transform: translateY(0) scale(1); 
-        filter: drop-shadow(0 0 0 rgba(251, 191, 36, 0)); 
-        color: #FBBF24; 
-    }
-    /* Złoty środek podskoku (15% czasu animacji) */
-    15% { 
-        transform: translateY(-2px) scale(1.15); /* Podskok do góry i leciutkie powiększenie */
-        filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.8)); /* Złota poświata */
-        color: #FFF3C4; /* Chwilowe rozjaśnienie (złoty błysk) */
-    }
-}
-
-/* OSTATECZNA ANIMACJA KŁÓDKI (BEZ ABSOLUTE - CSS GRID) */
-.btn-lock-hover {
-    gap: 8px !important; /* Odstęp od tekstu */
-}
-
-.btn-lock-hover .lock-wrapper {
-    /* Używamy Grida zamiast pozycjonowania! To trzyma ikony w ryzach po prawej stronie */
-    display: inline-grid !important;
-    place-items: center !important;
-    width: 16px !important;
-    height: 16px !important;
-}
-
-.btn-lock-hover .icon-locked,
-.btn-lock-hover .icon-unlocked {
-    /* Magia Grida: obie ikony są w tej samej kratce (1 na 1), nakładając się na siebie */
-    grid-area: 1 / 1 !important;
-    position: static !important; /* Kategoryczny zakaz uciekania na środek (absolute) */
-    margin: 0 !important;
-    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-}
-
-/* STAN DOMYŚLNY */
-.btn-lock-hover .icon-locked {
-    opacity: 1 !important;
-    transform: translateY(0) scale(1) rotate(0deg) !important;
-}
-
-.btn-lock-hover .icon-unlocked {
-    opacity: 0 !important;
-    transform: translateY(12px) scale(0.5) rotate(-20deg) !important;
-}
-
-/* STAN PO NAJECHANIU (HOVER) */
-.btn-lock-hover:hover .icon-locked {
-    opacity: 0 !important;
-    /* Zamknięta odskakuje do góry */
-    transform: translateY(-15px) scale(1.3) rotate(20deg) !important;
-}
-
-.btn-lock-hover:hover .icon-unlocked {
-    opacity: 1 !important;
-    /* Otwarta uderza na swoje miejsce */
-    transform: translateY(0) scale(1.1) rotate(0deg) !important;
-}
-
-/* FIOLETOWA FALA ŚWIATŁA (HOVER) DLA PRZYCISKU "VIEW ALL PROGRAMS" */
-.btn-glass::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -150%;
-    width: 80%;
-    height: 100%;
-    /* Luksusowy, fioletowy strumień światła */
-    background: linear-gradient(
-        90deg, 
-        transparent, 
-        rgba(124, 58, 237, 0.1), 
-        rgba(168, 85, 247, 0.7), 
-        rgba(124, 58, 237, 0.1), 
-        transparent
-    );
-    transform: skewX(-25deg);
-    z-index: -1;
-}
-
-.btn-glass:hover {
-    /* Aktywacja szklanego fioletu po najechaniu */
-    border-color: rgba(168, 85, 247, 0.5) !important;
-    background: rgba(124, 58, 237, 0.08) !important;
-    box-shadow: 0 0 20px rgba(124, 58, 237, 0.2) !important;
-}
-
-.btn-glass:hover::before {
-    /* Uruchomienie animacji fali */
-    animation: glass-purple-wave 1.5s infinite;
-}
-
-@keyframes glass-purple-wave {
-    0% { left: -150%; }
-    60% { left: 150%; }
-    100% { left: 150%; } /* Krótka pauza przed kolejnym przelotem dla naturalności */
-}
-
-/* PREMIUM CHECKOUT CARD (Przeniesione z HTML) */
-.premium-checkout-card {
-    background: #09090B;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 20px;
-    padding: 40px;
-    min-width: 340px;
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-.premium-checkout-card:hover {
-    border-color: rgba(168, 85, 247, 0.5);
-    box-shadow: 0 0 0 1px rgba(168, 85, 247, 0.5), 0 20px 40px -10px rgba(0,0,0,0.5);
-    transform: translateY(-4px);
-}
-
-.premium-checkout-btn {
-    background: #FFFFFF;
-    color: #000000;
-    width: 100%;
-    text-align: center;
-    padding: 14px 0;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
-    margin-top: 24px;
-}
-
-.premium-checkout-card:hover .premium-checkout-btn {
-    background: #A855F7;
-    color: #FFFFFF;
-}
-
-/* POPRAWNA MASKA DLA IKONY GRAVATAR */
-.gravatar-icon-mask {
-    width: 48px;
-    height: 48px;
-    display: inline-block;
-    background-color: currentColor;
-    -webkit-mask-image: url('https://cdn.simpleicons.org/gravatar');
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: center;
-    -webkit-mask-size: contain;
-    mask-image: url('https://cdn.simpleicons.org/gravatar');
-    mask-repeat: no-repeat;
-    mask-position: center;
-    mask-size: contain;
-}
-
+/* ========== 27. PERFORMANCE & PRINT ========== */
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
+@media (prefers-contrast: more) { :root { --glass-border: 1px solid rgba(255, 255, 255, 0.3); --text-muted: #CCCCCC; } }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+@media print { .urgency-banner, .navbar, #proof-pulse, #cookie-banner, .modal-overlay, .mega-menu, .mega-blur-overlay { display: none !important; } body { background: white !important; color: black !important; } .hero-dashboard, .bento-card, .course-card, .social-card { box-shadow: none !important; border: 1px solid #ccc !important; } }
 /* ========== END OF STYLES ========== */
