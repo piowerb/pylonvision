@@ -18,21 +18,22 @@
     <meta property="og:description" content="Scale your business with custom automation software. Work less, earn more.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://pylonvision.com">
-    <meta property="og:image" content="https://pylonvision.com/og-image.jpg">
+    <meta property="og:image" content="https://pylonvision.com/og-image.webp">
 
-    <link rel="icon" type="image/png" href="images/main-logo-pylonvision.png">
+    <link rel="icon" type="image/png" href="images/main-logo-pylonvision.webp">
 
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"></noscript>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="style.css?v=6">
+    <link rel="stylesheet" href="style.css?v=7">
     
     <!-- Preload critical resources -->
-    <link rel="preload" href="images/main-logo-pylonvision.png" as="image">
+    <link rel="preload" href="images/main-logo-pylonvision.webp" as="image">
 </head>
 <body>
     <div id="scroll-progress" style="position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: #8B5CF6; z-index: 9999; transition: width 0.1s ease;"></div>
@@ -51,7 +52,7 @@
         <nav class="navbar">
             <div class="container nav-inner">
                 <a href="/" class="brand">
-                    <img src="images/main-logo-pylonvision.png" alt="PylonVision Logo" class="nav-logo">
+                    <img src="images/main-logo-pylonvision.webp" alt="PylonVision Logo" width="150" height="38" class="nav-logo">
                     PylonVision
                 </a>
 
@@ -72,9 +73,9 @@
                         Start Today <i class="fa-solid fa-arrow-right" style="margin-left: 0px; font-size: 0.9em;"></i>
                     </a>
                     <div class="mobile-header-actions">
-                        <a href="https://pylonvision.systeme.io/school/course/all-access" class="mobile-user-icon" style="color: #fff; font-size: 1.2rem; margin-right: 0; text-decoration: none;">
-                            <i class="fa-regular fa-user"></i>
-                        </a>
+                        <a href="https://pylonvision.systeme.io/school/course/all-access" class="mobile-user-icon" aria-label="Go to login page" style="color: #fff; font-size: 1.2rem; margin-right: 0; text-decoration: none;">
+                        <i class="fa-regular fa-user"></i>
+                    </a>
 
                         <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
                             <i class="fa-solid fa-bars"></i>
@@ -225,6 +226,8 @@
             </div>
         </div>
     </header>
+
+    <main>
 
     <!-- Ticker Section -->
     <section class="ticker-wrap">
@@ -462,7 +465,7 @@
             <div class="library-controls">
                 <div class="search-wrapper">
                     <i class="fas fa-search search-icon"></i>
-                    <input type="text" id="courseSearch" class="search-input" placeholder="Search for strategies (e.g. Drop, Agency)...">
+                    <input type="text" id="courseSearch" aria-label="Search for strategies" class="search-input" placeholder="Search for strategies (e.g. Drop, Agency)...">
                 </div>
 
                 <div class="filter-group">
@@ -710,13 +713,13 @@
                 <div class="calc-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(30px, 5vw, 60px); align-items: center;">
                     <div class="calc-inputs">
                         <div class="calc-input" style="margin-bottom: clamp(20px, 3vw, 30px);">
-                            <label style="font-size: 0.85rem; opacity: 0.8;">Employee Hours Saved / Month</label>
+                            <label for="hours-slider" style="font-size: 0.85rem; opacity: 0.8;">Employee Hours Saved / Month</label>
                             <div class="calc-value" id="hours-display" style="font-size: clamp(1.2rem, 3vw, 1.5rem); margin-bottom: 10px;">100</div>
                             <input type="range" id="hours-slider" min="10" max="1000" value="100" style="width: 100%; cursor: pointer;">
                         </div>
 
                         <div class="calc-input">
-                            <label style="font-size: 0.85rem; opacity: 0.8;">Avg. Hourly Revenue ($)</label>
+                            <label for="rate-slider" style="font-size: 0.85rem; opacity: 0.8;">Avg. Hourly Revenue ($)</label>
                             <div class="calc-value" id="rate-display" style="font-size: clamp(1.2rem, 3vw, 1.5rem); margin-bottom: 10px;">$50</div>
                             <input type="range" id="rate-slider" min="20" max="500" value="50" style="width: 100%; cursor: pointer;">
                         </div>
@@ -870,7 +873,8 @@
                 Response time: <span style="color: #fff;">Under 24 hours</span>
             </p>
         </div>
-        
+    </main>
+
     <!-- Footer -->
     <footer class="main-footer" style="padding-top: 60px; padding-bottom: 15px;">
         <div class="container">
@@ -1528,7 +1532,7 @@
                 <!-- KONTENER Z LOGO I TEKSTEM -->
                 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; margin-bottom: 40px; padding-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.1);">
                     
-                    <img src="images/main-logo-pylonvision.png" alt="PylonVision Logo" style="width: 80px; height: auto; display: block; margin: 0 auto 20px auto; filter: drop-shadow(0 0 10px rgba(124, 58, 237, 0.5));">
+                    <img src="images/main-logo-pylonvision.webp" alt="PylonVision Logo" width="80" height="80" style="width: 80px; height: auto; display: block; margin: 0 auto 20px auto; filter: drop-shadow(0 0 10px rgba(124, 58, 237, 0.5));">
                     
                     <p style="text-align: center; font-size: 1.25rem; color: #fff; line-height: 1.5; font-weight: 500; margin: 0;">
                         "Engineering the path<br>to your digital success."

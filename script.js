@@ -424,15 +424,15 @@ const Ticker = {
 // ========== 8. COURSE LIBRARY MODULE ==========
 const CourseLibrary = {
     courses: [
-        { id: 1, title: "E-Commerce Mastery", category: "business", price: "$49", image: "images/image1.png", desc: "Start your dropshipping journey with a solid plan. We teach you how to set up your store, find reliable suppliers, and choose products with potential.", url: "#" },
-        { id: 2, title: "Agency Architect", category: "business", price: "$99", image: "images/image2.png", desc: "Learn how to build organize and scale a marketing agency. We show you proven strategies to find clients and manage your projects.", url: "#" },
-        { id: 3, title: "Copywriter Secrets", category: "business", price: "$29", image: "images/image3.png", desc: "Discover how to write texts that persuades people to buy easily. You will learn the psychology behind sales and how to present your offers effectively.", url: "#" },
-        { id: 4, title: "Market Strategy", category: "trading", price: "$79", image: "images/image4.png", desc: "Learn the way of trading and technical analysis. We teach you how to read charts, manage risk, and think like a professional investor.", url: "#" },
-        { id: 5, title: "Faceless Influencer", category: "social", price: "$39", image: "images/image5.png", desc: "Learn how to run a YouTube channel without showing your face. We explain how to choose the right topics and create content efficiently.", url: "#" },
-        { id: 6, title: "Prime Dropshipping", category: "business", price: "$49", image: "images/image6.png", desc: "Learn how to sell on Amazon, the world's largest marketplace. We explain the FBA model and how to use Amazon's logistics.", url: "#" },
-        { id: 7, title: "Deal Closing Expert", category: "business", price: "$99", image: "images/image7.png", desc: "Improve your sales skills and learn how to close deals over the phone. We provide you with scripts and frameworks used by professional salespeople.", url: "#" },
-        { id: 8, title: "Insta Money", category: "social", price: "$19", image: "images/image8.png", desc: "Learn strategies to grow on Social Media and engage your followers. We show you how to build an audience and the different ways to monetize your page.", url: "#" },
-        { id: 9, title: "The Founder Playbook", category: "business", price: "$197", image: "images/image9.png", desc: "Learn how to build a paid community around your brand. We guide you through the process of turning your knowledge into a subscription business.", url: "#" }
+        { id: 1, title: "E-Commerce Mastery", category: "business", price: "$49", image: "images/image1.webp", desc: "Start your dropshipping journey with a solid plan. We teach you how to set up your store, find reliable suppliers, and choose products with potential.", url: "#" },
+        { id: 2, title: "Agency Architect", category: "business", price: "$99", image: "images/image2.webp", desc: "Learn how to build organize and scale a marketing agency. We show you proven strategies to find clients and manage your projects.", url: "#" },
+        { id: 3, title: "Copywriter Secrets", category: "business", price: "$29", image: "images/image3.webp", desc: "Discover how to write texts that persuades people to buy easily. You will learn the psychology behind sales and how to present your offers effectively.", url: "#" },
+        { id: 4, title: "Market Strategy", category: "trading", price: "$79", image: "images/image4.webp", desc: "Learn the way of trading and technical analysis. We teach you how to read charts, manage risk, and think like a professional investor.", url: "#" },
+        { id: 5, title: "Faceless Influencer", category: "social", price: "$39", image: "images/image5.webp", desc: "Learn how to run a YouTube channel without showing your face. We explain how to choose the right topics and create content efficiently.", url: "#" },
+        { id: 6, title: "Prime Dropshipping", category: "business", price: "$49", image: "images/image6.webp", desc: "Learn how to sell on Amazon, the world's largest marketplace. We explain the FBA model and how to use Amazon's logistics.", url: "#" },
+        { id: 7, title: "Deal Closing Expert", category: "business", price: "$99", image: "images/image7.webp", desc: "Improve your sales skills and learn how to close deals over the phone. We provide you with scripts and frameworks used by professional salespeople.", url: "#" },
+        { id: 8, title: "Insta Money", category: "social", price: "$19", image: "images/image8.webp", desc: "Learn strategies to grow on Social Media and engage your followers. We show you how to build an audience and the different ways to monetize your page.", url: "#" },
+        { id: 9, title: "The Founder Playbook", category: "business", price: "$197", image: "images/image9.webp", desc: "Learn how to build a paid community around your brand. We guide you through the process of turning your knowledge into a subscription business.", url: "#" }
     ],
 
 stats: {
@@ -550,7 +550,7 @@ stats: {
             card.innerHTML = `
                 ${badgeHtml} 
                 <div class="card-image-wrapper">
-                    <img src="${course.image}" alt="${course.title}" class="card-image" loading="lazy">
+                    <img src="${course.image}" alt="${course.title}" width="340" height="240" class="card-image" loading="lazy">
                 </div>
                 <div class="card-content">
                     <h3 class="card-title" style="margin-bottom:5px; font-size: 1.25rem;">${course.title}</h3>
@@ -1088,20 +1088,20 @@ const MegaMenu = {
         if (!this.grid) return;
 
         const courses = [
-            { title: "Ecom", img: "images/image1.png" },
-            { title: "Agency", img: "images/image2.png" },
-            { title: "Dropship", img: "images/image6.png" },
-            { title: "Closing", img: "images/image7.png" },
-            { title: "Founder", img: "images/image9.png" },
-            { title: "YouTube", img: "images/image5.png" },
-            { title: "Trading", img: "images/image4.png" },
-            { title: "Copy", img: "images/image3.png" },
-            { title: "Social", img: "images/image8.png" }
+            { title: "Ecom", img: "images/image1.webp" },
+            { title: "Agency", img: "images/image2.webp" },
+            { title: "Dropship", img: "images/image6.webp" },
+            { title: "Closing", img: "images/image7.webp" },
+            { title: "Founder", img: "images/image9.webp" },
+            { title: "YouTube", img: "images/image5.webp" },
+            { title: "Trading", img: "images/image4.webp" },
+            { title: "Copy", img: "images/image3.webp" },
+            { title: "Social", img: "images/image8.webp" }
         ];
 
         this.grid.innerHTML = courses.map(c => `
             <div class="mega-item" onclick="window.scrollToLibrary()">
-                <div class="mega-img-wrap"><img src="${c.img}" alt="${c.title}" loading="lazy"></div>
+                <div class="mega-img-wrap"><img src="${c.img}" alt="${c.title}" width="180" height="106" loading="lazy"></div>
                 <span>${c.title}</span>
             </div>
         `).join('');
