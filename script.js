@@ -135,7 +135,7 @@ const hash = window.location.hash;
     MobileMenu.init();
     CookieBanner.init();
     NavbarScroll.init();
-    ProofPulse.init();
+    // ProofPulse.init();
     ROICalculator.init();
     CourseLibrary.init();
     FAQ.init();
@@ -1278,14 +1278,31 @@ const EmailProtection = {
         this.updateEffectiveDates();
     },
 
-    updateEffectiveDates() {
-        const dateElements = utils.queryAll('.effective-date');
+updateEffectiveDates() {
+        const dateElements = utils.queryAll('.dynamic-date');
         if (dateElements.length === 0) return;
 
         try {
             const now = new Date();
-            const quarterMonth = Math.floor(now.getMonth() / 3) * 3;
-            const finalDate = new Date(now.getFullYear(), quarterMonth, 1);
+            let month = now.getMonth();
+            let year = now.getFullYear();
+            let day = now.getDate();
+
+            // Obliczamy miesiąc startowy obecnego kwartału (0 = styczeń, 3 = kwiecień, 6 = lipiec, 9 = październik)
+            let quarterMonth = Math.floor(month / 3) * 3;
+
+            // Jeśli jesteśmy w miesiącu startowym kwartału, ale przed 12. dniem, wracamy na moment do poprzedniego kwartału
+            if (month === quarterMonth && day < 12) {
+                quarterMonth -= 3;
+                if (quarterMonth < 0) {
+                    quarterMonth = 9;
+                    year -= 1;
+                }
+            }
+
+            // Ustawiamy datę "na sztywno" na 12. dzień obliczonego miesiąca
+            const finalDate = new Date(year, quarterMonth, 12);
+
             const formatted = finalDate.toLocaleDateString('en-US', {
                 month: 'long',
                 day: 'numeric',
@@ -1293,9 +1310,7 @@ const EmailProtection = {
             });
 
             dateElements.forEach(el => {
-                el.textContent = `Last Updated: ${formatted}`;
-                el.style.color = '#10B981';
-                el.style.fontWeight = '600';
+                el.textContent = formatted;
             });
         } catch (error) {
             console.error('Date update error:', error);
