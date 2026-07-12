@@ -287,18 +287,18 @@ button {
     content: "";
     position: absolute;
     top: 0;
-    left: -100%;
+    left: 0; /* Zmiana z -100% */
     width: 50%;
     height: 100%;
     background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
-    transform: skewX(-25deg);
+    transform: translateX(-200%) skewX(-25deg); /* Inicjalny transform */
     animation: shimmer 5s infinite;
     pointer-events: none;
 }
 
 @keyframes shimmer {
-    0%, 90% { left: -100%; }
-    100% { left: 200%; }
+    0%, 90% { transform: translateX(-200%) skewX(-25deg); }
+    100% { transform: translateX(300%) skewX(-25deg); }
 }
 
 .btn-glass {
@@ -1021,23 +1021,18 @@ button {
     content: "";
     position: absolute;
     top: -50%;
-    left: -100%;
+    left: 0; /* Zmiana z -100% */
     width: 50%;
     height: 200%;
-    background: linear-gradient(
-        to right,
-        transparent,
-        rgba(255, 255, 255, 0.6),
-        transparent
-    );
-    transform: rotate(30deg);
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6), transparent);
+    transform: translateX(-200%) rotate(30deg); /* Inicjalny transform */
     animation: luxury-shine 4s infinite ease-in-out;
 }
 
 @keyframes luxury-shine {
-    0% { left: -100%; }
-    15% { left: 150%; }
-    100% { left: 150%; }
+    0% { transform: translateX(-200%) rotate(30deg); }
+    15% { transform: translateX(300%) rotate(30deg); }
+    100% { transform: translateX(300%) rotate(30deg); }
 }
 
 .live-viewers {
@@ -2862,10 +2857,30 @@ input[type=range]::-webkit-slider-runnable-track {
 .btn-lock-hover:hover .icon-locked { opacity: 0 !important; transform: translateY(-15px) scale(1.3) rotate(20deg) !important; }
 .btn-lock-hover:hover .icon-unlocked { opacity: 1 !important; transform: translateY(0) scale(1.1) rotate(0deg) !important; }
 
-.btn-glass::before { content: ""; position: absolute; top: 0; left: -150%; width: 80%; height: 100%; background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.1), rgba(168, 85, 247, 0.7), rgba(124, 58, 237, 0.1), transparent); transform: skewX(-25deg); z-index: -1; }
-.btn-glass:hover { border-color: rgba(168, 85, 247, 0.5) !important; background: rgba(124, 58, 237, 0.08) !important; box-shadow: 0 0 20px rgba(124, 58, 237, 0.2) !important; }
-.btn-glass:hover::before { animation: glass-purple-wave 1.5s infinite; }
-@keyframes glass-purple-wave { 0% { left: -150%; } 60% { left: 150%; } 100% { left: 150%; } }
+.btn-glass::before { 
+    content: ""; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 80%; 
+    height: 100%; 
+    background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.1), rgba(168, 85, 247, 0.7), rgba(124, 58, 237, 0.1), transparent); 
+    transform: translateX(-200%) skewX(-25deg); 
+    z-index: -1; 
+}
+.btn-glass:hover { 
+    border-color: rgba(168, 85, 247, 0.5) !important; 
+    background: rgba(124, 58, 237, 0.08) !important; 
+    box-shadow: 0 0 20px rgba(124, 58, 237, 0.2) !important; 
+}
+.btn-glass:hover::before { 
+    animation: glass-purple-wave 1.5s infinite; 
+}
+@keyframes glass-purple-wave { 
+    0% { transform: translateX(-200%) skewX(-25deg); } 
+    60% { transform: translateX(200%) skewX(-25deg); } 
+    100% { transform: translateX(200%) skewX(-25deg); } 
+}
 
 /* ========== 26. CUSTOM COMPONENTS & UTILITIES ========== */
 .premium-checkout-card { background: #09090B; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 40px; min-width: 340px; display: flex; flex-direction: column; text-decoration: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; }
