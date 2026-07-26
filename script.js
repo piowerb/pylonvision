@@ -302,32 +302,55 @@ const CookieBanner = {
     init() {
         this.banner = utils.getElement('cookie-banner');
         this.acceptBtn = utils.getElement('accept-cookies');
-        this.declineBtn = utils.getElement('decline-cookies'); // Dodany przycisk odrzucenia
+        this.declineBtn = utils.getElement('decline-cookies');
 
         if (!this.banner) return;
 
-        // Pokaż banner, jeśli użytkownik nie dokonał wyboru
-        if (!utils.storage.get('pylon_cookie_consent')) {
+        // Jeśli zgoda została już wcześniej udzielona, ładujemy analitykę od razu
+        if (utils.storage.get('pylon_cookie_consent') === 'accepted') {
+            this.loadGoogleAnalytics();
+        } 
+        // W przeciwnym razie (brak wyboru), po sekundzie pokazujemy baner
+        else if (!utils.storage.get('pylon_cookie_consent')) {
             setTimeout(() => {
                 this.banner.classList.add('show');
-            }, 1000); // Pokazuje się nieco szybciej (po 1s zamiast 2s)
+            }, 1000);
         }
 
-        // Akceptacja wszystkich ciasteczek
+        // Akceptacja ciasteczek
         this.acceptBtn?.addEventListener('click', () => {
             utils.storage.set('pylon_cookie_consent', 'accepted');
             this.banner.classList.remove('show');
-            // Miejsce na uruchomienie skryptów analitycznych (np. Google Analytics)
+            this.loadGoogleAnalytics(); // Uruchamiamy GA od razu po kliknięciu
         });
 
-        // Odrzucenie opcjonalnych ciasteczek (tylko niezbędne techniczne)
+        // Odrzucenie ciasteczek
         this.declineBtn?.addEventListener('click', () => {
             utils.storage.set('pylon_cookie_consent', 'declined');
             this.banner.classList.remove('show');
-            // Użytkownik odrzucił tracking, strona działa normalnie, ale bez analityki
+            // Strona działa dalej, ale żadne skrypty śledzące nie zostaną załadowane
         });
+    },
 
-        // USUNIĘTO timer znikający po 10s. Baner musi wisieć, aż użytkownik kliknie.
+    // Dynamiczne wstrzykiwanie skryptu śledzącego
+    loadGoogleAnalytics() {
+        // Zabezpieczenie przed podwójnym wgraniem skryptu
+        if (document.getElementById('ga-script')) return;
+
+        const script1 = document.createElement('script');
+        script1.id = 'ga-script';
+        script1.async = true;
+        script1.src = 'https://www.googletagmanager.com/gtag/js?id=G-ESCD5MEEP1';
+        document.head.appendChild(script1);
+
+        const script2 = document.createElement('script');
+        script2.innerHTML = `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-ESCD5MEEP1');
+        `;
+        document.head.appendChild(script2);
     }
 };
 
