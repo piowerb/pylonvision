@@ -10,6 +10,11 @@
     <meta name="theme-color" content="#050507">
     <link rel="canonical" href="https://pylonvision.com/">
 
+    <!-- Hreflang SEO Tags -->
+    <link rel="alternate" hreflang="en" href="https://pylonvision.com/">
+    <link rel="alternate" hreflang="pl" href="https://pylonvision.com/pl/">
+    <link rel="alternate" hreflang="x-default" href="https://pylonvision.com/">
+
     <!-- Gravatar Authorization -->
     <link rel="me" href="https://gravatar.com/pylonvision">
 
@@ -64,18 +69,24 @@
                 </div>
 
                 <div class="nav-actions">
-                    <a href="https://pylonvision.systeme.io/school/course/all-access" class="btn btn-glass login-btn-desktop" style="padding: 8px 22px; gap: 8px;">
+                    <!-- Przełącznik języka z ikoną globu -->
+                    <a href="pl/" class="btn btn-glass login-btn-desktop" style="padding: 8px 14px; font-weight: 700; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 6px;">
+                        <i class="fa-solid fa-globe"></i> PL
+                    </a>
+
+                    <a href="https://pylonvision.systeme.io/school/course/all-access" class="btn btn-glass login-btn-desktop" style="padding: 8px 18px; gap: 8px;">
                         Login <i class="fa-regular fa-user"></i>
                     </a>                    
                     
                     <a href="https://buy.stripe.com/7sY7sM0Ax0dVffB4fFgfu00" class="btn btn-primary btn-nav-hide" style="padding: 10px 24px; font-size: 0.85rem;">
                         Start Today <i class="fa-solid fa-arrow-right" style="margin-left: 0px; font-size: 0.9em;"></i>
                     </a>
-                    <div class="mobile-header-actions">
-                        <a href="https://pylonvision.systeme.io/school/course/all-access" class="mobile-user-icon" aria-label="Go to login page" style="color: #fff; font-size: 1.2rem; margin-right: 0; text-decoration: none;">
-                        <i class="fa-regular fa-user"></i>
-                    </a>
 
+                    <div class="mobile-header-actions">
+                        <a href="pl/" style="color: #fff; font-size: 0.8rem; text-decoration: none; font-weight: bold; margin-right: 6px; padding: 4px 8px; background: rgba(255,255,255,0.05); border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;"><i class="fa-solid fa-globe"></i> PL</a>
+                        <a href="https://pylonvision.systeme.io/school/course/all-access" class="mobile-user-icon" aria-label="Go to login page" style="color: #fff; font-size: 1.2rem; margin-right: 0; text-decoration: none;">
+                            <i class="fa-regular fa-user"></i>
+                        </a>
                         <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
                             <i class="fa-solid fa-bars"></i>
                         </button>
@@ -160,7 +171,7 @@
             </h1>
 
             <p class="hero-subtitle reveal">
-                Get instant access to premium materials, proven frameworks, and ready-to-use automation scripts to scale your online income.
+                Get instant access to premium courses, proven frameworks, and ready-to-use automation scripts to scale your online income.
             </p>
 
             <div class="hero-cta-group reveal">
@@ -907,25 +918,6 @@
         </div>
     </footer>
 
-<!-- Wyłączony Proof Pulse na przyszłość:
-    <a id="proof-pulse" href="https://pylonvision.systeme.io/school/course/all-access" style="text-decoration: none; cursor: pointer;">
-        <div class="proof-img-container">
-            <img id="proof-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="User Avatar" class="proof-avatar">
-            <div class="status-dot"></div>
-        </div>
-        <div class="proof-info">
-            <div>
-                <span id="proof-name">Name</span> 
-                <span style="color: #6B7280; font-weight: 400; font-size: 0.85em; margin-left: 4px;">from <span id="proof-loc">Country</span></span>
-            </div>
-            <div>
-                Loading data...
-            </div>
-        </div>
-    </a>
-    -->
-
-
     <!-- Cookie Banner -->
     <div id="cookie-banner">
         <div class="cookie-content">
@@ -941,9 +933,14 @@
 <!-- Privacy Policy Modal -->
 <div id="privacy-modal" class="modal-overlay">
     <div class="modal-content">
-        <div class="modal-header">
-            <h2>Privacy Policy - PylonVision</h2>
-            <button class="close-modal" onclick="window.closePrivacyModal()" aria-label="Close">&times;</button>
+        <div class="modal-header" style="display: flex; justify-content: space-between; align-items: flex-start; padding: 20px 25px;">
+            <h2 style="margin: 0; font-size: 1.25rem; line-height: 1.3; padding-right: 15px;">Privacy Policy - PylonVision</h2>
+            <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+                <a href="/pl/#privacy" class="btn btn-glass" style="padding: 4px 10px; font-size: 0.75rem; text-decoration: none; border-radius: 50px; display: inline-flex; align-items: center; gap: 4px; min-height: unset; height: 32px;">
+                    <i class="fa-solid fa-globe" style="font-size: 0.7rem;"></i> PL
+                </a>
+                <button class="close-modal" onclick="closeAppModal('privacy-modal')" aria-label="Close" style="font-size: 1.5rem; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; margin: 0; padding: 0; background: none; border: none; color: inherit; cursor: pointer;">&times;</button>
+            </div>
         </div>
         <div class="modal-body">
             <!-- Legal Entity Box (Kept Original Styling) -->
@@ -1326,20 +1323,25 @@
             </ul>
             <p>If you are not satisfied with our response, you have the right to lodge a complaint with the President of the Personal Data Protection Office (UODO) in Poland, or with the supervisory authority in your EEA member state of residence.</p>
         </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" onclick="window.closePrivacyModal()">Accept & Close</button>
+        <div class="modal-footer" style="display: flex; justify-content: center; align-items: center; text-align: center; width: 100%;">
+            <button class="btn btn-primary" onclick="closeAppModal('privacy-modal')">Accept & Close</button>
         </div>
     </div>
 </div>
 
 <!-- Terms of Service Modal -->
-    <div id="terms-modal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Terms of Service - PylonVision</h2>
-                <button class="close-modal" onclick="window.closeTermsModal()" aria-label="Close">&times;</button>
+<div id="terms-modal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header" style="display: flex; justify-content: space-between; align-items: flex-start; padding: 20px 25px;">
+            <h2 style="margin: 0; font-size: 1.25rem; line-height: 1.3; padding-right: 15px;">Terms of Service - PylonVision</h2>
+            <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+                <a href="/pl/#terms" class="btn btn-glass" style="padding: 4px 10px; font-size: 0.75rem; text-decoration: none; border-radius: 50px; display: inline-flex; align-items: center; gap: 4px; min-height: unset; height: 32px;">
+                    <i class="fa-solid fa-globe" style="font-size: 0.7rem;"></i> PL
+                </a>
+                <button class="close-modal" onclick="closeAppModal('terms-modal')" aria-label="Close" style="font-size: 1.5rem; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; margin: 0; padding: 0; background: none; border: none; color: inherit; cursor: pointer;">&times;</button>
             </div>
-            <div class="modal-body">
+        </div>
+        <div class="modal-body">
                 
                 <!-- BLOK LEGAL ENTITY (Spójny z Privacy Policy) -->
                 <div style="background: rgba(124, 58, 237, 0.1); border: 1px solid rgba(124, 58, 237, 0.3); padding: 20px; border-radius: 12px; margin-bottom: 25px;">
@@ -1551,7 +1553,7 @@
 
             </div>
             <div class="modal-footer" style="display: flex; justify-content: center; align-items: center; text-align: center; width: 100%;">
-                <button class="btn btn-primary" onclick="window.closeTermsModal()">I Understand & Agree</button>
+                <button class="btn btn-primary" onclick="closeAppModal('terms-modal')">I Understand & Agree</button>
             </div>
         </div>
     </div>
@@ -1648,6 +1650,46 @@
 
     <!-- Scripts -->
     <script src="script.js" defer></script>
+
+<script>
+    let savedScrollY = 0;
+
+    // Uniwersalna funkcja zamykająca okno z zachowaniem pozycji przewijania
+    function closeAppModal(modalId) {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+            document.body.style.overflow = '';
+            window.scrollTo(0, savedScrollY);
+            history.pushState('', document.title, window.location.pathname + window.location.search);
+        }
+    }
+
+    // Nadpisanie domyślnych funkcji otwierania modali, aby blokowały tło bez skakania
+    window.addEventListener('DOMContentLoaded', () => {
+        ['privacy', 'terms', 'about', 'story'].forEach(name => {
+            const capName = name.charAt(0).toUpperCase() + name.slice(1);
+            window[`open${capName}Modal`] = function() {
+                savedScrollY = window.scrollY;
+                document.body.style.position = 'fixed';
+                document.body.style.top = `-${savedScrollY}px`;
+                document.body.style.width = '100%';
+                const m = document.getElementById(name + '-modal');
+                if (m) m.style.display = 'flex';
+            };
+        });
+
+        // Automatyczne otwarcie przy wejściu z hashem w adresie
+        if (window.location.hash === '#privacy' && window.openPrivacyModal) {
+            window.openPrivacyModal();
+        } else if (window.location.hash === '#terms' && window.openTermsModal) {
+            window.openTermsModal();
+        }
+    });
+</script>
 
 </body>
 </html>

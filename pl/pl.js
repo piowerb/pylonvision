@@ -1,42 +1,42 @@
 /* ============================================================
-   PYLON VISION - Enhanced JavaScript
-   Mobile-First Responsive Functionality
-   Version: 2.0.0
+   PYLON VISION - Rozszerzony JavaScript
+   Funkcjonalność responsywna Mobile-First
+   Wersja: 2.0.0
 ============================================================ */
 
-// ========== 1. UTILITY FUNCTIONS ==========
+// ========== 1. FUNKCJE POMOCNICZE (UTILITY) ==========
 const utils = {
-    // Safely get element by ID with error handling
+    // Bezpieczne pobieranie elementu po ID z obsługą błędów
     getElement: (id) => {
         try {
             return document.getElementById(id);
         } catch (error) {
-            console.warn(`Element with id "${id}" not found`);
+            console.warn(`Nie znaleziono elementu o id "${id}"`);
             return null;
         }
     },
 
-    // Safely query selector
+    // Bezpieczne zapytanie (query selector)
     query: (selector) => {
         try {
             return document.querySelector(selector);
         } catch (error) {
-            console.warn(`Selector "${selector}" invalid`);
+            console.warn(`Nieprawidłowy selektor "${selector}"`);
             return null;
         }
     },
 
-    // Safely query all
+    // Bezpieczne zapytanie o wszystkie elementy
     queryAll: (selector) => {
         try {
             return document.querySelectorAll(selector);
         } catch (error) {
-            console.warn(`Selector "${selector}" invalid`);
+            console.warn(`Nieprawidłowy selektor "${selector}"`);
             return [];
         }
     },
 
-    // Debounce function for performance
+    // Funkcja debounce dla optymalizacji wydajności
     debounce: (func, wait) => {
         let timeout;
         return function executedFunction(...args) {
@@ -49,7 +49,7 @@ const utils = {
         };
     },
 
-    // Throttle for scroll events
+    // Funkcja throttle dla zdarzeń przewijania
     throttle: (func, limit) => {
         let inThrottle;
         return function (...args) {
@@ -61,7 +61,7 @@ const utils = {
         };
     },
 
-    // Safe local storage
+    // Bezpieczny local storage
     storage: {
         get: (key) => {
             try {
@@ -80,35 +80,35 @@ const utils = {
         }
     },
 
-    // Check if device is mobile
+    // Sprawdzanie, czy urządzenie jest mobilne
     isMobile: () => {
         return window.innerWidth <= 768;
     },
 
-    // Check if device is tablet
+    // Sprawdzanie, czy urządzenie to tablet
     isTablet: () => {
         return window.innerWidth > 768 && window.innerWidth <= 1024;
     },
 
-    // Check if device is desktop
+    // Sprawdzanie, czy urządzenie to desktop
     isDesktop: () => {
         return window.innerWidth > 1024;
     },
 
-    // Check if device supports touch
+    // Sprawdzanie, czy urządzenie obsługuje dotyk
     isTouch: () => {
         return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     }
 };
 
-// ========== 2. INITIAL SETUP ==========
+// ========== 2. WSTĘPNA INICJALIZACJA ==========
 document.addEventListener('DOMContentLoaded', () => {
-    // Force scroll to top on page load
+    // Wymuszenie przewinięcia na samą górę po załadowaniu strony
     try {
         if ('scrollRestoration' in history) {
             history.scrollRestoration = 'manual';
         }
-const hash = window.location.hash;
+        const hash = window.location.hash;
         if (hash) {
             history.replaceState("", document.title, window.location.pathname + window.location.search);
             setTimeout(() => {
@@ -121,17 +121,17 @@ const hash = window.location.hash;
         }
         setTimeout(() => window.scrollTo(0, 0), 0);
     } catch (error) {
-        console.error('Scroll setup error:', error);
+        console.error('Błąd inicjalizacji przewijania:', error);
     }
 
-    // Update year dynamically
+    // Dynamiczna aktualizacja roku
     const currentYear = new Date().getFullYear();
     ['current-year', 'year', 'badge-year'].forEach(id => {
         const el = utils.getElement(id);
         if (el) el.textContent = currentYear;
     });
 
-    // Initialize all modules
+    // Inicjalizacja wszystkich modułów
     MobileMenu.init();
     CookieBanner.init();
     NavbarScroll.init();
@@ -148,42 +148,39 @@ const hash = window.location.hash;
     Constellation.init();
     Ticker.init();
     Countdown.init();
-   //  SubBanner.init();
+    // SubBanner.init();
     TouchOptimizations.init();
     PerformanceMonitor.init();
 });
 
-// ========== 3. MOBILE MENU MODULE ==========
+// ========== 3. MODUŁ MENU MOBILNEGO ==========
 const MobileMenu = {
     isOpen: false,
-    
     init() {
         this.btn = utils.query('.mobile-menu-btn');
         this.menu = utils.query('.nav-links-mobile');
-        
         if (!this.btn || !this.menu) return;
 
-        // Toggle menu
+        // Przełączanie menu
         this.btn.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
             this.toggle();
         });
 
-        // Close on link click (except Academy)
+        // Zamknięcie po kliknięciu linku (z wyjątkiem Akademii)
         this.menu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', (e) => {
-                // Don't close if it's the Academy trigger
+                // Nie zamykaj, jeśli to przycisk "Akademia"
                 if (link.id === 'academy-trigger-mobile') {
                     return;
                 }
-                
-                // Close menu for other links
+                // Zamknij menu dla innych linków
                 this.close();
             });
         });
 
-        // Close on outside click
+        // Zamknięcie po kliknięciu poza menu
         document.addEventListener('click', (e) => {
             if (this.isOpen && 
                 !this.menu.contains(e.target) && 
@@ -193,14 +190,14 @@ const MobileMenu = {
             }
         });
 
-        // Close on escape key
+        // Zamknięcie klawiszem Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.isOpen) {
                 this.close();
             }
         });
 
-        // Handle window resize
+        // Obsługa zmiany rozmiaru okna
         window.addEventListener('resize', utils.debounce(() => {
             if (utils.isDesktop() && this.isOpen) {
                 this.close();
@@ -221,14 +218,11 @@ const MobileMenu = {
         this.btn.classList.add('active');
         this.btn.setAttribute('aria-expanded', 'true');
         this.menu.classList.add('active');
-        
-        // Prevent body scroll
+        // Zablokuj przewijanie tła
         document.body.style.overflow = 'hidden';
-        
-        // Add backdrop
+        // Dodaj przyciemnienie tła
         this.addBackdrop();
-        
-        // Focus first link for accessibility
+        // Skupienie (focus) na pierwszym linku ze względów dostępności
         const firstLink = this.menu.querySelector('a');
         if (firstLink) {
             setTimeout(() => firstLink.focus(), 100);
@@ -240,19 +234,15 @@ const MobileMenu = {
         this.btn.classList.remove('active');
         this.btn.setAttribute('aria-expanded', 'false');
         this.menu.classList.remove('active');
-        
-        // Restore body scroll
+        // Przywróć przewijanie tła
         document.body.style.overflow = '';
-        
-        // Remove backdrop
+        // Usuń przyciemnienie
         this.removeBackdrop();
-        
-        // Also close mega menu if open
+        // Zamknij również mega menu, jeśli jest otwarte
         if (window.MegaMenu && window.MegaMenu.isOpen) {
             window.MegaMenu.close();
         }
     },
-    
     addBackdrop() {
         let backdrop = utils.query('.menu-backdrop');
         if (!backdrop) {
@@ -272,18 +262,15 @@ const MobileMenu = {
             `;
             document.body.appendChild(backdrop);
         }
-        
-        // Animate in
+        // Animacja wejścia
         requestAnimationFrame(() => {
             backdrop.style.opacity = '1';
         });
-        
-        // Close on backdrop click
+        // Zamykanie po kliknięciu na tło
         backdrop.addEventListener('click', () => {
             this.close();
         });
     },
-    
     removeBackdrop() {
         const backdrop = utils.query('.menu-backdrop');
         if (backdrop) {
@@ -297,7 +284,7 @@ const MobileMenu = {
     }
 };
 
-// ========== 4. COOKIE BANNER MODULE ==========
+// ========== 4. MODUŁ BANERA CIASTECZEK (COOKIE) ==========
 const CookieBanner = {
     init() {
         this.banner = utils.getElement('cookie-banner');
@@ -345,51 +332,49 @@ const CookieBanner = {
 
         const script2 = document.createElement('script');
         script2.innerHTML = `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-ESCD5MEEP1');
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-ESCD5MEEP1');
         `;
         document.head.appendChild(script2);
     }
 };
 
-// ========== 5. NAVBAR SCROLL & PROGRESS ==========
+// ========== 5. PRZEWIJANIE NAVBARU I PASEK POSTĘPU ==========
 const NavbarScroll = {
     init() {
         this.navbar = utils.query('.navbar');
         this.progress = utils.getElement('scroll-progress');
-        
         if (!this.navbar) return;
 
         const handleScroll = utils.throttle(() => {
             const scrollPos = window.scrollY;
             const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
 
-            // Update scroll progress
+            // Aktualizacja paska postępu
             if (this.progress && totalHeight > 0) {
                 const percent = Math.min((scrollPos / totalHeight * 100), 100);
                 this.progress.style.width = `${percent}%`;
             }
 
-            // Add scrolled class to navbar
+            // Dodawanie klasy przewijania do menu nawigacji
             this.navbar.classList.toggle('scrolled', scrollPos > 50);
         }, 100);
 
         window.addEventListener('scroll', handleScroll, { passive: true });
-        
-        // Initial call
+        // Wywołanie początkowe
         handleScroll();
     }
 };
 
-// ========== 6. 3D SUBSCRIPTION BANNER ==========
+// ========== 6. BANER SUBSKRYPCJI W 3D ==========
 const SubBanner = {
     init() {
         this.banner = utils.getElement('subscription-hero');
         if (!this.banner) return;
 
-        // Don't initialize on mobile for performance
+        // Brak inicjalizacji na urządzeniach mobilnych ze względów wydajnościowych
         if (utils.isMobile()) return;
 
         let rect = this.banner.getBoundingClientRect();
@@ -424,13 +409,13 @@ const SubBanner = {
     }
 };
 
-// ========== 7. INFINITY TICKER ==========
+// ========== 7. NIESKOŃCZONY TICKER ==========
 const Ticker = {
     init() {
         this.ticker = utils.getElement('logoTicker');
         if (!this.ticker) return;
 
-        // Clone items for infinite scroll
+        // Klonowanie elementów dla płynnego przewijania w pętli
         // Dzięki temu mamy dwa zestawy ikon – klucz do płynnego przejścia
         const items = Array.from(this.ticker.children);
         items.forEach(item => {
@@ -438,36 +423,35 @@ const Ticker = {
             clone.setAttribute('aria-hidden', 'true');
             this.ticker.appendChild(clone);
         });
-        
-        // Usunąłem IntersectionObserver i EventListenery (mouseenter/leave)
+        // Usunięto IntersectionObserver i nasłuchiwacze eventów (mouseenter/leave)
         // Dzięki temu ticker nigdy się nie zatrzyma, co eliminuje szarpnięcia
     }
 };
 
-// ========== 8. COURSE LIBRARY MODULE ==========
+// ========== 8. MODUŁ BIBLIOTEKI KURSÓW ==========
 const CourseLibrary = {
     courses: [
-        { id: 1, title: "E-Commerce Mastery", category: "business", price: "$49", image: "images/image1.webp", desc: "Start your dropshipping journey with a solid plan. We teach you how to set up your store, find reliable suppliers, and choose products with potential.", url: "#" },
-        { id: 2, title: "Agency Architect", category: "business", price: "$99", image: "images/image2.webp", desc: "Learn how to build organize and scale a marketing agency. We show you proven strategies to find clients and manage your projects.", url: "#" },
-        { id: 3, title: "Copywriter Secrets", category: "business", price: "$29", image: "images/image3.webp", desc: "Discover how to write texts that persuades people to buy easily. You will learn the psychology behind sales and how to present your offers effectively.", url: "#" },
-        { id: 4, title: "Market Strategy", category: "trading", price: "$79", image: "images/image4.webp", desc: "Learn the way of trading and technical analysis. We teach you how to read charts, manage risk, and think like a professional investor.", url: "#" },
-        { id: 5, title: "Faceless Influencer", category: "social", price: "$39", image: "images/image5.webp", desc: "Learn how to run a YouTube channel without showing your face. We explain how to choose the right topics and create content efficiently.", url: "#" },
-        { id: 6, title: "Prime Dropshipping", category: "business", price: "$49", image: "images/image6.webp", desc: "Learn how to sell on Amazon, the world's largest marketplace. We explain the FBA model and how to use Amazon's logistics.", url: "#" },
-        { id: 7, title: "Deal Closing Expert", category: "business", price: "$99", image: "images/image7.webp", desc: "Improve your sales skills and learn how to close deals over the phone. We provide you with scripts and frameworks used by professional salespeople.", url: "#" },
-        { id: 8, title: "Insta Money", category: "social", price: "$19", image: "images/image8.webp", desc: "Learn strategies to grow on Social Media and engage your followers. We show you how to build an audience and the different ways to monetize your page.", url: "#" },
-        { id: 9, title: "The Founder Playbook", category: "business", price: "$197", image: "images/image9.webp", desc: "Learn how to build a paid community around your brand. We guide you through the process of turning your knowledge into a subscription business.", url: "#" }
+        { id: 1, title: "Opanowanie E-Commerce", category: "business", price: "$49", image: "images/image1.webp", desc: "Rozpocznij swoją przygodę z dropshippingiem z solidnym planem. Uczymy, jak założyć sklep, znaleźć sprawdzonych dostawców i wybierać produkty z potencjałem.", url: "#" },
+        { id: 2, title: "Architekt Agencji", category: "business", price: "$99", image: "images/image2.webp", desc: "Dowiedz się, jak zbudować, zorganizować i skalować agencję marketingową. Pokazujemy sprawdzone strategie pozyskiwania klientów i zarządzania projektami.", url: "#" },
+        { id: 3, title: "Sekrety AI Automatyzacji", category: "business", price: "$29", image: "images/image3.webp", desc: "Odkryj, jak zautomatyzować swój biznes za pomocą sztucznej inteligencji. Dowiedz się, jak wdrożyć systemy, agentów AI i usprawnić codzienne procesy.", url: "#" },
+        { id: 4, title: "Strategia Rynkowa", category: "trading", price: "$79", image: "images/image4.webp", desc: "Poznaj tajniki inwestowania i analizy finansowej. Uczymy, jak czytać wykresy, zarządzać ryzykiem i myśleć jak profesjonalny inwestor.", url: "#" },
+        { id: 5, title: "Influencer bez Twarzy", category: "social", price: "$39", image: "images/image5.webp", desc: "Dowiedz się, jak prowadzić kanał na YouTube bez pokazywania twarzy. Wyjaśniamy, jak wybierać odpowiednie tematy i skutecznie tworzyć treści.", url: "#" },
+        { id: 6, title: "Twój Dropshipping", category: "business", price: "$49", image: "images/image6.webp", desc: "Dowiedz się, od czego zacząć, jak zaimplementować procesy i skutecznie sprzedawać na największych platformach handlowych, takich jak Amazon czy Allegro.", url: "#" },
+        { id: 7, title: "Ekspert Sprzedaży", category: "business", price: "$99", image: "images/image7.webp", desc: "Popraw swoje umiejętności sprzedażowe i naucz się zamykać transakcje. Dostarczamy skrypty i ramy używane przez profesjonalnych przedsiębiorców.", url: "#" },
+        { id: 8, title: "Insta Kasa", category: "social", price: "$19", image: "images/image8.webp", desc: "Poznaj strategie rozwoju w mediach społecznościowych i angażowania obserwatorów. Pokazujemy, jak zbudować publiczność i różne sposoby monetyzacji profilu.", url: "#" },
+        { id: 9, title: "Poradnik Założyciela", category: "business", price: "$197", image: "images/image9.webp", desc: "Dowiedz się, jak zbudować płatną społeczność wokół swojej marki. Przeprowadzimy Cię przez proces zamiany Twojej wiedzy w biznes oparty na subskrypcjach.", url: "#" }
     ],
 
-stats: {
+    stats: {
         1: { rating: 4.9, reviews: 84, badgeType: 'BESTSELLER' }, // Najwięcej opinii = bezdyskusyjny Bestseller
         2: { rating: 4.8, reviews: 34, badgeType: 'NONE' },
-        3: { rating: 4.7, reviews: 22, badgeType: 'NONE' },
-        4: { rating: 4.6, reviews: 18, badgeType: 'NONE' },
-        5: { rating: 4.7, reviews: 56, badgeType: 'TRENDING' },   // Dużo opinii, bo jest "na fali"
+        3: { rating: 4.8, reviews: 22, badgeType: 'NONE' },
+        4: { rating: 4.7, reviews: 18, badgeType: 'NONE' },
+        5: { rating: 4.8, reviews: 56, badgeType: 'TRENDING' }, // Dużo opinii, bo jest "na fali"
         6: { rating: 4.8, reviews: 21, badgeType: 'NONE' },
         7: { rating: 4.9, reviews: 12, badgeType: 'NONE' },
-        8: { rating: 4.7, reviews: 45, badgeType: 'NONE' },       // Bardzo solidny wynik, ale nie Bestseller
-        9: { rating: 4.9, reviews: 8,  badgeType: 'ELITE_PICK' }  // Elitarny produkt = mało opinii, wysoka ocena
+        8: { rating: 4.7, reviews: 45, badgeType: 'NONE' }, // Bardzo solidny wynik, ale nie Bestseller
+        9: { rating: 4.9, reviews: 8, badgeType: 'ELITE_PICK' } // Elitarny produkt = mało opinii, wysoka ocena
     },
 
     init() {
@@ -485,17 +469,14 @@ stats: {
     setupFilters() {
         this.filterBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
-                // Don't trigger if already active
+                // Nie uruchamiaj, jeśli już jest aktywne
                 if (btn.classList.contains('active')) return;
-                
-                // Update active state
+                // Aktualizacja aktywnego stanu
                 this.filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                
-                // Filter courses
+                // Filtruj kursy
                 this.filterCourses();
-                
-                // Close mobile menu if open
+                // Zamknij mobilne menu, jeśli jest otwarte
                 if (window.MobileMenu && window.MobileMenu.isOpen) {
                     window.MobileMenu.close();
                 }
@@ -505,12 +486,10 @@ stats: {
 
     setupSearch() {
         if (!this.searchInput) return;
-        
         this.searchInput.addEventListener('input', utils.debounce(() => {
             this.filterCourses();
         }, 300));
-        
-        // Clear search on escape
+        // Wyczyść wyszukiwanie klawiszem Escape
         this.searchInput.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 this.searchInput.value = '';
@@ -537,34 +516,31 @@ stats: {
 
     render(data) {
         if (!this.grid) return;
-        
-        // Clear existing content
+        // Wyczyść aktualną treść
         this.grid.innerHTML = '';
-        
-        // Show no results message if empty
+        // Wyświetl wiadomość o braku wyników, jeśli pusto
         if (data.length === 0) {
             this.grid.innerHTML = `
                 <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--text-muted);">
                     <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.3;"></i>
-                    <h3>No courses found</h3>
-                    <p>Try adjusting your search or filter criteria</p>
+                    <h3>Nie znaleziono kursów</h3>
+                    <p>Spróbuj dostosować kryteria wyszukiwania lub filtrowania</p>
                 </div>
             `;
             return;
         }
 
-        const currentDate = new Date().toLocaleString('en-US', { month: 'long', year: 'numeric' });
+        const currentDate = new Date().toLocaleString('pl-PL', { month: 'long', year: 'numeric' });
 
         data.forEach((course, index) => {
             // 1. Pobieramy statystyki dla danego ID
             const stats = this.stats[course.id] || { rating: 4.5, reviews: 0, oldPrice: 0, badgeType: 'NONE' };
-            
             // 2. Generujemy HTML dla badge'a i gwiazdek za pomocą Twoich funkcji pomocniczych
             const badgeHtml = this.getBadgeHTML(stats.badgeType);
             const starsHtml = this.getStarsHTML(stats.rating);
 
             const card = document.createElement('a');
-            card.href = "https://buy.stripe.com/7sY7sM0Ax0dVffB4fFgfu00"; 
+            card.href = "https://buy.stripe.com/dRmbJ26YVf8P0kHh2rgfu01"; 
             card.className = 'course-card';
             card.style.opacity = '0';
             card.style.textDecoration = 'none'; 
@@ -577,24 +553,22 @@ stats: {
                 </div>
                 <div class="card-content">
                     <h3 class="card-title" style="margin-bottom:5px; font-size: 1.25rem;">${course.title}</h3>
-                    
                     <div style="font-size: 0.8rem; color: #FBBF24; margin-bottom: 12px; display: flex; align-items: center; gap: 5px;">
                         <div style="display:flex; gap:2px;">
                             ${starsHtml}
                         </div>
                         <span style="color: var(--text-muted); font-weight: 600; margin-left: 4px;">
-                            ${stats.rating} (${stats.reviews} Ratings)
+                            ${stats.rating} (${stats.reviews} Ocen)
                         </span>
                     </div>
 
                     <div style="font-size: 0.75rem; color: #10B981; margin-bottom: 10px; font-weight:700; display:flex; align-items:center; gap:6px;">
-                        <i class="fa-solid fa-rotate" style="font-size: 0.8em;"></i> Updated for ${currentDate}
+                        <i class="fa-solid fa-rotate" style="font-size: 0.8em;"></i> Zaktualizowano: ${currentDate}
                     </div>
 
                     <p class="card-desc">${course.desc}</p>
-                    
                     <div class="card-footer" style="padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); width: 100%;">
-                        <div class="btn-card" style="display: block; width: 100%; text-align: center; padding: 12px 0;">Get Access</div>
+                        <div class="btn-card" style="display: block; width: 100%; text-align: center; padding: 12px 0;">Zyskaj Dostęp</div>
                     </div>
                 </div>
             `;
@@ -615,11 +589,11 @@ stats: {
 
     getBadgeHTML(type) {
         const badges = {
-            'USER_FAV': '<div class="bestseller-ribbon" style="background: linear-gradient(135deg, #e5e7eb 0%, #9ca3af 50%, #d1d5db 100%); color: #111827;"><i class="fa-solid fa-gem" style="margin-right: 4px;"></i> LIMITED DROP</div>',
+            'USER_FAV': '<div class="bestseller-ribbon" style="background: linear-gradient(135deg, #e5e7eb 0%, #9ca3af 50%, #d1d5db 100%); color: #111827;"><i class="fa-solid fa-gem" style="margin-right: 4px;"></i> LIMITOWANY DROP</div>',
             'BESTSELLER': '<div class="bestseller-ribbon" style="background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%); text-shadow: 0 1px 2px rgba(0,0,0,0.3);"><i class="fa-solid fa-crown"></i> Bestseller</div>',
-            'ELITE_PICK': '<div class="bestseller-ribbon" style="background: linear-gradient(135deg, #8B5CF6, #D946EF);"><i class="fa-solid fa-crown"></i> Elite Pick</div>',
-            'TRENDING': '<div class="bestseller-ribbon" style="background: linear-gradient(135deg, #10B981, #059669);"><i class="fa-solid fa-arrow-trend-up"></i> Trending</div>',
-            'TOP_RATED': '<div class="bestseller-ribbon" style="background: linear-gradient(135deg, #6366f1, #4f46e5);"><i class="fa-solid fa-star"></i> Top Rated</div>'
+            'ELITE_PICK': '<div class="bestseller-ribbon" style="background: linear-gradient(135deg, #8B5CF6, #D946EF);"><i class="fa-solid fa-crown"></i> Wybór Elity</div>',
+            'TRENDING': '<div class="bestseller-ribbon" style="background: linear-gradient(135deg, #10B981, #059669);"><i class="fa-solid fa-arrow-trend-up"></i> Na Fali</div>',
+            'TOP_RATED': '<div class="bestseller-ribbon" style="background: linear-gradient(135deg, #6366f1, #4f46e5);"><i class="fa-solid fa-star"></i> Najwyżej Oceniane</div>'
         };
         return badges[type] || '';
     },
@@ -636,27 +610,27 @@ stats: {
     }
 };
 
-// ========== 9. PROOF PULSE MODULE ==========
+// ========== 9. MODUŁ PROOF PULSE ==========
 const ProofPulse = {
     productActions: [
-        { title: "E-Commerce Mastery", color: "#84CC16" },
-        { title: "Agency Architect", color: "#3B82F6" },
-        { title: "Copywriter Secrets", color: "#10B981" },
-        { title: "Market Strategy", color: "#00FF9D" },
-        { title: "Faceless Influencer", color: "#FF0000" },
-        { title: "Prime Dropshipping", color: "#FF9900" },
-        { title: "Deal Closing Expert", color: "#22D3EE" },
-        { title: "Insta Money", color: "#D946EF" },
-        { title: "The Founder Playbook", color: "#FACC15" }
+        { title: "Opanowanie E-Commerce", color: "#84CC16" },
+        { title: "Architekt Agencji", color: "#3B82F6" },
+        { title: "Sekrety AI Automatyzacji", color: "#10B981" },
+        { title: "Strategia Rynkowa", color: "#00FF9D" },
+        { title: "Influencer bez Twarzy", color: "#FF0000" },
+        { title: "Twój Dropshipping", color: "#FF9900" },
+        { title: "Ekspert Sprzedaży", color: "#22D3EE" },
+        { title: "Insta Kasa", color: "#D946EF" },
+        { title: "Poradnik Założyciela", color: "#FACC15" }
     ],
 
     database: {
-        anglo: { weight: 0.40, countries: ["United States", "United Kingdom", "Canada", "Australia", "New Zealand"], names: ["James", "Michael", "Robert", "John", "David", "Sarah", "Jessica"] },
-        dach: { weight: 0.20, countries: ["Germany", "Austria", "Switzerland", "Netherlands"], names: ["Maximilian", "Alexander", "Paul", "Sophie", "Hannah"] },
-        latin: { weight: 0.15, countries: ["France", "Italy", "Spain", "Portugal"], names: ["Gabriel", "Léo", "Sofia", "Giulia"] },
-        nordic: { weight: 0.10, countries: ["Sweden", "Norway", "Denmark"], names: ["William", "Liam", "Alice"] },
-        central: { weight: 0.10, countries: ["Poland", "Czech Republic"], names: ["Jakub", "Antoni", "Julia"] },
-        global: { weight: 0.05, countries: ["Singapore", "Japan", "UAE"], names: ["Wei", "Hiroshi", "Ahmed"] }
+        anglo: { weight: 0.40, countries: ["Stany Zjednoczone", "Wielka Brytania", "Kanada", "Australia", "Nowa Zelandia"], names: ["James", "Michael", "Robert", "John", "David", "Sarah", "Jessica"] },
+        dach: { weight: 0.20, countries: ["Niemcy", "Austria", "Szwajcaria", "Holandia"], names: ["Maximilian", "Alexander", "Paul", "Sophie", "Hannah"] },
+        latin: { weight: 0.15, countries: ["Francja", "Włochy", "Hiszpania", "Portugalia"], names: ["Gabriel", "Léo", "Sofia", "Giulia"] },
+        nordic: { weight: 0.10, countries: ["Szwecja", "Norwegia", "Dania"], names: ["William", "Liam", "Alice"] },
+        central: { weight: 0.10, countries: ["Polska", "Czechy"], names: ["Jakub", "Antoni", "Julia"] },
+        global: { weight: 0.05, countries: ["Singapur", "Japonia", "Zjednoczone Emiraty Arabskie"], names: ["Wei", "Hiroshi", "Ahmed"] }
     },
 
     init() {
@@ -668,7 +642,7 @@ const ProofPulse = {
 
         if (!this.pulse || !this.img || !this.name || !this.loc || !this.info) return;
 
-        // Don't show on mobile to save space
+        // Nie pokazuj na urządzeniach mobilnych, aby zaoszczędzić miejsce
         if (utils.isMobile()) return;
 
         setTimeout(() => this.show(), 4500);
@@ -696,17 +670,17 @@ const ProofPulse = {
             const lastInitial = String.fromCharCode(65 + Math.floor(Math.random() * 26));
             const fullName = `${firstName} ${lastInitial}.`;
             const product = this.getRandomItem(this.productActions);
-            const timeAgo = Math.random() > 0.8 ? "Just now" : Math.floor(Math.random() * 59) + 1 + "m ago";
+            const timeAgo = Math.random() > 0.8 ? "Przed chwilą" : Math.floor(Math.random() * 59) + 1 + " min temu";
 
             this.img.src = `https://ui-avatars.com/api/?name= ${encodeURIComponent(firstName)}+${lastInitial}&background=random&color=fff&rounded=true&size=128&bold=true&format=svg`;
-            this.img.alt = `${fullName} avatar`;
+            this.img.alt = `${fullName} awatar`;
             this.name.textContent = fullName;
             this.loc.textContent = country;
 
             const actionLine = this.info.querySelector('div:last-child');
             if (actionLine) {
                 actionLine.innerHTML = `
-                    <span style="color: #9CA3AF;">Purchased</span>
+                    <span style="color: #9CA3AF;">Zakupiono</span>
                     <span style="color:${product.color}; font-weight:700;">${product.title}</span> 
                     <span style="opacity:0.5; font-size: 0.75rem; margin-left: 6px;">
                         <i class="fa-regular fa-clock" style="font-size:0.7rem; margin-right:3px;"></i> ${timeAgo}
@@ -715,22 +689,20 @@ const ProofPulse = {
             }
 
             this.pulse.classList.add('visible');
-            
-            // Auto-hide after 6 seconds
+            // Autoukrywanie po 6 sekundach
             setTimeout(() => {
                 this.pulse.classList.remove('visible');
-                
-                // Schedule next show
+                // Zaplanuj kolejne pokazanie
                 const nextInterval = Math.random() * 16000 + 8000;
                 setTimeout(() => this.show(), nextInterval);
             }, 6000);
         } catch (error) {
-            console.error('ProofPulse error:', error);
+            console.error('Błąd ProofPulse:', error);
         }
     }
 };
 
-// ========== 10. CONSTELLATION ANIMATION ==========
+// ========== 10. ANIMACJA KONSTELACJI ==========
 const Constellation = {
     canvas: null,
     ctx: null,
@@ -741,7 +713,7 @@ const Constellation = {
         this.canvas = utils.getElement('constellation-canvas');
         if (!this.canvas) return;
 
-        // Don't run on mobile for performance
+        // Nie uruchamiaj na urządzeniach mobilnych ze względów wydajnościowych
         if (utils.isMobile()) return;
 
         this.ctx = this.canvas.getContext('2d');
@@ -749,7 +721,7 @@ const Constellation = {
         this.createParticles();
         this.animate();
 
-        // Handle resize
+        // Obsługa zmiany rozmiaru
         window.addEventListener('resize', utils.debounce(() => {
             this.resize();
             this.createParticles();
@@ -779,23 +751,23 @@ const Constellation = {
     animate() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        // Update and draw particles
+        // Aktualizacja i rysowanie cząsteczek
         this.particles.forEach((particle, i) => {
-            // Update position
+            // Aktualizacja pozycji
             particle.x += particle.vx;
             particle.y += particle.vy;
 
-            // Bounce off edges
+            // Odbicia od krawędzi
             if (particle.x < 0 || particle.x > this.canvas.width) particle.vx *= -1;
             if (particle.y < 0 || particle.y > this.canvas.height) particle.vy *= -1;
 
-            // Draw particle
+            // Rysowanie cząsteczki
             this.ctx.beginPath();
             this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
             this.ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
             this.ctx.fill();
 
-            // Draw connections
+            // Rysowanie połączeń
             for (let j = i + 1; j < this.particles.length; j++) {
                 const other = this.particles[j];
                 const dx = particle.x - other.x;
@@ -824,7 +796,7 @@ const Constellation = {
     }
 };
 
-// ========== 11. DASHBOARD ANIMATION ==========
+// ========== 11. ANIMACJA DASHBOARDU ==========
 const Dashboard = {
     init() {
         this.target = utils.query('.hero-dashboard');
@@ -871,13 +843,13 @@ const Dashboard = {
                 }
             };
 
-            // Stagger animations
+            // Stopniowe wywoływanie animacji
             setTimeout(() => requestAnimationFrame(step), stats.indexOf(stat) * 200);
         });
     }
 };
 
-// ========== 12. FAQ MODULE ==========
+// ========== 12. MODUŁ FAQ ==========
 const FAQ = {
     init() {
         this.questions = utils.queryAll('.faq-question');
@@ -887,8 +859,7 @@ const FAQ = {
             question.addEventListener('click', () => {
                 this.toggle(question);
             });
-            
-            // Handle keyboard navigation
+            // Obsługa nawigacji za pomocą klawiatury
             question.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -901,10 +872,9 @@ const FAQ = {
     toggle(question) {
         const isActive = question.classList.contains('active');
         const panel = question.nextElementSibling;
-        
         if (!panel) return;
 
-        // Close all other questions
+        // Zamknij wszystkie pozostałe pytania
         this.questions.forEach(q => {
             if (q !== question) {
                 q.classList.remove('active');
@@ -917,7 +887,7 @@ const FAQ = {
             }
         });
 
-        // Toggle current question
+        // Przełącz bieżące pytanie
         if (!isActive) {
             question.classList.add('active');
             question.setAttribute('aria-expanded', 'true');
@@ -932,7 +902,7 @@ const FAQ = {
     }
 };
 
-// ========== 13. COUNTDOWN TIMER ==========
+// ========== 13. ODLICZANIE CZASU (COUNTDOWN) ==========
 const Countdown = {
     init() {
         this.display = utils.getElement('countdown');
@@ -951,7 +921,7 @@ const Countdown = {
 
                 this.display.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
             } catch (error) {
-                console.error('Countdown error:', error);
+                console.error('Błąd licznika:', error);
             }
         };
 
@@ -960,10 +930,10 @@ const Countdown = {
     }
 };
 
-// ========== 14. SCROLL REVEAL ==========
+// ========== 14. EFEKT UJAWNIANIA PRZY PRZEWIJANIU (SCROLL REVEAL) ==========
 const ScrollReveal = {
     init() {
-        // Intersection Observer for reveal animations
+        // Intersection Observer do animacji powolnego odsłaniania
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -976,10 +946,10 @@ const ScrollReveal = {
             rootMargin: '0px 0px -50px 0px' 
         });
 
-        // Observe all reveal elements
+        // Obserwuj wszystkie elementy, które mają się ujawnić
         utils.queryAll('.reveal').forEach(el => observer.observe(el));
 
-        // Bento card mouse effect (desktop only)
+        // Efekt myszy dla kart bento (tylko na komputerach desktop)
         if (!utils.isMobile()) {
             utils.queryAll('.bento-card').forEach(card => {
                 card.addEventListener('mousemove', (e) => {
@@ -992,12 +962,11 @@ const ScrollReveal = {
     }
 };
 
-// ========== 15. MODAL MODULE ==========
+// ========== 15. MODUŁ MODALI ==========
 const Modals = {
     activeModal: null,
-    
     init() {
-        // Generic modals
+        // Generyczne modale
         const modalIds = [
             'privacy-modal', 
             'terms-modal', 
@@ -1009,19 +978,18 @@ const Modals = {
         modalIds.forEach(id => {
             const cleanName = id.replace('-modal', '');
             const camelCase = cleanName.charAt(0).toUpperCase() + cleanName.slice(1);
-            
             window[`open${camelCase}Modal`] = () => this.open(id);
             window[`close${camelCase}Modal`] = () => this.close(id);
         });
 
-        // Close on overlay click
+        // Zamykanie po kliknięciu na tło
         window.addEventListener('click', (e) => {
             if (e.target.classList.contains('modal-overlay')) {
                 this.close(e.target.id);
             }
         });
 
-        // Close on escape key
+        // Zamykanie przy użyciu klawisza Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.activeModal) {
                 this.close(this.activeModal.id);
@@ -1036,8 +1004,7 @@ const Modals = {
         this.activeModal = modal;
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
-        
-        // Focus first focusable element
+        // Ustawienie ostrości (focus) na pierwszym dostępnym do kliknięcia elemencie
         const firstFocusable = modal.querySelector('button, input, a, [tabindex]:not([tabindex="-1"])');
         if (firstFocusable) {
             setTimeout(() => firstFocusable.focus(), 100);
@@ -1049,12 +1016,10 @@ const Modals = {
         if (!modal) return;
 
         modal.style.display = 'none';
-        
         if (this.activeModal === modal) {
             this.activeModal = null;
         }
-        
-        // Restore body scroll if no other modals are open
+        // Przywróć swobodne przewijanie, jeżeli nie są otwarte żadne inne modale
         const openModals = utils.queryAll('.modal-overlay[style*="flex"]');
         if (openModals.length === 0) {
             document.body.style.overflow = '';
@@ -1062,7 +1027,7 @@ const Modals = {
     }
 };
 
-// ========== 16. PROMO TEXT MODULE ==========
+// ========== 16. MODUŁ TEKSTU PROMOCYJNEGO ==========
 const PromoText = {
     init() {
         this.promoEl = utils.getElement('promo-text');
@@ -1071,28 +1036,27 @@ const PromoText = {
         const month = new Date().getMonth();
 
         const promos = [
-            `NEW YEAR PROMO: 30% OFF – Ends 11:59 PM Tonight`,
-            `FEBRUARY BOOST: 30% OFF – Ends 11:59 PM Tonight`,
-            `MARCH GROWTH: 30% OFF – Ends 11:59 PM Tonight`,
-            `SPRING SALE: 30% OFF – Ends 11:59 PM Tonight`,
-            `MAY UPGRADE: 30% OFF – Ends 11:59 PM Tonight`,
-            `SUMMER DEALS: 30% OFF – Ends 11:59 PM Tonight`,
-            `JULY SPECIAL: 30% OFF – Ends 11:59 PM Tonight`,
-            `AUGUST FINALE: 30% OFF – Ends 11:59 PM Tonight`,
-            `SEPTEMBER START: 30% OFF – Ends 11:59 PM Tonight`,
-            `HALLOWEEN PROMO: 30% OFF – Ends 11:59 PM Tonight`,
-            `BLACK FRIDAY: 30% OFF – Ends 11:59 PM Tonight`,
-            `XMAS PROTOCOL: 30% OFF – Ends 11:59 PM Tonight`
+            `NOWOROCZNA PROMOCJA: -30% – Kończy się o 23:59`,
+            `LUTOWE DOŁADOWANIE: -30% – Kończy się o 23:59`,
+            `MARCOWY WZROST: -30% – Kończy się o 23:59`,
+            `WIOSENNA WYPRZEDAŻ: -30% – Kończy się o 23:59`,
+            `MAJOWY UPGRADE: -30% – Kończy się o 23:59`,
+            `LETNIE OKAZJE: -30% – Kończy się o 23:59`,
+            `LIPCOWA OFERTA: -30% – Kończy się o 23:59`,
+            `SIERPNIOWY FINAŁ: -30% – Kończy się o 23:59`,
+            `WRZEŚNIOWY START: -30% – Kończy się o 23:59`,
+            `PROMOCJA HALLOWEEN: -30% – Kończy się o 23:59`,
+            `BLACK FRIDAY: -30% – Kończy się o 23:59`,
+            `ŚWIĄTECZNY PROTOKÓŁ: -30% – Kończy się o 23:59`
         ];
 
         this.promoEl.textContent = promos[month];
     }
 };
 
-// ========== 17. MEGA MENU MODULE ==========
+// ========== 17. MODUŁ MEGA MENU ==========
 const MegaMenu = {
     isOpen: false,
-    
     init() {
         this.menu = utils.getElement('academy-mega-menu');
         this.trigger = utils.getElement('academy-trigger');
@@ -1111,15 +1075,15 @@ const MegaMenu = {
         if (!this.grid) return;
 
         const courses = [
-            { title: "Ecom", img: "images/image1.webp" },
-            { title: "Agency", img: "images/image2.webp" },
+            { title: "E-com", img: "images/image1.webp" },
+            { title: "Agencja", img: "images/image2.webp" },
             { title: "Dropship", img: "images/image6.webp" },
-            { title: "Closing", img: "images/image7.webp" },
-            { title: "Founder", img: "images/image9.webp" },
+            { title: "Sprzedaż", img: "images/image7.webp" },
+            { title: "Społeczność", img: "images/image9.webp" },
             { title: "YouTube", img: "images/image5.webp" },
-            { title: "Trading", img: "images/image4.webp" },
-            { title: "Copy", img: "images/image3.webp" },
-            { title: "Social", img: "images/image8.webp" }
+            { title: "Inwestor", img: "images/image4.webp" },
+            { title: "Auto AI", img: "images/image3.webp" },
+            { title: "Instagram", img: "images/image8.webp" }
         ];
 
         this.grid.innerHTML = courses.map(c => `
@@ -1131,14 +1095,14 @@ const MegaMenu = {
     },
 
     setupEvents() {
-        // Desktop trigger
+        // Wyzwalacz na wersji Desktop
         this.trigger.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
             this.toggle();
         });
 
-        // Mobile trigger
+        // Wyzwalacz mobilny
         if (this.triggerMobile) {
             this.triggerMobile.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -1147,16 +1111,16 @@ const MegaMenu = {
             });
         }
 
-        // Close button
+        // Przycisk zamykania
         this.closeBtn?.addEventListener('click', (e) => {
             e.stopPropagation();
             this.close();
         });
 
-        // Overlay click
+        // Kliknięcie tła
         this.overlay?.addEventListener('click', () => this.close());
 
-        // Outside click
+        // Kliknięcie poza menu
         document.addEventListener('click', (e) => {
             if (this.isOpen && 
                 !this.menu.contains(e.target) && 
@@ -1168,31 +1132,29 @@ const MegaMenu = {
             }
         });
 
-        // Escape key
+        // Klawisz Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.isOpen) {
                 this.close();
             }
         });
 
-        // Handle window resize
+        // Obsługa zmiany rozmiaru okna
         window.addEventListener('resize', utils.debounce(() => {
             if (utils.isDesktop() && this.isOpen) {
                 this.close();
             }
         }, 250));
 
-        // Global function for scrolling to library
+        // Globalna funkcja przewijania do biblioteki
         window.scrollToLibrary = () => {
-            // Close mega menu
+            // Zamknij mega menu
             this.close();
-            
-            // Close mobile menu if open
+            // Zamknij menu mobilne, jeśli jest otwarte
             if (window.MobileMenu && window.MobileMenu.isOpen) {
                 window.MobileMenu.close();
             }
-            
-            // Scroll to library
+            // Przewiń do biblioteki
             const lib = utils.getElement('library');
             if (lib) {
                 lib.scrollIntoView({ behavior: 'smooth' });
@@ -1212,13 +1174,11 @@ const MegaMenu = {
         this.isOpen = true;
         this.menu.style.display = 'block';
         this.overlay?.classList.add('show');
-        
-        // Animate in
+        // Animacja wejścia
         setTimeout(() => {
             this.menu.classList.add('show');
         }, 10);
-        
-        // Update trigger states
+        // Aktualizacja stanów wyzwalaczy
         this.trigger.classList.add('active');
         if (this.triggerMobile) {
             this.triggerMobile.classList.add('active');
@@ -1229,14 +1189,12 @@ const MegaMenu = {
         this.isOpen = false;
         this.menu.classList.remove('show');
         this.overlay?.classList.remove('show');
-        
-        // Update trigger states
+        // Aktualizacja stanów wyzwalaczy
         this.trigger.classList.remove('active');
         if (this.triggerMobile) {
             this.triggerMobile.classList.remove('active');
         }
-        
-        // Hide after animation
+        // Ukryj element po animacji
         setTimeout(() => {
             if (!this.menu.classList.contains('show')) {
                 this.menu.style.display = 'none';
@@ -1245,13 +1203,13 @@ const MegaMenu = {
     }
 };
 
-// ========== 18. EMAIL PROTECTION MODULE ==========
+// ========== 18. MODUŁ OCHRONY E-MAILI ==========
 const EmailProtection = {
     init() {
         const user = 'contact';
         const domain = 'pylonvision.com';
 
-        // Footer email
+        // E-mail w stopce
         const link = utils.getElement('contact-link');
         const text = utils.getElement('contact-text');
         if (link && text) {
@@ -1262,7 +1220,7 @@ const EmailProtection = {
             text.textContent = `${user}@${domain}`;
         }
 
-        // Modal email
+        // E-mail w modalu
         const modalLink = utils.getElement('modal-contact-link');
         const modalText = utils.getElement('modal-contact-text');
         if (modalLink && modalText) {
@@ -1273,7 +1231,7 @@ const EmailProtection = {
             });
         }
 
-        // General email protectors
+        // Zabezpieczenia ogólne adresów e-mail
         utils.queryAll('.email-protector').forEach(link => {
             const u = link.getAttribute('data-user');
             const d = link.getAttribute('data-domain');
@@ -1285,7 +1243,7 @@ const EmailProtection = {
             }
         });
 
-        // Protected email text
+        // Ochrona e-maili w zwykłym tekście
         utils.queryAll('.protected-email').forEach(el => {
             try {
                 const email = el.textContent.replace(' [at] ', '@');
@@ -1293,15 +1251,15 @@ const EmailProtection = {
                     el.innerHTML = `<a href="mailto:${email}" style="color: inherit; text-decoration: none;" onclick="this.style.textDecoration='underline'" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">${email}</a>`;
                 }
             } catch (error) {
-                console.error('Email protection error:', error);
+                console.error('Błąd ochrony poczty elektronicznej:', error);
             }
         });
 
-        // Update effective dates
+        // Aktualizacja odpowiednich dat
         this.updateEffectiveDates();
     },
 
-updateEffectiveDates() {
+    updateEffectiveDates() {
         const dateElements = utils.queryAll('.dynamic-date');
         if (dateElements.length === 0) return;
 
@@ -1326,7 +1284,7 @@ updateEffectiveDates() {
             // Ustawiamy datę "na sztywno" na 12. dzień obliczonego miesiąca
             const finalDate = new Date(year, quarterMonth, 12);
 
-            const formatted = finalDate.toLocaleDateString('en-US', {
+            const formatted = finalDate.toLocaleDateString('pl-PL', {
                 month: 'long',
                 day: 'numeric',
                 year: 'numeric'
@@ -1336,34 +1294,29 @@ updateEffectiveDates() {
                 el.textContent = formatted;
             });
         } catch (error) {
-            console.error('Date update error:', error);
+            console.error('Błąd przy aktualizowaniu dat:', error);
         }
     }
 };
 
-// ========== 19. TOUCH OPTIMIZATIONS ==========
+// ========== 19. OPTYMALIZACJE DLA DOTYKU ==========
 const TouchOptimizations = {
     init() {
-        // Add touch classes for CSS targeting
+        // Dodaj klasy dotykowe, jeżeli wspierane, do targetowania w CSS
         if (utils.isTouch()) {
             document.body.classList.add('touch-device');
         }
-        
-        // Optimize hover states for touch
+        // Zoptymalizuj stany wskazywania (hover)
         this.optimizeHovers();
-        
-        // Add touch feedback
+        // Zastosuj informację zwrotną po dotknięciu (Touch feedback)
         this.addTouchFeedback();
-        
-        // Prevent zoom on double tap for iOS
+        // Zapobiegaj przybliżaniu ekranu podwójnym dotknięciem w systemach iOS
         this.preventDoubleTapZoom();
-        
-        // Optimize scroll performance
+        // Zoptymalizuj wydajność przy przewijaniu
         this.optimizeScroll();
     },
-    
     optimizeHovers() {
-        // Remove hover effects on touch devices
+        // Usuwanie efektów najechania myszką (hover) na ekranach dotykowych
         if (utils.isTouch()) {
             const style = document.createElement('style');
             style.textContent = `
@@ -1379,17 +1332,14 @@ const TouchOptimizations = {
             document.head.appendChild(style);
         }
     },
-    
     addTouchFeedback() {
-        // Add active states for buttons
+        // Dodawanie aktywnego statusu dla naciskanych elementów
         const buttons = utils.queryAll('button, .btn, .btn-card, .filter-btn, .social-card, .mega-item, .faq-question');
-        
         buttons.forEach(button => {
             button.addEventListener('touchstart', () => {
                 button.style.transform = 'scale(0.98)';
                 button.style.transition = 'transform 0.1s ease';
             }, { passive: true });
-            
             button.addEventListener('touchend', () => {
                 setTimeout(() => {
                     button.style.transform = '';
@@ -1398,7 +1348,6 @@ const TouchOptimizations = {
             }, { passive: true });
         });
     },
-    
     preventDoubleTapZoom() {
         let lastTouchEnd = 0;
         document.addEventListener('touchend', (e) => {
@@ -1409,9 +1358,8 @@ const TouchOptimizations = {
             lastTouchEnd = now;
         }, { passive: false });
     },
-    
     optimizeScroll() {
-        // Add passive listeners for better scroll performance
+        // Dodaj nasłuchiwacze w trybie pasywnym do ulepszenia wydajności przewijania
         document.addEventListener('touchmove', () => {}, { passive: true });
         document.addEventListener('wheel', () => {}, { passive: true });
     }
@@ -1448,16 +1396,14 @@ const ROICalculator = {
 
         // Update displays
         this.hoursDisplay.textContent = hours;
-        this.rateDisplay.textContent = `$${rate}`;
+        this.rateDisplay.textContent = `${rate} PLN`;
 
         // --- BARDZIEJ REALISTYCZNE WYLICZENIA ---
         
         // 1. Współczynnik efektywności (75%)
-        // Zakładamy, że tylko 3/4 zaoszczędzonego czasu to czysty, bilingowy zysk
         const efficiencyRate = 0.75; 
         
         // 2. Realne miesiące pracy
-        // Zakładamy 11.5 miesiąca w roku ze względu na urlopy, święta itp.
         const workingMonths = 11.5; 
 
         // Wyliczenie realnego zysku
@@ -1483,7 +1429,8 @@ const ROICalculator = {
             const easeOut = 1 - Math.pow(1 - progress, 3);
             const currentValue = Math.floor(startValue + (targetValue - startValue) * easeOut);
             
-            element.textContent = `$${currentValue.toLocaleString()}`;
+            // Usunięto " PLN" obok liczby, teraz wyświetla się sam czysty, sformatowany wynik
+            element.textContent = currentValue.toLocaleString();
 
             if (progress < 1) {
                 requestAnimationFrame(animate);
@@ -1494,85 +1441,9 @@ const ROICalculator = {
     }
 };
 
-// ========== 21. PERFORMANCE MONITOR ==========
-const PerformanceMonitor = {
-    init() {
-        // Monitor Core Web Vitals
-        this.monitorWebVitals();
-        
-        // Monitor memory usage
-        this.monitorMemory();
-        
-        // Monitor FPS
-        this.monitorFPS();
-    },
+// ========== FUNKCJE GLOBALNE ==========
 
-    monitorWebVitals() {
-        // LCP (Largest Contentful Paint)
-        new PerformanceObserver((entryList) => {
-            for (const entry of entryList.getEntries()) {
-                if (entry.startTime < 10000) { // First 10 seconds
-                    console.log('LCP:', entry.startTime);
-                }
-            }
-        }).observe({ entryTypes: ['largest-contentful-paint'] });
-
-        // FID (First Input Delay)
-        new PerformanceObserver((entryList) => {
-            for (const entry of entryList.getEntries()) {
-                console.log('FID:', entry.processingStart - entry.startTime);
-            }
-        }).observe({ entryTypes: ['first-input'] });
-
-        // CLS (Cumulative Layout Shift)
-        let clsValue = 0;
-        new PerformanceObserver((entryList) => {
-            for (const entry of entryList.getEntries()) {
-                if (!entry.hadRecentInput) {
-                    clsValue += entry.value;
-                    console.log('CLS:', clsValue);
-                }
-            }
-        }).observe({ entryTypes: ['layout-shift'] });
-    },
-
-    monitorMemory() {
-        if ('memory' in performance) {
-            setInterval(() => {
-                const memory = performance.memory;
-                console.log('Memory Usage:', {
-                    used: Math.round(memory.usedJSHeapSize / 1048576) + ' MB',
-                    total: Math.round(memory.totalJSHeapSize / 1048576) + ' MB',
-                    limit: Math.round(memory.jsHeapSizeLimit / 1048576) + ' MB'
-                });
-            }, 30000); // Log every 30 seconds
-        }
-    },
-
-    monitorFPS() {
-        let lastTime = performance.now();
-        let frames = 0;
-
-        function countFrames() {
-            frames++;
-            const currentTime = performance.now();
-
-            if (currentTime >= lastTime + 1000) {
-                console.log('FPS:', frames);
-                frames = 0;
-                lastTime = currentTime;
-            }
-
-            requestAnimationFrame(countFrames);
-        }
-
-        requestAnimationFrame(countFrames);
-    }
-};
-
-// ========== GLOBAL FUNCTIONS ==========
-
-// Smooth scroll to element
+// Płynne przewijanie do wskazanego elementu
 window.smoothScrollTo = (element, offset = 0) => {
     if (element) {
         const targetPosition = element.offsetTop - offset;
@@ -1583,7 +1454,7 @@ window.smoothScrollTo = (element, offset = 0) => {
     }
 };
 
-// Check if element is in viewport
+// Sprawdzanie, czy element znajduje się w obrębie widoku
 window.isInViewport = (element) => {
     if (!element) return false;
     const rect = element.getBoundingClientRect();
@@ -1595,35 +1466,35 @@ window.isInViewport = (element) => {
     );
 };
 
-// Debounced resize handler
+// Funkcja przechwycenia zmiany rozmiaru ekranu za pomocą debounce
 window.addEventListener('resize', utils.debounce(() => {
-    // Trigger custom resize event
+    // Aktywuj niestandardowe wydarzenie "optimizedResize"
     window.dispatchEvent(new CustomEvent('optimizedResize'));
 }, 250));
 
-// ========== ERROR HANDLING ==========
+// ========== OBSŁUGA BŁĘDÓW ==========
 window.addEventListener('error', (e) => {
-    console.error('JavaScript Error:', e.error);
+    console.error('Błąd języka JavaScript:', e.error);
 });
 
 window.addEventListener('unhandledrejection', (e) => {
-    console.error('Unhandled Promise Rejection:', e.reason);
+    console.error('Nieobsłużone odrzucenie obietnicy (Promise):', e.reason);
 });
 
-// ========== PERFORMANCE MONITORING ==========
+// ========== MONITOROWANIE CZASU ŁADOWANIA STRONY ==========
 if ('performance' in window) {
     window.addEventListener('load', () => {
         setTimeout(() => {
             const perfData = performance.getEntriesByType('navigation')[0];
-            console.log('Page Load Time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
+            console.log('Czas ładowania strony:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
         }, 0);
     });
 }
 
-// ========== END OF SCRIPT ==========
-console.log('✅ Pylon Vision Enhanced Script Loaded Successfully');
+// ========== KONIEC SKRYPTU ==========
+console.log('✅ Rozszerzony Skrypt Pylon Vision Załadowany Pomyślnie');
 
-// Export for debugging
+// Wyeksportowanie dla procesów debagowania
 window.PylonVision = {
     utils,
     MobileMenu,
@@ -1650,7 +1521,6 @@ window.PylonVision = {
 // Opcjonalne: Śledzenie kliknięć w przyciski zakupu
 document.addEventListener('DOMContentLoaded', () => {
     const buyButtons = document.querySelectorAll('a[href*="buy.stripe.com"]');
-    
     buyButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             console.log('Użytkownik kliknął przycisk zakupu!');
