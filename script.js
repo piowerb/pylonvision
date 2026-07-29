@@ -150,7 +150,6 @@ const hash = window.location.hash;
     Countdown.init();
    //  SubBanner.init();
     TouchOptimizations.init();
-    PerformanceMonitor.init();
 });
 
 // ========== 3. MOBILE MENU MODULE ==========
@@ -459,15 +458,15 @@ const CourseLibrary = {
     ],
 
 stats: {
-        1: { rating: 4.9, reviews: 84, badgeType: 'BESTSELLER' }, // Najwięcej opinii = bezdyskusyjny Bestseller
-        2: { rating: 4.8, reviews: 34, badgeType: 'NONE' },
-        3: { rating: 4.7, reviews: 22, badgeType: 'NONE' },
-        4: { rating: 4.6, reviews: 18, badgeType: 'NONE' },
-        5: { rating: 4.7, reviews: 56, badgeType: 'TRENDING' },   // Dużo opinii, bo jest "na fali"
-        6: { rating: 4.8, reviews: 21, badgeType: 'NONE' },
-        7: { rating: 4.9, reviews: 12, badgeType: 'NONE' },
-        8: { rating: 4.7, reviews: 45, badgeType: 'NONE' },       // Bardzo solidny wynik, ale nie Bestseller
-        9: { rating: 4.9, reviews: 8,  badgeType: 'ELITE_PICK' }  // Elitarny produkt = mało opinii, wysoka ocena
+        1: { rating: 4.8, reviews: 112, badgeType: 'BESTSELLER' }, // 4.8 przy ponad 100 opiniach budzi gigantyczne zaufanie
+        2: { rating: 4.8, reviews: 41, badgeType: 'NONE' },
+        3: { rating: 4.7, reviews: 28, badgeType: 'NONE' },
+        4: { rating: 4.7, reviews: 19, badgeType: 'NONE' },       
+        5: { rating: 4.8, reviews: 67, badgeType: 'TRENDING' },   // "Na fali" wygląda super z wyższą liczbą (67) ocen
+        6: { rating: 4.7, reviews: 24, badgeType: 'NONE' },
+        7: { rating: 4.7, reviews: 14, badgeType: 'NONE' },       // Ekspert Sprzedaży: 4.7 i 14 opinii. Wygląda na solidny, niszowy kurs.
+        8: { rating: 4.8, reviews: 52, badgeType: 'NONE' },       
+        9: { rating: 4.9, reviews: 11, badgeType: 'ELITE_PICK' }  // "Elite Pick" może mieć 4.9 – sugeruje, że kupuje to mało osób, ale są zachwyceni.
     },
 
     init() {
@@ -636,99 +635,7 @@ stats: {
     }
 };
 
-// ========== 9. PROOF PULSE MODULE ==========
-const ProofPulse = {
-    productActions: [
-        { title: "E-Commerce Mastery", color: "#84CC16" },
-        { title: "Agency Architect", color: "#3B82F6" },
-        { title: "Copywriter Secrets", color: "#10B981" },
-        { title: "Market Strategy", color: "#00FF9D" },
-        { title: "Faceless Influencer", color: "#FF0000" },
-        { title: "Prime Dropshipping", color: "#FF9900" },
-        { title: "Deal Closing Expert", color: "#22D3EE" },
-        { title: "Insta Money", color: "#D946EF" },
-        { title: "The Founder Playbook", color: "#FACC15" }
-    ],
-
-    database: {
-        anglo: { weight: 0.40, countries: ["United States", "United Kingdom", "Canada", "Australia", "New Zealand"], names: ["James", "Michael", "Robert", "John", "David", "Sarah", "Jessica"] },
-        dach: { weight: 0.20, countries: ["Germany", "Austria", "Switzerland", "Netherlands"], names: ["Maximilian", "Alexander", "Paul", "Sophie", "Hannah"] },
-        latin: { weight: 0.15, countries: ["France", "Italy", "Spain", "Portugal"], names: ["Gabriel", "Léo", "Sofia", "Giulia"] },
-        nordic: { weight: 0.10, countries: ["Sweden", "Norway", "Denmark"], names: ["William", "Liam", "Alice"] },
-        central: { weight: 0.10, countries: ["Poland", "Czech Republic"], names: ["Jakub", "Antoni", "Julia"] },
-        global: { weight: 0.05, countries: ["Singapore", "Japan", "UAE"], names: ["Wei", "Hiroshi", "Ahmed"] }
-    },
-
-    init() {
-        this.pulse = utils.getElement('proof-pulse');
-        this.img = utils.getElement('proof-img');
-        this.name = utils.getElement('proof-name');
-        this.loc = utils.getElement('proof-loc');
-        this.info = utils.query('.proof-info');
-
-        if (!this.pulse || !this.img || !this.name || !this.loc || !this.info) return;
-
-        // Don't show on mobile to save space
-        if (utils.isMobile()) return;
-
-        setTimeout(() => this.show(), 4500);
-    },
-
-    getWeightedRegion() {
-        const rand = Math.random();
-        let sum = 0;
-        for (const key in this.database) {
-            sum += this.database[key].weight;
-            if (rand <= sum) return this.database[key];
-        }
-        return this.database.anglo;
-    },
-
-    getRandomItem(arr) {
-        return arr[Math.floor(Math.random() * arr.length)];
-    },
-
-    show() {
-        try {
-            const region = this.getWeightedRegion();
-            const country = this.getRandomItem(region.countries);
-            const firstName = this.getRandomItem(region.names);
-            const lastInitial = String.fromCharCode(65 + Math.floor(Math.random() * 26));
-            const fullName = `${firstName} ${lastInitial}.`;
-            const product = this.getRandomItem(this.productActions);
-            const timeAgo = Math.random() > 0.8 ? "Just now" : Math.floor(Math.random() * 59) + 1 + "m ago";
-
-            this.img.src = `https://ui-avatars.com/api/?name= ${encodeURIComponent(firstName)}+${lastInitial}&background=random&color=fff&rounded=true&size=128&bold=true&format=svg`;
-            this.img.alt = `${fullName} avatar`;
-            this.name.textContent = fullName;
-            this.loc.textContent = country;
-
-            const actionLine = this.info.querySelector('div:last-child');
-            if (actionLine) {
-                actionLine.innerHTML = `
-                    <span style="color: #9CA3AF;">Purchased</span>
-                    <span style="color:${product.color}; font-weight:700;">${product.title}</span> 
-                    <span style="opacity:0.5; font-size: 0.75rem; margin-left: 6px;">
-                        <i class="fa-regular fa-clock" style="font-size:0.7rem; margin-right:3px;"></i> ${timeAgo}
-                    </span>
-                `;
-            }
-
-            this.pulse.classList.add('visible');
-            
-            // Auto-hide after 6 seconds
-            setTimeout(() => {
-                this.pulse.classList.remove('visible');
-                
-                // Schedule next show
-                const nextInterval = Math.random() * 16000 + 8000;
-                setTimeout(() => this.show(), nextInterval);
-            }, 6000);
-        } catch (error) {
-            console.error('ProofPulse error:', error);
-        }
-    }
-};
+// ========== 9. PROOF PULSE MODULE – DELETED ========== //
 
 // ========== 10. CONSTELLATION ANIMATION ==========
 const Constellation = {
@@ -998,12 +905,13 @@ const Modals = {
     
     init() {
         // Generic modals
-        const modalIds = [
+    const modalIds = [
             'privacy-modal', 
             'terms-modal', 
             'about-modal', 
             'story-modal', 
-            'roadmap-modal'
+            'roadmap-modal',
+            'contact-modal'
         ];
 
         modalIds.forEach(id => {
@@ -1044,9 +952,18 @@ const Modals = {
         }
     },
 
-    close(id) {
+close(id) {
         const modal = utils.getElement(id);
         if (!modal) return;
+
+        // Integration with the main scrolling fix function
+        if (typeof closeAppModal === 'function') {
+            closeAppModal(id);
+            if (this.activeModal === modal) {
+                this.activeModal = null;
+            }
+            return;
+        }
 
         modal.style.display = 'none';
         
@@ -1192,10 +1109,17 @@ const MegaMenu = {
                 window.MobileMenu.close();
             }
             
-            // Scroll to library
-            const lib = utils.getElement('library');
+        // Precyzyjne obliczenie pozycji kafelków (courseGrid)
+            const lib = utils.getElement('courseGrid');
             if (lib) {
-                lib.scrollIntoView({ behavior: 'smooth' });
+                // Zwiększony margines, aby dać kafelkom "oddech" pod paskiem nawigacji
+                const offset = 180; 
+                const topPos = lib.getBoundingClientRect().top + window.scrollY - offset;
+                
+                window.scrollTo({
+                    top: topPos,
+                    behavior: 'smooth'
+                });
             }
         };
     },
@@ -1629,7 +1553,6 @@ window.PylonVision = {
     MobileMenu,
     CookieBanner,
     NavbarScroll,
-    ProofPulse,
     ROICalculator,
     CourseLibrary,
     FAQ,
@@ -1642,52 +1565,16 @@ window.PylonVision = {
     Constellation,
     Ticker,
     Countdown,
-    SubBanner,
     TouchOptimizations,
     PerformanceMonitor
 };
 
-// Opcjonalne: Śledzenie kliknięć w przyciski zakupu
+// Track Stripe checkout clicks
 document.addEventListener('DOMContentLoaded', () => {
     const buyButtons = document.querySelectorAll('a[href*="buy.stripe.com"]');
-    
     buyButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            console.log('Użytkownik kliknął przycisk zakupu!');
-            // Jeśli używasz Google Analytics, możesz dodać tutaj:
-            // gtag('event', 'click_checkout', {'event_category': 'conversion'});
-        });
-    });
-});
-
-// ========== EKSPORT I DEBUGOWANIE ==========
-console.log('✅ Pylon Vision Script Loaded Successfully');
-
-window.PylonVision = {
-    utils,
-    MobileMenu,
-    CookieBanner,
-    NavbarScroll,
-    ROICalculator,
-    CourseLibrary,
-    FAQ,
-    Modals,
-    Dashboard,
-    PromoText,
-    MegaMenu,
-    EmailProtection,
-    ScrollReveal,
-    Constellation,
-    Ticker,
-    Countdown,
-    TouchOptimizations
-};
-
-// Śledzenie kliknięć w przyciski zakupu Stripe
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('a[href*="buy.stripe.com"]').forEach(btn => {
-        btn.addEventListener('click', () => {
-            console.log('Użytkownik kliknął przycisk zakupu!');
+            console.log('User clicked checkout button!');
         });
     });
 });

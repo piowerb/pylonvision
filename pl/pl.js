@@ -150,7 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
     Countdown.init();
     // SubBanner.init();
     TouchOptimizations.init();
-    PerformanceMonitor.init();
 });
 
 // ========== 3. MODUŁ MENU MOBILNEGO ==========
@@ -438,7 +437,7 @@ const CourseLibrary = {
         { id: 5, title: "Influencer bez Twarzy", category: "social", price: "$39", image: "images/image5.webp", desc: "Dowiedz się, jak prowadzić kanał na YouTube bez pokazywania twarzy. Wyjaśniamy, jak wybierać odpowiednie tematy i skutecznie tworzyć treści.", url: "#" },
         { id: 6, title: "Twój Dropshipping", category: "business", price: "$49", image: "images/image6.webp", desc: "Dowiedz się, od czego zacząć, jak zaimplementować procesy i skutecznie sprzedawać na największych platformach handlowych, takich jak Amazon czy Allegro.", url: "#" },
         { id: 7, title: "Ekspert Sprzedaży", category: "business", price: "$99", image: "images/image7.webp", desc: "Popraw swoje umiejętności sprzedażowe i naucz się zamykać transakcje. Dostarczamy skrypty i ramy używane przez profesjonalnych przedsiębiorców.", url: "#" },
-        { id: 8, title: "Insta Kasa", category: "social", price: "$19", image: "images/image8.webp", desc: "Poznaj strategie rozwoju w mediach społecznościowych i angażowania obserwatorów. Pokazujemy, jak zbudować publiczność i różne sposoby monetyzacji profilu.", url: "#" },
+        { id: 8, title: "Insta Zyski", category: "social", price: "$19", image: "images/image8.webp", desc: "Poznaj strategie rozwoju w mediach społecznościowych i angażowania obserwatorów. Pokazujemy, jak zbudować publiczność i różne sposoby monetyzacji profilu.", url: "#" },
         { id: 9, title: "Poradnik Założyciela", category: "business", price: "$197", image: "images/image9.webp", desc: "Dowiedz się, jak zbudować płatną społeczność wokół swojej marki. Przeprowadzimy Cię przez proces zamiany Twojej wiedzy w biznes oparty na subskrypcjach.", url: "#" }
     ],
 
@@ -620,7 +619,7 @@ const ProofPulse = {
         { title: "Influencer bez Twarzy", color: "#FF0000" },
         { title: "Twój Dropshipping", color: "#FF9900" },
         { title: "Ekspert Sprzedaży", color: "#22D3EE" },
-        { title: "Insta Kasa", color: "#D946EF" },
+        { title: "Insta Zyski", color: "#D946EF" },
         { title: "Poradnik Założyciela", color: "#FACC15" }
     ],
 
@@ -972,7 +971,8 @@ const Modals = {
             'terms-modal', 
             'about-modal', 
             'story-modal', 
-            'roadmap-modal'
+            'roadmap-modal',
+            'contact-modal'
         ];
 
         modalIds.forEach(id => {
@@ -1011,9 +1011,19 @@ const Modals = {
         }
     },
 
-    close(id) {
+close(id) {
         const modal = utils.getElement(id);
         if (!modal) return;
+
+        // DODANE: Integracja z główną funkcją naprawiającą scrollowanie (z pliku index.html)
+        // Jeśli ta funkcja istnieje, przejmuje całkowicie zamykanie i odblokowuje ekran.
+        if (typeof closeAppModal === 'function') {
+            closeAppModal(id);
+            if (this.activeModal === modal) {
+                this.activeModal = null;
+            }
+            return;
+        }
 
         modal.style.display = 'none';
         if (this.activeModal === modal) {
@@ -1146,18 +1156,27 @@ const MegaMenu = {
             }
         }, 250));
 
-        // Globalna funkcja przewijania do biblioteki
+    // Global function for scrolling to library
         window.scrollToLibrary = () => {
-            // Zamknij mega menu
+            // Close mega menu
             this.close();
-            // Zamknij menu mobilne, jeśli jest otwarte
+            
+            // Close mobile menu if open
             if (window.MobileMenu && window.MobileMenu.isOpen) {
                 window.MobileMenu.close();
             }
-            // Przewiń do biblioteki
-            const lib = utils.getElement('library');
+            
+        // Precyzyjne obliczenie pozycji kafelków (courseGrid)
+            const lib = utils.getElement('courseGrid');
             if (lib) {
-                lib.scrollIntoView({ behavior: 'smooth' });
+                // Zwiększony margines, aby dać kafelkom "oddech" pod paskiem nawigacji
+                const offset = 180; 
+                const topPos = lib.getBoundingClientRect().top + window.scrollY - offset;
+                
+                window.scrollTo({
+                    top: topPos,
+                    behavior: 'smooth'
+                });
             }
         };
     },
@@ -1500,44 +1519,6 @@ window.PylonVision = {
     MobileMenu,
     CookieBanner,
     NavbarScroll,
-    ProofPulse,
-    ROICalculator,
-    CourseLibrary,
-    FAQ,
-    Modals,
-    Dashboard,
-    PromoText,
-    MegaMenu,
-    EmailProtection,
-    ScrollReveal,
-    Constellation,
-    Ticker,
-    Countdown,
-    SubBanner,
-    TouchOptimizations,
-    PerformanceMonitor
-};
-
-// Opcjonalne: Śledzenie kliknięć w przyciski zakupu
-document.addEventListener('DOMContentLoaded', () => {
-    const buyButtons = document.querySelectorAll('a[href*="buy.stripe.com"]');
-    buyButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            console.log('Użytkownik kliknął przycisk zakupu!');
-            // Jeśli używasz Google Analytics, możesz dodać tutaj:
-            // gtag('event', 'click_checkout', {'event_category': 'conversion'});
-        });
-    });
-});
-
-// ========== EKSPORT I DEBUGOWANIE ==========
-console.log('✅ Pylon Vision Script Loaded Successfully');
-
-window.PylonVision = {
-    utils,
-    MobileMenu,
-    CookieBanner,
-    NavbarScroll,
     ROICalculator,
     CourseLibrary,
     FAQ,
@@ -1555,9 +1536,12 @@ window.PylonVision = {
 
 // Śledzenie kliknięć w przyciski zakupu Stripe
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('a[href*="buy.stripe.com"]').forEach(btn => {
+    const buyButtons = document.querySelectorAll('a[href*="buy.stripe.com"]');
+    buyButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             console.log('Użytkownik kliknął przycisk zakupu!');
+            // Jeśli używasz Google Analytics, możesz dodać tutaj:
+            // gtag('event', 'click_checkout', {'event_category': 'conversion'});
         });
     });
 });
