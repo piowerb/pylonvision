@@ -221,8 +221,7 @@ const MobileMenu = {
         this.btn.setAttribute('aria-expanded', 'true');
         this.menu.classList.add('active');
         
-        // Prevent body scroll
-        document.body.style.overflow = 'hidden';
+        // Usunięto blokowanie scrolla (overflow: hidden), które powodowało skakanie strony na telefonie
         
         // Add backdrop
         this.addBackdrop();
@@ -240,8 +239,7 @@ const MobileMenu = {
         this.btn.setAttribute('aria-expanded', 'false');
         this.menu.classList.remove('active');
         
-        // Restore body scroll
-        document.body.style.overflow = '';
+        // Usunięto przywracanie scrolla, aby uniknąć layout shift
         
         // Remove backdrop
         this.removeBackdrop();
