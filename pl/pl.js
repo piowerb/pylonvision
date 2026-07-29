@@ -567,7 +567,7 @@ const CourseLibrary = {
 
                     <p class="card-desc">${course.desc}</p>
                     <div class="card-footer" style="padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); width: 100%;">
-                        <div class="btn-card" style="display: block; width: 100%; text-align: center; padding: 12px 0;">Zyskaj Dostęp</div>
+                    <div class="btn-card" style="display: flex; align-items: center; justify-content: center; width: 100%; padding: 12px 0 14px; font-size: 0.9rem; font-weight: 700;">Zyskaj Dostęp</div>                    
                     </div>
                 </div>
             `;

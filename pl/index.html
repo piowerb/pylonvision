@@ -164,9 +164,9 @@
 
             </div>
 
-            <h1 class="hero-title reveal" style="font-size: clamp(1.8rem, 5vw, 3.5rem);">
-                <span>Pracuj Mniej, Zarabiaj Więcej</span><br>
-                <span class="text-gradient">Zautomatyzuj Swój Sukces</span>
+            <h1 class="hero-title reveal" style="font-size: clamp(1.3rem, 5.5vw, 3.5rem);">
+                <span style="white-space: nowrap;">Pracuj Mniej, Zarabiaj Więcej</span><br>
+                <span class="text-gradient" style="white-space: nowrap;">Zautomatyzuj Swój Sukces</span>
             </h1>
 
             <p class="hero-subtitle reveal" style="max-width: 650px;">
@@ -457,7 +457,7 @@
                     </div>
 
                     <div class="premium-checkout-btn">
-                        Natychmiastowy Dostęp <i class="fa-solid fa-arrow-right" style="margin-left: 6px; font-size: 0.9em;"></i>
+                        Odbierz Całość <i class="fa-solid fa-arrow-right" style="margin-left: 6px; font-size: 0.9em;"></i>
                     </div>
 
                     <div style="width: 100%; text-align: center; margin-top: 20px;">
@@ -483,13 +483,127 @@
                 <div class="filter-group">
                     <button class="filter-btn active" data-filter="all">Wszystkie Systemy</button>
                     <button class="filter-btn" data-filter="business">Biznes i E-com</button>
-                    <button class="filter-btn" data-filter="social">Media Społecznościowe</button>
+                    <button class="filter-btn" data-filter="social">Socjale</button>
                     <button class="filter-btn" data-filter="trading">Finanse</button>
                 </div>
             </div>
 
-            <div id="courseGrid" class="courses-grid" style="scroll-margin-top: 100px;">
+<div id="courseGrid" class="courses-grid" style="scroll-margin-top: 100px;">
             </div>
+
+            <!-- EKSKLUZYWNY BONUS - WERSJA PREMIUM (Cała karta klikalna) -->
+            <style>
+                .featured-bonus-card {
+                    background: var(--bg-card);
+                    backdrop-filter: var(--glass-blur);
+                    -webkit-backdrop-filter: var(--glass-blur);
+                    border: 1px solid rgba(124, 58, 237, 0.4);
+                    border-radius: 24px;
+                    padding: clamp(30px, 4vw, 40px);
+                    display: flex;
+                    align-items: center;
+                    gap: clamp(30px, 4vw, 50px);
+                    margin: 60px auto 0;
+                    width: 100%;
+                    box-shadow: 0 20px 40px -15px rgba(0,0,0,0.6), 0 0 30px rgba(124, 58, 237, 0.1);
+                    transition: all 0.4s var(--ease-elastic);
+                    position: relative;
+                    overflow: hidden;
+                    text-decoration: none; /* Zapobiega podkreśleniom całego tekstu w linku */
+                    color: inherit;
+                    cursor: pointer;
+                }
+                .featured-bonus-card:hover {
+                    transform: translateY(-5px);
+                    border-color: rgba(168, 85, 247, 0.6);
+                    box-shadow: 0 30px 60px -15px rgba(0,0,0,0.7), 0 0 40px rgba(124, 58, 237, 0.2);
+                }
+                .featured-bonus-card::before {
+                    content: '';
+                    position: absolute;
+                    top: 0; right: 0; width: 50%; height: 100%;
+                    background: radial-gradient(circle at 100% 50%, rgba(124, 58, 237, 0.15), transparent 70%);
+                    pointer-events: none;
+                    z-index: 0;
+                }
+                .fb-content {
+                    flex: 1;
+                    z-index: 2;
+                }
+                .fb-image-wrapper {
+                    flex-shrink: 0;
+                    width: 100%;
+                    max-width: 380px;
+                    z-index: 2;
+                }
+                .fb-image {
+                    width: 100%;
+                    height: auto;
+                    border-radius: 16px;
+                    border: 1px solid rgba(255,255,255,0.1);
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+                    transition: transform 0.5s ease;
+                }
+                .featured-bonus-card:hover .fb-image {
+                    transform: scale(1.03);
+                }
+                .fb-badge {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 6px;
+                    background: rgba(124, 58, 237, 0.15);
+                    border: 1px solid rgba(124, 58, 237, 0.4);
+                    color: #D8B4FE;
+                    font-size: 0.75rem;
+                    font-weight: 700;
+                    padding: 6px 12px;
+                    border-radius: 8px;
+                    margin-bottom: 16px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                }
+                
+                @media (max-width: 768px) {
+                    .featured-bonus-card {
+                        flex-direction: column;
+                        text-align: center;
+                        padding: 30px 20px;
+                        gap: 25px;
+                    }
+                    .fb-image-wrapper {
+                        max-width: 280px;
+                        margin: 0 auto;
+                    }
+                    .fb-content p {
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+                    .fb-content .btn {
+                        width: 100%;
+                    }
+                }
+            </style>
+
+            <!-- CAŁA KARTA JEST TERAZ LINKIEM (tag <a>) -->
+            <a href="https://buy.stripe.com/dRmbJ26YVf8P0kHh2rgfu01" class="featured-bonus-card reveal">
+                <div class="fb-content">
+                    <div class="fb-badge"><i class="fa-solid fa-gift"></i> Darmowy Bonus Specjalny</div>
+                    <h3 style="font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 12px; font-family: var(--font-display); font-weight: 800; line-height: 1.2; color: #fff;">
+                        Cyfrowy <span class="text-gradient">Dropcoursing</span>
+                    </h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 24px; max-width: 480px;">
+                        Zbuduj cyfrowe imperium sprzedając gotowe produkty (MRR/PLR). Ten <strong>ekskluzywny system (10 Procesów • 2 Moduły)</strong> otrzymujesz całkowicie za darmo w ramach dzisiejszego dostępu do platformy.
+                    </p>
+                    
+                    <!-- Przycisk jest teraz tylko ozdobnym spanem (bo cały kontener to link) -->
+                    <span class="btn btn-primary" style="padding: 12px 28px; display: inline-flex; align-items: center; justify-content: center;">
+                        Odbierz Całość <i class="fa-solid fa-arrow-right" style="margin-left: 6px;"></i>
+                    </span>
+                </div>
+                <div class="fb-image-wrapper">
+                    <img src="images/image10.webp" alt="Cyfrowy Dropcoursing Bonus" class="fb-image" loading="lazy">
+                </div>
+            </a>
         </div>
     </section>
 
@@ -592,7 +706,7 @@
             <p style="color: #9CA3AF; font-size: clamp(0.9rem, 2vw, 1rem); margin: 0;">Wszystko, czego potrzebujesz do automatyzacji i skalowania, jest już w środku.</p>
         </div>
 
-        <!-- Kontener na paski -->
+<!-- Kontener na paski -->
         <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px;">
             
             <!-- 1. Growth Stack -->
@@ -600,8 +714,8 @@
                 <div style="display: flex; align-items: center; gap: 16px; flex: 1; min-width: 0;">
                     <div class="icon-box" style="margin: 0; width: 38px; height: 38px; flex-shrink: 0; display: flex; justify-content: center; align-items: center; font-size: 1rem; border-radius: 8px;"><i class="fa-solid fa-layer-group"></i></div>
                     <div style="margin: 0; padding: 0; flex: 1; min-width: 0;">
-                        <h3 style="color: #ffffff; font-size: 1rem; margin: 0 0 2px 0; font-weight: 600;">Optymalizator Zestawu Wzrostu</h3>
-                        <p style="font-size: 0.8rem; margin: 0; color: #9CA3AF; line-height: 1.4; word-wrap: break-word;">Ekskluzywne oferty partnerskie i benefity oprogramowania, aby utrzymać koszty na zerowym poziomie.</p>
+                        <h3 style="color: #ffffff; font-size: 1rem; margin: 0 0 2px 0; font-weight: 600;">Optymalizator Kosztów</h3>
+                        <p style="font-size: 0.8rem; margin: 0; color: #9CA3AF; line-height: 1.4; word-wrap: break-word;">Zniżki i benefity na oprogramowanie tnące koszty do zera.</p>
                     </div>
                 </div>
                 <div style="color: #6B7280; font-size: 0.8rem; margin-left: 10px; flex-shrink: 0;"><i class="fa-solid fa-chevron-right"></i></div>
@@ -612,8 +726,8 @@
                 <div style="display: flex; align-items: center; gap: 16px; flex: 1; min-width: 0;">
                     <div class="icon-box" style="margin: 0; width: 38px; height: 38px; flex-shrink: 0; display: flex; justify-content: center; align-items: center; font-size: 1rem; border-radius: 8px;"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
                     <div style="margin: 0; padding: 0; flex: 1; min-width: 0;">
-                        <h3 style="color: #ffffff; font-size: 1rem; margin: 0 0 2px 0; font-weight: 600;">Kreatywny Silnik Założyciela</h3>
-                        <p style="font-size: 0.8rem; margin: 0; color: #9CA3AF; line-height: 1.4; word-wrap: break-word;">100k+ gotowych do użycia zasobów multimedialnych, plików do edycji i materiałów kreatywnych.</p>
+                        <h3 style="color: #ffffff; font-size: 1rem; margin: 0 0 2px 0; font-weight: 600;">Silnik Kreatywny</h3>
+                        <p style="font-size: 0.8rem; margin: 0; color: #9CA3AF; line-height: 1.4; word-wrap: break-word;">Ponad 100k gotowych zasobów graficznych i wideo do edycji.</p>
                     </div>
                 </div>
                 <div style="color: #6B7280; font-size: 0.8rem; margin-left: 10px; flex-shrink: 0;"><i class="fa-solid fa-chevron-right"></i></div>
@@ -624,8 +738,8 @@
                 <div style="display: flex; align-items: center; gap: 16px; flex: 1; min-width: 0;">
                     <div class="icon-box" style="margin: 0; width: 38px; height: 38px; flex-shrink: 0; display: flex; justify-content: center; align-items: center; font-size: 1rem; border-radius: 8px;"><i class="fa-solid fa-folder-open"></i></div>
                     <div style="margin: 0; padding: 0; flex: 1; min-width: 0;">
-                        <h3 style="color: #ffffff; font-size: 1rem; margin: 0 0 2px 0; font-weight: 600;">Biblioteka Wirusowych Haczyków i Reklam</h3>
-                        <p style="font-size: 0.8rem; margin: 0; color: #9CA3AF; line-height: 1.4; word-wrap: break-word;">Sprawdzone schematy konwersji. Skopiuj i wklej te haczyki, aby dominować.</p>
+                        <h3 style="color: #ffffff; font-size: 1rem; margin: 0 0 2px 0; font-weight: 600;">Biblioteka Viralowych Reklam</h3>
+                        <p style="font-size: 0.8rem; margin: 0; color: #9CA3AF; line-height: 1.4; word-wrap: break-word;">Sprawdzone haczyki konwersji metodą "skopiuj i wklej".</p>
                     </div>
                 </div>
                 <div style="color: #6B7280; font-size: 0.8rem; margin-left: 10px; flex-shrink: 0;"><i class="fa-solid fa-chevron-right"></i></div>
@@ -636,8 +750,8 @@
                 <div style="display: flex; align-items: center; gap: 16px; flex: 1; min-width: 0;">
                     <div class="icon-box" style="margin: 0; width: 38px; height: 38px; flex-shrink: 0; display: flex; justify-content: center; align-items: center; font-size: 1rem; border-radius: 8px;"><i class="fa-solid fa-users-viewfinder"></i></div>
                     <div style="margin: 0; padding: 0; flex: 1; min-width: 0;">
-                        <h3 style="color: #ffffff; font-size: 1rem; margin: 0 0 2px 0; font-weight: 600;">Katalog Elitarnych Partnerów</h3>
-                        <p style="font-size: 0.8rem; margin: 0; color: #9CA3AF; line-height: 1.4; word-wrap: break-word;">Nasz prywatny katalog wysoko wykwalifikowanych freelancerów i programistów.</p>
+                        <h3 style="color: #ffffff; font-size: 1rem; margin: 0 0 2px 0; font-weight: 600;">Elitarni Partnerzy</h3>
+                        <p style="font-size: 0.8rem; margin: 0; color: #9CA3AF; line-height: 1.4; word-wrap: break-word;">Prywatna baza zweryfikowanych freelancerów i programistów.</p>
                     </div>
                 </div>
                 <div style="color: #6B7280; font-size: 0.8rem; margin-left: 10px; flex-shrink: 0;"><i class="fa-solid fa-chevron-right"></i></div>
@@ -648,8 +762,8 @@
                 <div style="display: flex; align-items: center; gap: 16px; flex: 1; min-width: 0;">
                     <div class="icon-box" style="margin: 0; width: 38px; height: 38px; flex-shrink: 0; display: flex; justify-content: center; align-items: center; font-size: 1rem; border-radius: 8px;"><i class="fa-solid fa-server"></i></div>
                     <div style="margin: 0; padding: 0; flex: 1; min-width: 0;">
-                        <h3 style="color: #ffffff; font-size: 1rem; margin: 0 0 2px 0; font-weight: 600;">System Dowodzenia Operacyjnego</h3>
-                        <p style="font-size: 0.8rem; margin: 0; color: #9CA3AF; line-height: 1.4; word-wrap: break-word;">Opanuj procedury (SOP) i systemy w Notion. Zbuduj biznes, który prowadzi się sam.</p>
+                        <h3 style="color: #ffffff; font-size: 1rem; margin: 0 0 2px 0; font-weight: 600;">System Operacyjny</h3>
+                        <p style="font-size: 0.8rem; margin: 0; color: #9CA3AF; line-height: 1.4; word-wrap: break-word;">Gotowe procedury SOP w Notion do automatyzacji biznesu.</p>
                     </div>
                 </div>
                 <div style="color: #6B7280; font-size: 0.8rem; margin-left: 10px; flex-shrink: 0;"><i class="fa-solid fa-chevron-right"></i></div>
@@ -660,8 +774,8 @@
                 <div style="display: flex; align-items: center; gap: 16px; flex: 1; min-width: 0;">
                     <div class="icon-box" style="margin: 0; width: 38px; height: 38px; flex-shrink: 0; display: flex; justify-content: center; align-items: center; font-size: 1rem; border-radius: 8px;"><i class="fa-solid fa-toolbox"></i></div>
                     <div style="margin: 0; padding: 0; flex: 1; min-width: 0;">
-                        <h3 style="color: #ffffff; font-size: 1rem; margin: 0 0 2px 0; font-weight: 600;">Narzędziownik Strategii Wzrostu</h3>
-                        <p style="font-size: 0.8rem; margin: 0; color: #9CA3AF; line-height: 1.4; word-wrap: break-word;">Prywatne zasoby, bazy URL i profesjonalne wskazówki, których nie znajdziesz w Google.</p>
+                        <h3 style="color: #ffffff; font-size: 1rem; margin: 0 0 2px 0; font-weight: 600;">Narzędziownik Wzrostu</h3>
+                        <p style="font-size: 0.8rem; margin: 0; color: #9CA3AF; line-height: 1.4; word-wrap: break-word;">Prywatne bazy URL i strategie niedostępne w Google.</p>
                     </div>
                 </div>
                 <div style="color: #6B7280; font-size: 0.8rem; margin-left: 10px; flex-shrink: 0;"><i class="fa-solid fa-chevron-right"></i></div>
@@ -726,10 +840,10 @@
                     </div>
 
                     <div class="result-box" style="padding: clamp(25px, 4vw, 40px); border-radius: 20px; text-align: center; background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.2);">
-                        <div class="result-title" style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Szacowany Wpływ na Roczny Przychód</div>
+                        <div class="result-title" style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Szacowany Wpływ na Przychód</div>
                         <div class="result-number" id="result-display" style="font-size: clamp(2.2rem, 6vw, 3.5rem); font-weight: 800; color: #10B981; line-height: 1; margin: 10px 0; white-space: nowrap;">60,000</div>
                         <p class="text-muted" style="margin-top: 15px; font-size: 0.85rem; line-height: 1.4;">
-                            To potencjalne pieniądze pozostawione na stole. <br>
+                            To potencjalne zyski pozostawione na stole. <br>
                             <strong style="color:white">Odzyskaj je dla swojego biznesu.</strong>
                         </p>
                         <a href="https://buy.stripe.com/dRmbJ26YVf8P0kHh2rgfu01" class="btn btn-primary" style="margin-top: 20px; width: 100%; padding: 12px; font-size: 0.9rem; text-decoration: none;">
@@ -738,11 +852,43 @@
                     </div>
                 </div>
 
-                <div style="margin-top: clamp(30px, 5vw, 40px); padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05);">
-                    <p style="font-size: 0.65rem; color: rgba(156, 163, 175, 0.6); margin: 0; line-height: 1.5; text-align: center;">
-                        <strong>* Zastrzeżenie dotyczące zarobków:</strong> Ten kalkulator służy wyłącznie do celów poglądowych i edukacyjnych. Wygenerowane liczby są szacunkami opartymi na wprowadzonych danych i nie stanowią obietnicy, gwarancji ani projekcji faktycznych dochodów, oszczędności lub wzrostu biznesu. Indywidualne wyniki będą się znacznie różnić w zależności od wykonania, branży i warunków rynkowych.
-                    </p>
+                <div style="margin-top: clamp(30px, 5vw, 40px); padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); width: 100%; text-align: center; box-sizing: border-box;">
+                    <div style="max-width: 800px; margin: 0 auto; display: inline-block; width: 100%;">
+                        <button id="earnings-toggle" style="background: none; border: none; color: rgba(156, 163, 175, 0.6); font-size: 0.65rem; font-family: inherit; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-weight: 600; outline: none; padding: 0; -webkit-tap-highlight-color: transparent; transition: color 0.2s ease;">
+                            <span>* Zastrzeżenie dotyczące zarobków</span>
+                            <i class="fa-solid fa-chevron-down" id="earnings-icon" style="font-size: 0.6rem; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: inline-block;"></i>
+                        </button>
+                        <div id="earnings-content" style="max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, margin-top 0.4s cubic-bezier(0.4, 0, 0.2, 1); margin-top: 0;">
+                            <p style="margin: 0; line-height: 1.5; color: rgba(156, 163, 175, 0.5); font-size: 0.65rem; text-align: center; padding: 0 10px;">
+                                Ten kalkulator służy wyłącznie do celów poglądowych i edukacyjnych. Wygenerowane liczby są szacunkami opartymi na wprowadzonych danych i nie stanowią obietnicy, gwarancji ani projekcji faktycznych dochodów, oszczędności lub wzrostu biznesu. Indywidualne wyniki będą się znacznie różnić w zależności od wykonania, branży i warunków rynkowych.
+                            </p>
+                        </div>
+                    </div>
                 </div>
+
+                <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const toggle = document.getElementById('earnings-toggle');
+                    const content = document.getElementById('earnings-content');
+                    const icon = document.getElementById('earnings-icon');
+                    let isOpen = false;
+
+                    toggle.addEventListener('click', () => {
+                        isOpen = !isOpen;
+                        if (isOpen) {
+                            content.style.maxHeight = content.scrollHeight + 'px';
+                            content.style.opacity = '1';
+                            content.style.marginTop = '8px';
+                            icon.style.transform = 'rotate(180deg)';
+                        } else {
+                            content.style.maxHeight = '0';
+                            content.style.opacity = '0';
+                            content.style.marginTop = '0';
+                            icon.style.transform = 'rotate(0deg)';
+                        }
+                    });
+                });
+                </script>
 
             </div>
         </div>
@@ -882,19 +1028,22 @@
             </div>
 
             <div class="copyright" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px; margin-top: 0;">
-                <p class="footer-bottom-row" style="margin-bottom: 10px;">
-                    © <span id="current-year"></span> Prawa autorskie <strong>PylonVision</strong> | Wszelkie prawa zastrzeżone
+                
+                <!-- Skrócona linijka z prawami (zmieści się w jednej linii na mobile) -->
+                <p class="footer-bottom-row" style="margin-bottom: 10px; font-size: 14px;">
+                    © <span id="current-year"></span> <strong>PylonVision</strong>| Wszelkie prawa zastrzeżone
                 </p>
 
-                <p class="footer-eu-row" style="margin-top: 0; margin-bottom: 10px; opacity: 0.7;">
+                <p class="footer-eu-row" style="margin-top: 0; margin-bottom: 10px; opacity: 0.7; font-size: 12px; letter-spacing: 0.5px;">
                     ZAŁOŻONE I STWORZONE W POLSCE 🇵🇱
                 </p>
 
-                <div class="footer-legal-links" style="margin-top: 0; margin-bottom: 0;">
-                    <a href="#privacy" onclick="window.openPrivacyModal(); return false;" style="cursor: pointer;">Polityka Prywatności</a>
-                    <span class="footer-legal-separator">|</span>
-                    <a href="#terms" onclick="window.openTermsModal(); return false;" style="cursor: pointer;">Regulamin</a>
+                <div class="footer-legal-links" style="margin-top: 0; margin-bottom: 0; font-size: 13px;">
+                    <a href="#privacy" onclick="window.openPrivacyModal(); return false;" style="cursor: pointer; text-decoration: none;">Polityka Prywatności</a>
+                    <span class="footer-legal-separator" style="margin: 0 8px; opacity: 0.5;">|</span>
+                    <a href="#terms" onclick="window.openTermsModal(); return false;" style="cursor: pointer; text-decoration: none;">Regulamin</a>
                 </div>
+                
             </div>
         </div>
     </footer>
