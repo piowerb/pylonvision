@@ -446,7 +446,7 @@ const CourseLibrary = {
         { id: 9, title: "The Founder Playbook", category: "business", price: "$197", image: "images/image9.webp", desc: "Learn how to build a paid community around your brand. We guide you through the process of turning your knowledge into a subscription business.", url: "#" },
         { id: 10, title: "AI Automation Blueprint", category: "business", price: "$69", image: "images/image10.webp", desc: "Discover how to leverage advanced AI agents to put your business on autopilot. Learn the exact prompts and workflows we use.", url: "#" },
         { id: 11, title: "Dropcoursing Method", category: "business", price: "$49", image: "images/image11.webp", desc: "Learn the secrets of selling digital products and MRR/PLR courses. Build a high-margin digital empire without inventory or shipping.", url: "#" },
-        { id: 12, title: "Micro-SaaS Developer", category: "business", price: "$149", image: "images/image12.webp", desc: "Build and scale your own software-as-a-service using no-code tools. Create recurring revenue streams without writing a single line of code.", url: "#" }
+        { id: 12, title: "Micro-SaaS Developer", category: "business", price: "$149", image: "images/image12.webp", desc: "Build and scale your own software-as-a-service using no-code tools. Create recurring revenue without writing a single line of code.", url: "#" }
     ],
 
     stats: {

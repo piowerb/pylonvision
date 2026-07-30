@@ -2089,7 +2089,7 @@
 </style>
 
 <div class="pv-wrapper">
-    <!-- Stały dolny baner informacyjny (nie do wyłączenia) -->
+    <!-- Stały dolny baner informacyjny -->
     <div id="pylon-persistent-banner">
         <div><strong>⚠️ Wersja testowa i robocza:</strong> Ta strona ma charakter wyłącznie poglądowy, nie stanowi wiążącej oferty handlowej ani prawnej i w żaden sposób nie zobowiązuje PylonVision Polska.</div>
     </div>
@@ -2125,6 +2125,9 @@
 <script>
     if (sessionStorage.getItem('pylon_unlocked') !== 'true') {
         document.getElementById('pylon-lock-overlay').style.display = 'flex';
+        // Blokada przewijania dla PC i mobile
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
     } else {
         document.getElementById('pylon-persistent-banner').style.display = 'block';
     }
@@ -2138,6 +2141,9 @@
             document.getElementById('pylon-lock-overlay').style.display = 'none';
             document.getElementById('pylon-login-modal').style.display = 'none';
             document.getElementById('pylon-persistent-banner').style.display = 'block';
+            // Odblokowanie przewijania po zalogowaniu
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
         } else {
             document.getElementById('pylon-error').style.display = 'block';
         }
