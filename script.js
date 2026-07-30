@@ -461,7 +461,7 @@ stats: {
         9: { rating: 4.9, reviews: 11, badgeType: 'ELITE_PICK', meta: "Level: Advanced • Community Engine" }, 
         10: { rating: 4.9, reviews: 87, badgeType: 'BESTSELLER', meta: "Level: Intermediate • AI Workflows" },
         11: { rating: 4.8, reviews: 42, badgeType: 'TRENDING', meta: "Level: All Levels • MRR/PLR System" },
-        12: { rating: 4.9, reviews: 14, badgeType: 'NONE', meta: "Level: Advanced • No-Code SaaS" }
+        12: { rating: 4.9, reviews: 14, badgeType: 'ELITE_PICK', meta: "Level: Advanced • No-Code SaaS" }
     },
 
     init() {
@@ -624,23 +624,26 @@ const Constellation = {
     ctx: null,
     particles: [],
     animationId: null,
+    lastWidth: window.innerWidth,
 
     init() {
         this.canvas = utils.getElement('constellation-canvas');
         if (!this.canvas) return;
-
-        // Don't run on mobile for performance
-        // if (utils.isMobile()) return;
 
         this.ctx = this.canvas.getContext('2d');
         this.resize();
         this.createParticles();
         this.animate();
 
-        // Handle resize
+        // Handle resize - NAPRAWIONE: resetujemy cząsteczki tylko gdy zmieni się szerokość (np. obrót telefonu), 
+        // co eliminuje skakanie przy chowaniu paska adresu podczas scrollowania na mobile.
         window.addEventListener('resize', utils.debounce(() => {
+            const currentWidth = window.innerWidth;
             this.resize();
-            this.createParticles();
+            if (currentWidth !== this.lastWidth) {
+                this.lastWidth = currentWidth;
+                this.createParticles();
+            }
         }, 200));
     },
 
@@ -651,7 +654,6 @@ const Constellation = {
 
     createParticles() {
         this.particles = [];
-        // Dla telefonów dajemy np. 12 punktów, dla komputera 40
         const particleCount = utils.isMobile() ? 12 : 40;
 
         for (let i = 0; i < particleCount; i++) {
@@ -670,7 +672,7 @@ const Constellation = {
 
         // Update and draw particles
         this.particles.forEach((particle, i) => {
-            // Update position
+            // Update position smoothly
             particle.x += particle.vx;
             particle.y += particle.vy;
 
