@@ -2027,7 +2027,7 @@ input[type=range]::-webkit-slider-runnable-track {
     left: 50%;
     transform: translateX(-50%) translateY(-1px);
     width: 92vw;
-    max-width: 650px;
+    max-width: 850px;
     background: #08080c;
     border: 1px solid rgba(124, 58, 237, 0.5);
     border-radius: 24px;
@@ -2072,7 +2072,7 @@ input[type=range]::-webkit-slider-runnable-track {
 
 .mega-grid {
     display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
+    grid-template-columns: repeat(4, 1fr) !important;
     gap: 15px !important;
 }
 
@@ -2949,6 +2949,57 @@ html, body { width: 100%; overflow-x: clip !important; overscroll-behavior-x: no
     .stat-value-wrap {
         flex-wrap: wrap !important;
     }
+}
+
+/* --- POPRAWKA E-MAILA NA URZĄDZENIACH MOBILNYCH --- */
+@media (max-width: 768px) {
+    #contact-text,
+    #modal-contact-text,
+    .email-protector,
+    .protected-email,
+    a[href^="mailto:"] {
+        font-size: 1.1rem !important; /* Delikatnie zmniejsza czcionkę na telefonach */
+        word-break: break-all !important; /* Pozwala na złamanie wyrazu, by nie wychodził poza ekran */
+        overflow-wrap: anywhere !important; /* Nowsza reguła zapobiegająca "wylewaniu" się tekstu */
+        white-space: normal !important;
+        display: inline-block;
+        max-width: 100%;
+        text-align: center;
+    }
+}
+
+/* ========== NAPRAWA OKIENEK ABOUT, CONTACT I STORY NA MOBILE ========== */
+@media (max-width: 768px) {
+    /* Pozwala oknom rosnąć i wyłącza wymuszony scroll */
+    #contact-modal .modal-body,
+    #contact-modal .modal-content,
+    #about-modal .modal-body,
+    #about-modal .modal-content,
+    #story-modal .modal-body,
+    #story-modal .modal-content {
+        overflow-y: visible !important;
+        max-height: none !important;
+    }
+    
+    /* Brutalne ukrycie paska przewijania dla wszystkich okienek */
+    #contact-modal *::-webkit-scrollbar,
+    #about-modal *::-webkit-scrollbar,
+    #story-modal *::-webkit-scrollbar {
+        display: none !important;
+    }
+    
+    #contact-modal *,
+    #about-modal *,
+    #story-modal * {
+        -ms-overflow-style: none !important;  /* IE and Edge */
+        scrollbar-width: none !important;  /* Firefox */
+    }
+}
+
+/* Wyrównanie ikonek Font Awesome w menu mobilnym */
+.nav-links-mobile.active a i {
+    width: 24px;
+    text-align: center;
 }
 
 /* ========== END OF STYLES ========== */

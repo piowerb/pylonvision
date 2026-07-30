@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if ('scrollRestoration' in history) {
             history.scrollRestoration = 'manual';
         }
-const hash = window.location.hash;
+        const hash = window.location.hash;
         if (hash) {
             history.replaceState("", document.title, window.location.pathname + window.location.search);
             setTimeout(() => {
@@ -135,7 +135,6 @@ const hash = window.location.hash;
     MobileMenu.init();
     CookieBanner.init();
     NavbarScroll.init();
-    // ProofPulse.init();
     ROICalculator.init();
     CourseLibrary.init();
     FAQ.init();
@@ -148,7 +147,6 @@ const hash = window.location.hash;
     Constellation.init();
     Ticker.init();
     Countdown.init();
-   //  SubBanner.init();
     TouchOptimizations.init();
 });
 
@@ -221,8 +219,6 @@ const MobileMenu = {
         this.btn.setAttribute('aria-expanded', 'true');
         this.menu.classList.add('active');
         
-        // Usunięto blokowanie scrolla (overflow: hidden), które powodowało skakanie strony na telefonie
-        
         // Add backdrop
         this.addBackdrop();
         
@@ -238,8 +234,6 @@ const MobileMenu = {
         this.btn.classList.remove('active');
         this.btn.setAttribute('aria-expanded', 'false');
         this.menu.classList.remove('active');
-        
-        // Usunięto przywracanie scrolla, aby uniknąć layout shift
         
         // Remove backdrop
         this.removeBackdrop();
@@ -435,9 +429,6 @@ const Ticker = {
             clone.setAttribute('aria-hidden', 'true');
             this.ticker.appendChild(clone);
         });
-        
-        // Usunąłem IntersectionObserver i EventListenery (mouseenter/leave)
-        // Dzięki temu ticker nigdy się nie zatrzyma, co eliminuje szarpnięcia
     }
 };
 
@@ -452,19 +443,25 @@ const CourseLibrary = {
         { id: 6, title: "Prime Dropshipping", category: "business", price: "$49", image: "images/image6.webp", desc: "Learn how to sell on Amazon, the world's largest marketplace. We explain the FBA model and how to use Amazon's logistics.", url: "#" },
         { id: 7, title: "Deal Closing Expert", category: "business", price: "$99", image: "images/image7.webp", desc: "Improve your sales skills and learn how to close deals over the phone. We provide you with scripts and frameworks used by professional salespeople.", url: "#" },
         { id: 8, title: "Insta Money", category: "social", price: "$19", image: "images/image8.webp", desc: "Learn strategies to grow on Social Media and engage your followers. We show you how to build an audience and the different ways to monetize your page.", url: "#" },
-        { id: 9, title: "The Founder Playbook", category: "business", price: "$197", image: "images/image9.webp", desc: "Learn how to build a paid community around your brand. We guide you through the process of turning your knowledge into a subscription business.", url: "#" }
+        { id: 9, title: "The Founder Playbook", category: "business", price: "$197", image: "images/image9.webp", desc: "Learn how to build a paid community around your brand. We guide you through the process of turning your knowledge into a subscription business.", url: "#" },
+        { id: 10, title: "AI Automation Blueprint", category: "business", price: "$69", image: "images/image10.webp", desc: "Discover how to leverage advanced AI agents to put your business on autopilot. Learn the exact prompts and workflows we use.", url: "#" },
+        { id: 11, title: "Dropcoursing Method", category: "business", price: "$49", image: "images/image11.webp", desc: "Learn the secrets of selling digital products and MRR/PLR courses. Build a high-margin digital empire without inventory or shipping.", url: "#" },
+        { id: 12, title: "Micro-SaaS Developer", category: "business", price: "$149", image: "images/image12.webp", desc: "Build and scale your own software-as-a-service using no-code tools. Create recurring revenue streams without writing a single line of code.", url: "#" }
     ],
 
-stats: {
-        1: { rating: 4.8, reviews: 112, badgeType: 'BESTSELLER' }, // 4.8 przy ponad 100 opiniach budzi gigantyczne zaufanie
+    stats: {
+        1: { rating: 4.8, reviews: 112, badgeType: 'BESTSELLER' }, 
         2: { rating: 4.8, reviews: 41, badgeType: 'NONE' },
         3: { rating: 4.7, reviews: 28, badgeType: 'NONE' },
         4: { rating: 4.7, reviews: 19, badgeType: 'NONE' },       
-        5: { rating: 4.8, reviews: 67, badgeType: 'TRENDING' },   // "Na fali" wygląda super z wyższą liczbą (67) ocen
+        5: { rating: 4.8, reviews: 67, badgeType: 'TRENDING' },   
         6: { rating: 4.7, reviews: 24, badgeType: 'NONE' },
-        7: { rating: 4.7, reviews: 14, badgeType: 'NONE' },       // Ekspert Sprzedaży: 4.7 i 14 opinii. Wygląda na solidny, niszowy kurs.
+        7: { rating: 4.7, reviews: 14, badgeType: 'NONE' },       
         8: { rating: 4.8, reviews: 52, badgeType: 'NONE' },       
-        9: { rating: 4.9, reviews: 11, badgeType: 'ELITE_PICK' }  // "Elite Pick" może mieć 4.9 – sugeruje, że kupuje to mało osób, ale są zachwyceni.
+        9: { rating: 4.9, reviews: 11, badgeType: 'ELITE_PICK' }, 
+        10: { rating: 4.9, reviews: 87, badgeType: 'BESTSELLER' },
+        11: { rating: 4.8, reviews: 42, badgeType: 'TRENDING' },
+        12: { rating: 4.9, reviews: 14, badgeType: 'NONE' }
     },
 
     init() {
@@ -479,25 +476,17 @@ stats: {
         this.setupSearch();
     },
 
+    // NAPRAWIONA FUNKCJA - brakowało tutaj zawartości
     setupFilters() {
-        this.filterBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                // Don't trigger if already active
-                if (btn.classList.contains('active')) return;
-                
-                // Update active state
-                this.filterBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                // Filter courses
-                this.filterCourses();
-                
-                // Close mobile menu if open
-                if (window.MobileMenu && window.MobileMenu.isOpen) {
-                    window.MobileMenu.close();
-                }
+        if (this.filterBtns) {
+            this.filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    this.filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    this.filterCourses();
+                });
             });
-        });
+        }
     },
 
     setupSearch() {
@@ -560,6 +549,7 @@ stats: {
             const badgeHtml = this.getBadgeHTML(stats.badgeType);
             const starsHtml = this.getStarsHTML(stats.rating);
 
+            // Kafelki w samej bibliotece nadal kierują do kasy Stripe
             const card = document.createElement('a');
             card.href = "https://buy.stripe.com/7sY7sM0Ax0dVffB4fFgfu00"; 
             card.className = 'course-card';
@@ -632,8 +622,6 @@ stats: {
         }
     }
 };
-
-// ========== 9. PROOF PULSE MODULE – DELETED ========== //
 
 // ========== 10. CONSTELLATION ANIMATION ==========
 const Constellation = {
@@ -1022,28 +1010,38 @@ const MegaMenu = {
         this.setupEvents();
     },
 
-    setupCourses() {
+setupCourses() {
         if (!this.grid) return;
 
         const courses = [
-            { title: "Ecom", img: "images/image1.webp" },
-            { title: "Agency", img: "images/image2.webp" },
-            { title: "Dropship", img: "images/image6.webp" },
-            { title: "Closing", img: "images/image7.webp" },
-            { title: "Founder", img: "images/image9.webp" },
-            { title: "YouTube", img: "images/image5.webp" },
-            { title: "Trading", img: "images/image4.webp" },
-            { title: "Copy", img: "images/image3.webp" },
-            { title: "Social", img: "images/image8.webp" }
+            // Rząd 1
+            { id: 1, title: "Ecom", img: "images/image1.webp" },
+            { id: 2, title: "Agency", img: "images/image2.webp" },
+            { id: 11, title: "Dropcoursing", img: "images/image11.webp" },
+            { id: 9, title: "Founder", img: "images/image9.webp" },
+            
+            // Rząd 2
+            { id: 10, title: "AI Bots", img: "images/image10.webp" },
+            { id: 12, title: "SaaS", img: "images/image12.webp" },
+            { id: 6, title: "Dropship", img: "images/image6.webp" },
+            { id: 7, title: "Closing", img: "images/image7.webp" },
+            
+            // Rząd 3
+            { id: 5, title: "YouTube", img: "images/image5.webp" },
+            { id: 4, title: "Trading", img: "images/image4.webp" },
+            { id: 3, title: "Copy", img: "images/image3.webp" },
+            { id: 8, title: "Social", img: "images/image8.webp" }
         ];
 
+        // ZMIENIONE: Zamiast tagu "a href" (który kierował do płatności), przywróciłem użycie funkcji scrollToSpecificCourse do zjeżdżania
         this.grid.innerHTML = courses.map(c => `
-            <div class="mega-item" onclick="window.scrollToLibrary()">
+            <div class="mega-item" onclick="window.scrollToSpecificCourse(${c.id})" style="cursor: pointer;">
                 <div class="mega-img-wrap"><img src="${c.img}" alt="${c.title}" width="180" height="106" loading="lazy"></div>
                 <span>${c.title}</span>
             </div>
         `).join('');
     },
+
 
     setupEvents() {
         // Desktop trigger
@@ -1576,3 +1574,59 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// ========== FUNKCJA: PŁYNNY SKOK Z UWZGLĘDNIENIEM GÓRNEGO MENU ==========
+window.scrollToSpecificCourse = function(courseId) {
+    
+    // 1. ZAMYKAMY MENU
+    const closeBtn = document.querySelector('.close-modal, .mega-close, .modal-close, [onclick*="close"]');
+    if (closeBtn) closeBtn.click();
+    else document.body.click(); 
+
+    const megaContainer = document.querySelector('.mega-menu-overlay, .mega-menu-wrapper');
+    if (megaContainer) {
+        megaContainer.style.display = 'none';
+        setTimeout(() => { megaContainer.style.display = ''; }, 500);
+    }
+
+    // 2. CHWILA PRZERWY I PŁYNNY SCROLL
+    setTimeout(() => {
+        const allImages = document.querySelectorAll(`img[src*="image${courseId}.webp"]`);
+        
+        if (allImages.length > 0) {
+            const courseImage = allImages[allImages.length - 1];
+            const courseCard = courseImage.closest('div[class*="card"]') || courseImage.parentElement.parentElement;
+            
+            // --- KLUCZOWA ZMIANA: OBLICZAMY IDEALNĄ POZYCJĘ ---
+            // Wartość 130 to przybliżona wysokość Twojego górnego menu + odrobina estetycznego marginesu.
+            // Jeśli kafelek będzie za wysoko/nisko, po prostu zmień 130 na np. 110 lub 150.
+            const headerOffset = 130; 
+            const elementPosition = courseCard.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+            // Gładki, osadzony scroll
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+            
+            // --- EFEKT PODŚWIETLENIA ---
+            const originalShadow = courseCard.style.boxShadow;
+            const originalTransition = courseCard.style.transition;
+            
+            courseCard.style.transition = 'box-shadow 0.4s ease-in-out';
+            courseCard.style.boxShadow = '0 0 0 2px #8B5CF6, 0 0 35px rgba(139, 92, 246, 0.4)'; 
+            
+            // Wydłużony czas podświetlenia (2 sekundy), żeby po płynnym zjechaniu nadal było je widać
+            setTimeout(() => {
+                courseCard.style.boxShadow = originalShadow;
+                courseCard.style.transition = originalTransition;
+            }, 2000); 
+            
+        } else {
+            if(typeof window.scrollToLibrary === 'function') {
+                window.scrollToLibrary();
+            }
+        }
+    }, 50); 
+};

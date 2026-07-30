@@ -68,11 +68,12 @@
                     <a href="#connect">Community</a>
                 </div>
 
-                <div class="nav-actions">
-                    <!-- Przełącznik języka z ikoną globu -->
+               <div class="nav-actions">
+                    <!-- Przełącznik języka z ikoną globu
                     <a href="pl/" class="btn btn-glass login-btn-desktop" style="padding: 8px 14px; font-weight: 700; font-size: 0.85rem; display: inline-flex; align-items: center; gap: 6px;">
                         <i class="fa-solid fa-globe"></i> PL
                     </a>
+                    -->
 
                     <a href="https://pylonvision.systeme.io/school/course/all-access" class="btn btn-glass login-btn-desktop" style="padding: 8px 18px; gap: 8px;">
                         Login <i class="fa-regular fa-user"></i>
@@ -83,8 +84,7 @@
                     </a>
 
                     <div class="mobile-header-actions">
-                        <a href="pl/" style="color: #fff; font-size: 0.8rem; text-decoration: none; font-weight: bold; margin-right: 6px; padding: 4px 8px; background: rgba(255,255,255,0.05); border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;"><i class="fa-solid fa-globe"></i> PL</a>
-                        <a href="https://pylonvision.systeme.io/school/course/all-access" class="mobile-user-icon" aria-label="Go to login page" style="color: #fff; font-size: 1.2rem; margin-right: 0; text-decoration: none;">
+                            <!-- <a href="pl/" style="color: #fff; font-size: 0.8rem; text-decoration: none; font-weight: bold; margin-right: 6px; padding: 4px 8px; background: rgba(255,255,255,0.05); border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;"><i class="fa-solid fa-globe"></i> PL</a> -->                        <a href="https://pylonvision.systeme.io/school/course/all-access" class="mobile-user-icon" aria-label="Go to login page" style="color: #fff; font-size: 1.2rem; margin-right: 0; text-decoration: none;">
                             <i class="fa-regular fa-user"></i>
                         </a>
                         <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
@@ -94,23 +94,23 @@
                 </div>
             </div>
 
-        <div class="nav-links nav-links-mobile">
-                <a href="#services" onclick="document.querySelector('.nav-links-mobile').classList.remove('active')">
-                    Solutions
-                </a>
-                
-                <a href="javascript:void(0)" onclick="window.scrollToLibrary()">
-                    Systems
-                </a>
-                
-                <a href="#connect" onclick="document.querySelector('.nav-links-mobile').classList.remove('active')">
-                    Community
-                </a>
-                
-                <a href="https://pylonvision.systeme.io/school/course/all-access" class="mobile-login-item">
-                    Login
-                </a>
-            </div>
+<div class="nav-links nav-links-mobile">
+    <a href="#services" onclick="document.querySelector('.nav-links-mobile').classList.remove('active')">
+        <i class="fa-solid fa-cubes" style="color: #a78bfa; margin-right: 12px;"></i> Solutions
+    </a>
+    
+    <a href="javascript:void(0)" onclick="window.scrollToLibrary()">
+        <i class="fa-solid fa-server" style="color: #a78bfa; margin-right: 12px;"></i> Systems
+    </a>
+    
+    <a href="#connect" onclick="document.querySelector('.nav-links-mobile').classList.remove('active')">
+        <i class="fa-solid fa-users" style="color: #a78bfa; margin-right: 12px;"></i> Community
+    </a>
+    
+    <a href="https://pylonvision.systeme.io/school/course/all-access" class="mobile-login-item">
+        <i class="fa-solid fa-right-to-bracket" style="color: #a78bfa; margin-right: 12px;"></i> Login
+    </a>
+</div>
 
             <div id="academy-mega-menu" class="mega-menu">
                 <div class="close-mega" id="mega-close-btn">
@@ -446,10 +446,11 @@
                 <div style="margin-bottom: 24px;">
                         <div style="display: flex; align-items: baseline; gap: 6px;">
                             <span style="font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 2.8rem); font-weight: 700; color: #FFFFFF; line-height: 1; letter-spacing: -1px;">49 USD</span>
-                            <span style="font-size: 1rem; color: #A1A1AA; font-weight: 500;">/mo</span>
+                            <span style="font-size: 1rem; color: #A1A1AA; font-weight: 500;"></span>
                         </div>
                         <div style="font-size: 0.85rem; color: #9CA3AF; font-weight: 500; margin-top: 12px; display: flex; align-items: center; gap: 8px;">
-                            <i class="fa-solid fa-tag" style="font-size: 0.9em;"></i> Standard Value: $70/mo
+                            <i class="fa-solid fa-tag" style="font-size: 0.9em;"></i>
+                            <span>Standard Value: <s> $75</s> /month</span>
                         </div>
                         <div style="font-size: 0.85rem; color: #10B981; font-weight: 500; margin-top: 8px; display: flex; align-items: center; gap: 8px;">
                             <i class="fa-solid fa-check" style="font-size: 0.9em;"></i> Lifetime Rate Guarantee
@@ -457,7 +458,7 @@
                     </div>
 
                     <div class="premium-checkout-btn">
-                        Get Instant Access <i class="fa-solid fa-arrow-right" style="margin-left: 6px; font-size: 0.9em;"></i>
+                        Start Free Trial <i class="fa-solid fa-arrow-right" style="margin-left: 6px; font-size: 0.9em;"></i>
                     </div>
 
                     <div style="width: 100%; text-align: center; margin-top: 20px;">
@@ -878,7 +879,7 @@
         </div>
     </main>
 
-    <!-- Footer -->
+<!-- Footer -->
     <footer class="main-footer" style="padding-top: 60px; padding-bottom: 15px;">
         <div class="container">
 
@@ -899,7 +900,7 @@
                 </ul>
             </div>
 
-            <div class="copyright" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px; margin-top: 0;">
+            <div class="copyright" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 25px; margin-top: 0; text-align: center;">
                 <p class="footer-bottom-row" style="margin-bottom: 10px;">
                     © <span id="current-year"></span> Copyright <strong>PylonVision</strong> | All rights reserved
                 </p>
@@ -909,10 +910,17 @@
                     <span class="eu-flag">🇪🇺</span>
                 </p>
 
-                <div class="footer-legal-links" style="margin-top: 0; margin-bottom: 0;">
+                <div class="footer-legal-links" style="margin-top: 0; margin-bottom: 15px;">
                     <a href="#privacy" onclick="window.openPrivacyModal(); return false;" style="cursor: pointer;">Privacy Policy</a>
                     <span class="footer-legal-separator">|</span>
                     <a href="#terms" onclick="window.openTermsModal(); return false;" style="cursor: pointer;">Terms of Service</a>
+                </div>
+
+                <!-- Footer Disclaimer (at the very bottom, smaller font) -->
+                <div class="footer-disclaimer" style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px; margin-top: 15px; color: #6B7280; font-size: 0.65rem; line-height: 1.4;">
+                    <p style="margin: 0; max-width: 900px; margin-left: auto; margin-right: auto;">
+                        <strong style="color: #9CA3AF;">Disclaimer:</strong> PylonVision provides software, products, training, tools, and educational resources to help users launch and sell digital products online. Results vary based on individual effort, execution, market conditions, and other factors. PylonVision does not guarantee sales, income, revenue, or business results.
+                    </p>
                 </div>
             </div>
         </div>
@@ -936,9 +944,11 @@
         <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; padding: 20px 25px;">
             <h2 style="margin: 0; font-size: clamp(0.85rem, 3.5vw, 1.25rem); line-height: 1.3; padding-right: 15px;">Privacy Policy - PylonVision</h2>
             <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+                <!--
                 <a href="/pl/#privacy" class="btn btn-glass" style="padding: 4px 10px; font-size: 0.75rem; text-decoration: none; border-radius: 50px; display: inline-flex; align-items: center; gap: 4px; min-height: unset; height: 32px;">
                     <i class="fa-solid fa-globe" style="font-size: 0.7rem;"></i> PL
                 </a>
+                -->
                 <button class="close-modal" onclick="closeAppModal('privacy-modal')" aria-label="Close" style="font-size: 1.5rem; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; margin: 0; padding: 0; background: none; border: none; color: inherit; cursor: pointer;">&times;</button>
             </div>
         </div>
@@ -1215,7 +1225,7 @@
                 <li><strong>Standard Contractual Clauses (SCCs)</strong> — the standard data protection clauses approved by the European Commission, incorporated into our agreements with processors established outside the EEA. SCCs are our primary safeguard for transfers to the United States and other third countries without an adequacy decision.</li>
                 <li><strong>EU-U.S. Data Privacy Framework (DPF)</strong> — where a US-based service provider maintains a current, valid self-certification under the DPF, we may rely on this framework, in addition to or as an alternative to SCCs. We note that the adequacy decision underlying the DPF is presently subject to ongoing legal proceedings before the Court of Justice of the European Union; we monitor these developments and will implement alternative safeguards without undue delay if the legal basis for a specific transfer changes.</li>
             </ul>
-            <p>We take all steps reasonably necessary to ensure your data is treated securely and in accordance with this Policy, and no transfer of personal data will take place to a country or organization unless adequate controls are in place. You may request further information about the specific safeguards applicable to a transfer of your personal data by contacting us at contact@pylonvision.com.</p>
+            <p>We take all steps reasonably necessary to ensure your data is treated securely and in accordance with this Policy, and no transfer of personal data will take place to a country or organization unless adequate controls are in place. You may request further information about the specific safeguards applicable to a transfer of your personal data by contacting us at &#99;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#112;&#121;&#108;&#111;&#110;&#118;&#105;&#115;&#105;&#111;&#110;&#046;&#099;&#111;&#109;.</p>
 
             <h3>8. Disclosure of Your Personal Data</h3>
             <p><strong>General policy.</strong> We do not sell, trade, or rent your personal data to others. We may share generic, aggregated demographic information that is not linked to any identifiable individual with business partners, trusted affiliates, and advertisers for the purposes described in this Policy.</p>
@@ -1273,7 +1283,7 @@
                 <strong>Legal note.</strong> Article 8 GDPR sets the default age at which a child may validly consent to the processing of personal data in connection with information society services at 16 years. EU Member States may, by national law, lower this threshold to no less than 13 years. Poland has not exercised this option and applies the default threshold of 16 years. Accordingly, processing of a child's personal data on the basis of consent is lawful only where the child is at least 16 years old, or where consent has been given or authorized by the holder of parental responsibility for children below that age.
             </blockquote>
             
-            <p>If you are a parent or guardian and become aware that your child has provided us with personal data without your consent, please contact us at contact@pylonvision.com. If we become aware that we have collected personal data from a child under the applicable age threshold without verified parental consent, we will take reasonable steps to remove that information from our systems.</p>
+            <p>If you are a parent or guardian and become aware that your child has provided us with personal data without your consent, please contact us at &#99;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#112;&#121;&#108;&#111;&#110;&#118;&#105;&#115;&#105;&#111;&#110;&#046;&#099;&#111;&#109;. If we become aware that we have collected personal data from a child under the applicable age threshold without verified parental consent, we will take reasonable steps to remove that information from our systems.</p>
             <p>Where we rely on consent as the legal basis for processing and applicable law requires parental consent, we may require verification of such consent before we collect and use the relevant personal data.</p>
 
             <h3>12. Your Data Protection Rights</h3>
@@ -1295,7 +1305,7 @@
             <p>Where our processing of your personal data is based on your consent (Art. 6(1)(a) GDPR) — for example, for marketing communications, Location Data, or non-essential Cookies — you have the right to withdraw that consent at any time, free of charge, in accordance with Article 7(3) GDPR. <strong>Withdrawing consent does not affect the lawfulness of processing carried out on the basis of consent before its withdrawal.</strong></p>
             <p>You may withdraw your consent by:</p>
             <ol style="margin-left: 20px; color: #9CA3AF;">
-                <li>Emailing us at contact@pylonvision.com;</li>
+                <li>Emailing us at &#99;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#112;&#121;&#108;&#111;&#110;&#118;&#105;&#115;&#105;&#111;&#110;&#046;&#099;&#111;&#109;;</li>
                 <li>Using the unsubscribe link included in any marketing communication; or</li>
                 <li>Adjusting your Cookie preferences via the cookie settings link in the Website footer, as described in Section 3.5.</li>
             </ol>
@@ -1335,9 +1345,11 @@
         <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; padding: 20px 25px;">
             <h2 style="margin: 0; font-size: clamp(0.85rem, 3.5vw, 1.25rem); line-height: 1.3; padding-right: 15px;">Terms of Service - PylonVision</h2>
             <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+                <!--
                 <a href="/pl/#terms" class="btn btn-glass" style="padding: 4px 10px; font-size: 0.75rem; text-decoration: none; border-radius: 50px; display: inline-flex; align-items: center; gap: 4px; min-height: unset; height: 32px;">
                     <i class="fa-solid fa-globe" style="font-size: 0.7rem;"></i> PL
                 </a>
+                -->
                 <button class="close-modal" onclick="closeAppModal('terms-modal')" aria-label="Close" style="font-size: 1.5rem; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; margin: 0; padding: 0; background: none; border: none; color: inherit; cursor: pointer;">&times;</button>
             </div>
         </div>
@@ -1557,41 +1569,26 @@
         </div>
     </div>
 
-    <!-- About Modal -->
+<!-- About Modal -->
     <div id="about-modal" class="modal-overlay">
         <div class="modal-content" style="max-width: 600px;">
             <div class="modal-header">
                 <h2>About PylonVision</h2>
                 <button class="close-modal" onclick="window.closeAboutModal()" aria-label="Close">&times;</button>
             </div>
-            <div class="modal-body" style="text-align: center; padding: 40px 30px;">
-                <div style="margin-bottom: 25px;">
-                    <i class="fa-solid fa-code-branch" style="font-size: 2.5rem; color: #10B981; margin-bottom: 15px;"></i>
+            <div class="modal-body" style="text-align: center; padding: 30px 20px;">
+                <div style="margin-bottom: 20px;">
+                    <i class="fa-solid fa-code-branch" style="font-size: 2.5rem; color: #10B981;"></i>
                 </div>
                 <h3 style="margin-bottom: 15px; color: #fff;">Operational Status: <span style="color: #10B981;">Fully Operational</span></h3>
                 <p style="margin-bottom: 25px; color: #9CA3AF;">
-                    PylonVision builds the software that automates your work. We create powerful systems for everyone – from
-                    independent creators to growing enterprises.
+                    We build powerful automation systems for creators and enterprises.
                 </p>
-                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 20px; border-radius: 12px; margin-bottom: 25px;">
-                    <h4 style="color: #fff; margin-bottom: 10px; font-size: 1rem;"><i class="fa-solid fa-briefcase" style="margin-right: 8px;"></i> Open Positions / Offers</h4>
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 20px; border-radius: 12px; margin-bottom: 0;">
+                    <h4 style="color: #fff; margin-bottom: 10px; font-size: 1rem;"><i class="fa-solid fa-briefcase" style="margin-right: 8px;"></i> Careers & Offers</h4>
                     <p style="font-size: 0.9rem; line-height: 1.6; color: #9CA3AF; margin: 0;">
-                        Currently, we do not have any open public offers or vacancies. Our engineering team is operating at full
-                        capacity serving our existing partners.
+                        No current vacancies. Our engineering team is fully dedicated to existing partners, but we're always looking to connect with top-tier talent.
                     </p>
-                </div>
-                <p style="font-size: 0.9rem; color: #9CA3AF;">
-                    However, we are always open to connecting with exceptional talent or discussing future
-                    collaborations.
-                </p>
-                <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05);">
-                    <p style="margin-bottom: 10px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: #9CA3AF;">
-                        Direct Contact</p>
-
-                    <a href="#" id="modal-contact-link" style="color: #8B5CF6; font-weight: 700; font-size: 1.1rem; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; transition: opacity 0.3s;">
-                        <i class="fa-solid fa-envelope"></i>
-                        <span id="modal-contact-text">Loading address...</span>
-                    </a>
                 </div>
             </div>
             <div class="modal-footer" style="text-align: center; justify-content: center;">
@@ -1600,48 +1597,28 @@
         </div>
     </div>
 
-    <!-- Story Modal -->
+<!-- Story Modal -->
     <div id="story-modal" class="modal-overlay">
-        <div class="modal-content" style="max-width: 800px;">
+        <div class="modal-content" style="max-width: 600px;">
             <div class="modal-header">
                 <h2>Our Story</h2>
                 <button class="close-modal" onclick="window.closeStoryModal()" aria-label="Close">&times;</button>
             </div>
-
-            <div class="modal-body" style="padding: 40px; font-family: 'Inter', sans-serif;">
-                <!-- KONTENER Z LOGO I TEKSTEM -->
-                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; margin-bottom: 40px; padding-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.1);">
-                    
-                    <img src="images/main-logo-pylonvision.webp" alt="PylonVision Logo" width="80" height="80" style="width: 80px; height: auto; display: block; margin: 0 auto 20px auto; filter: drop-shadow(0 0 10px rgba(124, 58, 237, 0.5));">
-                    
-                    <p style="text-align: center; font-size: 1.25rem; color: #fff; line-height: 1.5; font-weight: 500; margin: 0;">
-                        "Engineering the path<br>to your digital success."
+            <div class="modal-body" style="text-align: center; padding: 30px 20px;">
+                <!-- Logo i slogan -->
+                <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                    <img src="images/main-logo-pylonvision.webp" alt="PylonVision Logo" width="70" height="70" style="width: 70px; height: auto; display: block; margin: 0 auto 15px auto; filter: drop-shadow(0 0 10px rgba(124, 58, 237, 0.5));">
+                    <p style="font-size: 1rem; color: #fff; font-weight: 600; margin: 0; line-height: 1.4; font-style: italic;">
+                        Launch, customise & scale your own premium online business.
                     </p>
                 </div>
-
-            <!-- The Internet's Promise -->
-                <h3 style="color: #fff; font-size: 1.2rem; margin-top: 0;">The Internet's Promise</h3>
-                <p style="color: #9CA3AF; line-height: 1.7; margin-bottom: 25px;">
-                    The internet promised us ultimate freedom. Yet, ambitious creators and founders still burn hours on repetitive admin work. Top tech companies don't just work harder – they have invisible systems doing the heavy lifting. We believe that power shouldn't be locked behind enterprise engineering teams. It should be yours.
-                </p>
-
-                <!-- Built Out of Necessity -->
-                <h3 style="color: #fff; font-size: 1.2rem; margin-top: 0;">Built Out of Necessity</h3>
-                <p style="color: #9CA3AF; line-height: 1.7; margin-bottom: 25px;">
-                    PylonVision started in our own workspaces. As builders, we were spending more time managing tools than creating products. So, we started writing code to automate our lives. What began as a few late-night Python scripts evolved into a global platform. We didn't just build a product; we built the tool we desperately wished existed years ago.
-                </p>
-
-                <!-- For the Global Creator -->
-                <h3 style="color: #fff; font-size: 1.2rem; margin-top: 0;">For the Global Creator</h3>
-                <p style="color: #9CA3AF; line-height: 1.7; margin-bottom: 25px;">
-                    Today, PylonVision is an ecosystem for minds worldwide. We build beautiful, quiet automation infrastructure, so you can step away from the keyboard and focus on what actually matters: scaling your vision, creating art, and living your life. 
+                <!-- Dwuzdaniowy opis z odpowiednią wagą -->
+                <p style="font-size: 0.95rem; line-height: 1.6; color: #9CA3AF; margin: 0; text-align: left;">
+                    <strong style="color: #fff;">PylonVision</strong> is a technology platform founded in 2025 that provides business systems, automation tools, and digital solutions to help creators and companies scale their operations. Our goal is to eliminate operational friction and empower modern entrepreneurs to grow without limits.
                 </p>
             </div>
-
-            <div class="modal-footer" style="text-align: center;">
-                <button class="btn btn-primary" onclick="window.closeStoryModal()" style="width: 100%; max-width: 300px;">
-                    Start Your Path
-                </button>
+            <div class="modal-footer" style="text-align: center; justify-content: center;">
+                <button class="btn btn-primary" onclick="window.closeStoryModal()" style="width: 100%;">Got it</button>
             </div>
         </div>
     </div>
@@ -1662,12 +1639,12 @@
                     Our team typically responds within 24 hours. Whether you have questions about the platform or need technical support – we are here for you.
                 </p>
                 <div style="background: rgba(124, 58, 237, 0.1); border: 1px solid rgba(124, 58, 237, 0.3); padding: 20px; border-radius: 12px; margin-bottom: 25px;">
-                    <a href="mailto:contact@pylonvision.com" style="color: #fff; font-weight: 700; font-size: 1.2rem; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                    <a href="mailto:&#99;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#112;&#121;&#108;&#111;&#110;&#118;&#105;&#115;&#105;&#111;&#110;&#046;&#099;&#111;&#109;" style="color: #fff; font-weight: 700; font-size: 1.2rem; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
                         <i class="fa-solid fa-paper-plane" style="color: #10B981;"></i>
-                        contact@pylonvision.com
+                        &#99;&#111;&#110;&#116;&#097;&#099;&#116;&#064;&#112;&#121;&#108;&#111;&#110;&#118;&#105;&#115;&#105;&#111;&#110;&#046;&#099;&#111;&#109;
                     </a>
                 </div>
-                <p style="font-size: 0.85rem; color: #6B7280;">Business inquiries and support (PL / EN)</p>
+                <p style="font-size: 0.85rem; color: #6B7280;">Business inquiries and support • English</p>
             </div>
             <div class="modal-footer" style="text-align: center; justify-content: center;">
                 <button class="btn btn-primary" onclick="window.closeContactModal()" style="width: 100%;">Got it</button>
