@@ -449,19 +449,19 @@ const CourseLibrary = {
         { id: 12, title: "Micro-SaaS Developer", category: "business", price: "$149", image: "images/image12.webp", desc: "Build and scale your own software-as-a-service using no-code tools. Create recurring revenue without writing a single line of code.", url: "#" }
     ],
 
-    stats: {
-        1: { rating: 4.8, reviews: 112, badgeType: 'BESTSELLER' }, 
-        2: { rating: 4.8, reviews: 41, badgeType: 'NONE' },
-        3: { rating: 4.7, reviews: 28, badgeType: 'NONE' },
-        4: { rating: 4.7, reviews: 19, badgeType: 'NONE' },       
-        5: { rating: 4.8, reviews: 67, badgeType: 'TRENDING' },   
-        6: { rating: 4.7, reviews: 24, badgeType: 'NONE' },
-        7: { rating: 4.7, reviews: 14, badgeType: 'NONE' },       
-        8: { rating: 4.8, reviews: 52, badgeType: 'NONE' },       
-        9: { rating: 4.9, reviews: 11, badgeType: 'ELITE_PICK' }, 
-        10: { rating: 4.9, reviews: 87, badgeType: 'BESTSELLER' },
-        11: { rating: 4.8, reviews: 42, badgeType: 'TRENDING' },
-        12: { rating: 4.9, reviews: 14, badgeType: 'NONE' }
+stats: {
+        1: { rating: 4.8, reviews: 112, badgeType: 'BESTSELLER', meta: "Level: Beginner • Ecom Blueprint" }, 
+        2: { rating: 4.8, reviews: 41, badgeType: 'NONE', meta: "Level: Intermediate • Agency SOPs" },
+        3: { rating: 4.7, reviews: 28, badgeType: 'NONE', meta: "Level: All Levels • Copy Frameworks" },
+        4: { rating: 4.7, reviews: 19, badgeType: 'NONE', meta: "Level: Advanced • Technical Charts" },       
+        5: { rating: 4.8, reviews: 67, badgeType: 'TRENDING', meta: "Level: Beginner • Faceless System" },   
+        6: { rating: 4.7, reviews: 24, badgeType: 'NONE', meta: "Level: Intermediate • FBA Logistics" },
+        7: { rating: 4.7, reviews: 14, badgeType: 'NONE', meta: "Level: Advanced • Closing Scripts" },       
+        8: { rating: 4.8, reviews: 52, badgeType: 'NONE', meta: "Level: Beginner • Social Growth" },       
+        9: { rating: 4.9, reviews: 11, badgeType: 'ELITE_PICK', meta: "Level: Advanced • Community Engine" }, 
+        10: { rating: 4.9, reviews: 87, badgeType: 'BESTSELLER', meta: "Level: Intermediate • AI Workflows" },
+        11: { rating: 4.8, reviews: 42, badgeType: 'TRENDING', meta: "Level: All Levels • MRR/PLR System" },
+        12: { rating: 4.9, reviews: 14, badgeType: 'NONE', meta: "Level: Advanced • No-Code SaaS" }
     },
 
     init() {
@@ -564,14 +564,9 @@ const CourseLibrary = {
                 </div>
                 <div class="card-content">
                     <h3 class="card-title" style="margin-bottom:5px; font-size: 1.25rem;">${course.title}</h3>
-                    
-                    <div style="font-size: 0.8rem; color: #FBBF24; margin-bottom: 12px; display: flex; align-items: center; gap: 5px;">
-                        <div style="display:flex; gap:2px;">
-                            ${starsHtml}
-                        </div>
-                        <span style="color: var(--text-muted); font-weight: 600; margin-left: 4px;">
-                            ${stats.rating} (${stats.reviews} Ratings)
-                        </span>
+
+                    <div style="font-size: 0.75rem; color: #A78BFA; margin-bottom: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+                        <i class="fa-solid fa-layer-group" style="font-size: 0.8em;"></i> ${stats.meta}
                     </div>
 
                     <div style="font-size: 0.75rem; color: #10B981; margin-bottom: 10px; font-weight:700; display:flex; align-items:center; gap:6px;">
@@ -635,7 +630,7 @@ const Constellation = {
         if (!this.canvas) return;
 
         // Don't run on mobile for performance
-        if (utils.isMobile()) return;
+        // if (utils.isMobile()) return;
 
         this.ctx = this.canvas.getContext('2d');
         this.resize();
@@ -656,15 +651,16 @@ const Constellation = {
 
     createParticles() {
         this.particles = [];
-        const particleCount = utils.isMobile() ? 15 : 40;
+        // Dla telefonów dajemy np. 12 punktów, dla komputera 40
+        const particleCount = utils.isMobile() ? 12 : 40;
 
         for (let i = 0; i < particleCount; i++) {
             this.particles.push({
                 x: Math.random() * this.canvas.width,
                 y: Math.random() * this.canvas.height,
-                vx: (Math.random() - 0.5) * 0.5,
-                vy: (Math.random() - 0.5) * 0.5,
-                size: Math.random() * 2
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4,
+                size: Math.random() * 1.5 + 0.5
             });
         }
     },
