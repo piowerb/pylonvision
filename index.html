@@ -1827,6 +1827,20 @@
 
 <!-- Partners Modal -->
 <div id="partners-modal" class="modal-overlay">
+    <style>
+        #partners-modal .infra-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* 1 kolumna na telefonie (jeden pod drugim) */
+            gap: 14px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        @media (min-width: 768px) {
+            #partners-modal .infra-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 kolumny (układ 2x2) na PC */
+            }
+        }
+    </style>
     <div class="modal-content" style="max-width: 650px; width: 92% !important; margin: 0 auto; box-sizing: border-box;">
         <div class="modal-header" style="padding: 18px 24px;">
             <h2 style="margin: 0; font-size: 1.25rem;">Our Infrastructure</h2>
@@ -1834,8 +1848,8 @@
         </div>
         <div class="modal-body" style="text-align: center; padding: 25px 20px !important; overflow-x: hidden;">
             
-            <!-- Responsywna siatka (automatyczna kolumna na mobile, 2 kolumny na desktopie) -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; width: 100%; box-sizing: border-box;">
+            <!-- Siatka responsywna -->
+            <div class="infra-grid">
                 
                 <!-- 1. Systeme.io -->
                 <div style="background: rgba(124, 58, 237, 0.08); border: 1px solid rgba(124, 58, 237, 0.2); padding: 14px 16px; border-radius: 12px; display: flex; align-items: center; justify-content: flex-start; gap: 12px; text-align: left; box-sizing: border-box; min-width: 0;">
@@ -1870,36 +1884,14 @@
                     </div>
                 </div>
 
-                <!-- 4. Microsoft Azure -->
+                <!-- 4. GitHub -->
                 <div style="background: rgba(124, 58, 237, 0.08); border: 1px solid rgba(124, 58, 237, 0.2); padding: 14px 16px; border-radius: 12px; display: flex; align-items: center; justify-content: flex-start; gap: 12px; text-align: left; box-sizing: border-box; min-width: 0;">
                     <div style="width: 45px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                        <i class="fa-brands fa-microsoft" style="color: #ffffff; font-size: 1.3rem;"></i>
+                        <img src="https://cdn.simpleicons.org/github/ffffff" alt="GitHub" style="max-height: 18px; width: auto; object-fit: contain; display: block;">
                     </div>
                     <div style="flex-grow: 1; min-width: 0; overflow: hidden;">
-                        <div style="color: #fff; font-weight: 700; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">MS Azure</div>
-                        <div style="color: #A78BFA; font-size: 0.7rem; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Global Cloud Infrastructure</div>
-                    </div>
-                </div>
-
-                <!-- 5. AWS -->
-                <div style="background: rgba(124, 58, 237, 0.08); border: 1px solid rgba(124, 58, 237, 0.2); padding: 14px 16px; border-radius: 12px; display: flex; align-items: center; justify-content: flex-start; gap: 12px; text-align: left; box-sizing: border-box; min-width: 0;">
-                    <div style="width: 45px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                        <i class="fa-brands fa-aws" style="color: #ffffff; font-size: 1.3rem;"></i>
-                    </div>
-                    <div style="flex-grow: 1; min-width: 0; overflow: hidden;">
-                        <div style="color: #fff; font-weight: 700; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">AWS</div>
-                        <div style="color: #A78BFA; font-size: 0.7rem; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Enterprise Hosting & Storage</div>
-                    </div>
-                </div>
-
-                <!-- 6. Buffer -->
-                <div style="background: rgba(124, 58, 237, 0.08); border: 1px solid rgba(124, 58, 237, 0.2); padding: 14px 16px; border-radius: 12px; display: flex; align-items: center; justify-content: flex-start; gap: 12px; text-align: left; box-sizing: border-box; min-width: 0;">
-                    <div style="width: 45px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                        <img src="https://cdn.simpleicons.org/buffer/ffffff" alt="Buffer" style="max-height: 20px; width: auto; object-fit: contain; display: block;">
-                    </div>
-                    <div style="flex-grow: 1; min-width: 0; overflow: hidden;">
-                        <div style="color: #fff; font-weight: 700; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Buffer</div>
-                        <div style="color: #A78BFA; font-size: 0.7rem; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Social Media Automation</div>
+                        <div style="color: #fff; font-weight: 700; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">GitHub</div>
+                        <div style="color: #A78BFA; font-size: 0.7rem; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Frontend Hosting & Codebase</div>
                     </div>
                 </div>
 
