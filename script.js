@@ -549,7 +549,6 @@ stats: {
             const badgeHtml = this.getBadgeHTML(stats.badgeType);
             const starsHtml = this.getStarsHTML(stats.rating);
 
-            // Kafelki w samej bibliotece nadal kierują do kasy Stripe
             const card = document.createElement('a');
             card.href = "https://buy.stripe.com/7sY7sM0Ax0dVffB4fFgfu00"; 
             card.className = 'course-card';
@@ -557,10 +556,13 @@ stats: {
             card.style.textDecoration = 'none'; 
             card.style.color = 'inherit';
 
+            // Ustalamy priorytet: pierwsze 2 obrazki ładują się natychmiast, kolejne z opóźnieniem (lazy)
+            const loadingAttr = index < 2 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"';
+
             card.innerHTML = `
                 ${badgeHtml} 
                 <div class="card-image-wrapper">
-                    <img src="${course.image}" alt="${course.title}" width="340" height="240" class="card-image" loading="lazy">
+                    <img src="${course.image}" alt="${course.title}" width="340" height="240" class="card-image" ${loadingAttr}>
                 </div>
                 <div class="card-content">
                     <h3 class="card-title" style="margin-bottom:5px; font-size: 1.25rem;">${course.title}</h3>

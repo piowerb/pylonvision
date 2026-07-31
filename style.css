@@ -1789,7 +1789,7 @@ input[type=range]::-webkit-slider-runnable-track {
 }
 
 .footer-legal-links a {
-    color: #666;
+    color: #9CA3AF;
     font-size: 0.85rem;
     font-weight: 500;
     text-decoration: none;
@@ -1806,31 +1806,37 @@ input[type=range]::-webkit-slider-runnable-track {
     opacity: 0.5;
 }
 
-/* ========== 15. COOKIE BANNER ========== */
+/* ========== 15. COOKIE BANNER (Zoptymalizowany pod LCP) ========== */
 #cookie-banner {
     position: fixed;
     bottom: 30px;
     left: 50%;
-    transform: translate(-50%, 20px); /* Ustawiony na środku, lekko obniżony przed animacją */
+    transform: translate(-50%, 20px);
     background: rgba(10, 10, 14, 0.98);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(124, 58, 237, 0.4);
     border-radius: 16px;
-    padding: 30px; /* Więcej oddechu */
+    padding: 30px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 30px rgba(124, 58, 237, 0.15);
     z-index: 99999;
     width: 90%;
-    max-width: 600px; /* Znacznie szerszy niż poprzednie 360px */
-    display: none;
+    max-width: 600px;
+    
+    /* Zmiana z display:none na visibility i opacity dla optymalizacji LCP */
+    visibility: hidden;
     opacity: 0;
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                visibility 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #cookie-banner.show {
-    display: block;
-    transform: translate(-50%, 0); /* Wyjeżdża płynnie na pozycję wyjściową */
+    visibility: visible;
+    transform: translate(-50%, 0);
     opacity: 1;
+    pointer-events: auto;
 }
 
 .cookie-content h3 {
@@ -1859,16 +1865,16 @@ input[type=range]::-webkit-slider-runnable-track {
     #cookie-banner {
         bottom: 20px;
         padding: 24px;
-        width: calc(100% - 40px); /* Bezpieczny margines 20px po bokach */
+        width: calc(100% - 40px);
     }
     
     .cookie-actions {
-        flex-direction: column-reverse; /* Przycisk 'Decline' ląduje pod 'Accept All' */
+        flex-direction: column-reverse;
         gap: 10px;
     }
     
     .cookie-actions button {
-        width: 100%; /* Przyciski na całą szerokość */
+        width: 100%;
     }
 }
 
