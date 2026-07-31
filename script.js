@@ -1114,7 +1114,7 @@ setupCourses() {
                 
                 window.scrollTo({
                     top: topPos,
-                    behavior: 'smooth'
+                    behavior: 'auto'
                 });
             }
         };
@@ -1498,7 +1498,7 @@ window.smoothScrollTo = (element, offset = 0) => {
         const targetPosition = element.offsetTop - offset;
         window.scrollTo({
             top: targetPosition,
-            behavior: 'smooth'
+            behavior: 'auto' // <--- ZMIEŃ TUTAJ
         });
     }
 };
@@ -1607,7 +1607,7 @@ window.scrollToSpecificCourse = function(courseId) {
             // Gładki, osadzony scroll
             window.scrollTo({
                 top: offsetPosition,
-                behavior: 'smooth'
+                behavior: 'auto'
             });
             
             // --- EFEKT PODŚWIETLENIA ---
