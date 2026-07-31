@@ -648,7 +648,7 @@ button {
 }
 
 .dash-title {
-    color: #666;
+    color: #9CA3AF; /* Zamiast ciemnego #666 */
     font-size: clamp(0.6rem, 1.5vw, 0.8rem);
     font-family: var(--font-code);
     white-space: nowrap;
