@@ -3420,4 +3420,19 @@ html, body { width: 100%; overflow-x: clip !important; overscroll-behavior-x: no
 @media (min-width: 992px) { .steps-grid::before { content: ''; position: absolute; top: 60px; left: 10%; width: 80%; height: 2px; background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.3), transparent); z-index: 1; } }
 @media (max-width: 991px) { .steps-grid { grid-template-columns: 1fr; max-width: 450px; gap: 20px; } .step-card { padding: 30px 25px; } }
 
+/* --- GLOBALNA ZAMIANA INTER NA APPLE SYSTEM FONT --- */
+:root {
+    --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif !important;
+    --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Arial, sans-serif !important;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, select, .modal-header h2, .modal-body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Arial, sans-serif !important;
+}
+
+/* Ochrona czcionek kodowych w terminalach i logach */
+code, pre, .dash-log, .terminal-body, [style*="JetBrains Mono"] {
+    font-family: 'JetBrains Mono', 'Monaco', 'Consolas', monospace !important;
+}
+
 /* ========== END OF STYLES ========== */
