@@ -1806,7 +1806,7 @@ input[type=range]::-webkit-slider-runnable-track {
     opacity: 0.5;
 }
 
-/* ========== 15. COOKIE BANNER (Zoptymalizowany pod LCP) ========== */
+/* ========== 15. COOKIE BANNER (Naprawiony pod CLS / Performance) ========== */
 #cookie-banner {
     position: fixed;
     bottom: 30px;
@@ -1823,20 +1823,16 @@ input[type=range]::-webkit-slider-runnable-track {
     width: 90%;
     max-width: 600px;
     
-    /* Zmiana z display:none na visibility i opacity dla optymalizacji LCP */
-    visibility: hidden;
+    display: none;
     opacity: 0;
-    pointer-events: none;
     transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-                visibility 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #cookie-banner.show {
-    visibility: visible;
-    transform: translate(-50%, 0);
+    display: block;
     opacity: 1;
-    pointer-events: auto;
+    transform: translate(-50%, 0);
 }
 
 .cookie-content h3 {
@@ -1865,7 +1861,7 @@ input[type=range]::-webkit-slider-runnable-track {
     #cookie-banner {
         bottom: 20px;
         padding: 24px;
-        width: calc(100% - 40px);
+        width: calc(100% - 30px);
     }
     
     .cookie-actions {
