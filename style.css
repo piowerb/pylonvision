@@ -3468,4 +3468,11 @@ body.modal-open {
     overflow: hidden;
 }
 
+@media (max-width: 768px) {
+    .announcement-newline {
+        display: block;
+        margin-top: 2px;
+    }
+}
+
 /* ========== END OF STYLES ========== */

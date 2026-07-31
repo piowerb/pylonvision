@@ -556,8 +556,8 @@ stats: {
             card.style.textDecoration = 'none'; 
             card.style.color = 'inherit';
 
-            // Ustalamy priorytet: pierwsze 2 obrazki ładują się natychmiast, kolejne z opóźnieniem (lazy)
-            const loadingAttr = index < 2 ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"';
+            // Wszystkie obrazki ładowane są leniwie (lazy)
+            const loadingAttr = 'loading="lazy"';
 
             card.innerHTML = `
                 ${badgeHtml} 
