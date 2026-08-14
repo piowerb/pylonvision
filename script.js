@@ -323,7 +323,7 @@ const CookieBanner = {
         });
     },
 
-    // Dynamiczne wstrzykiwanie skryptu śledzącego
+// Dynamiczne wstrzykiwanie skryptu śledzącego
     loadGoogleAnalytics() {
         // Zabezpieczenie przed podwójnym wgraniem skryptu
         if (document.getElementById('ga-script')) return;
@@ -331,7 +331,7 @@ const CookieBanner = {
         const script1 = document.createElement('script');
         script1.id = 'ga-script';
         script1.async = true;
-        script1.src = 'https://www.googletagmanager.com/gtag/js?id=G-ESCD5MEEP1';
+        script1.src = 'https://www.googletagmanager.com/gtag/js?id=G-SMGYRPXE6Q';
         document.head.appendChild(script1);
 
         const script2 = document.createElement('script');
@@ -339,7 +339,7 @@ const CookieBanner = {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-ESCD5MEEP1');
+          gtag('config', 'G-SMGYRPXE6Q');
         `;
         document.head.appendChild(script2);
     }
