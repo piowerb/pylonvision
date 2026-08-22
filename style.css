@@ -1591,6 +1591,54 @@ input[type=range]::-webkit-slider-runnable-track {
 .sc-ig { color: #E1306C; --hover-bg: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
 .sc-pi { color: #E60023; --hover-bg: #E60023; }
 .sc-others { color: var(--primary-glow); --hover-bg: var(--primary); }
+.sc-tiktok { color: #ffffff; --hover-bg: #000000; }
+.sc-tiktok i { text-shadow: 2px 2px #ff0050, -2px -2px #00f2ea; }
+
+/* Prawdziwy, warstwowy efekt logo TikTok (Chromromatic Aberration) */
+.tiktok-icon-box {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+}
+
+.tiktok-icon-box i {
+    position: absolute;
+    font-size: 2.8rem;
+    transition: transform 0.3s ease;
+}
+
+/* Warstwa cyjanowa (przesunięta w lewo) */
+.tiktok-cyan {
+    color: #25F4EE;
+    transform: translate(-2px, 0);
+    mix-blend-mode: screen;
+    opacity: 0.85;
+}
+
+/* Warstwa różowo-czerwona (przesunięta w prawo) */
+.tiktok-magenta {
+    color: #FE2F52;
+    transform: translate(2px, 0);
+    mix-blend-mode: screen;
+    opacity: 0.85;
+}
+
+/* Główna biała warstwa na środku */
+.tiktok-white {
+    color: #FFFFFF;
+    z-index: 2;
+}
+
+/* Animacja po najechaniu myszką */
+.social-card.sc-tiktok:hover .tiktok-cyan {
+    transform: translate(-4px, 0);
+}
+.social-card.sc-tiktok:hover .tiktok-magenta {
+    transform: translate(4px, 0);
+}
 
 .soon-wrapper {
     position: relative;
