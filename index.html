@@ -42,6 +42,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.simpleicons.org" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     
     <!-- Google Fonts (Loaded asynchronously to prevent render-blocking) -->
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -55,11 +56,224 @@
     <link rel="stylesheet" href="style.css?v=7">
     
     <!-- Preload critical resources -->
-    <link rel="preload" href="images/main-logo-pylonvision.webp" as="image">
+    <link rel="preload" href="images/main-logo-nav-76.webp" as="image">
+
+    <!-- Structured Data (schema.org) — zbudowane wyłącznie z danych już obecnych na stronie -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "https://pylonvision.com/#organization",
+                "name": "PylonVision",
+                "legalName": "Cybernia Sp. z o.o.",
+                "url": "https://pylonvision.com/",
+                "logo": "https://pylonvision.com/images/main-logo-pylonvision.webp",
+                "image": "https://pylonvision.com/og-image.webp",
+                "description": "PylonVision is one platform that provides the easiest and fastest way to launch and scale your digital business using ready-to-deploy systems.",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "ul. Jana Heweliusza 11/811",
+                    "postalCode": "80-890",
+                    "addressLocality": "Gdańsk",
+                    "addressCountry": "PL"
+                },
+                "identifier": [
+                    { "@type": "PropertyValue", "name": "KRS", "value": "0001201007" },
+                    { "@type": "PropertyValue", "name": "NIP", "value": "PL5833550916" },
+                    { "@type": "PropertyValue", "name": "REGON", "value": "543035541" }
+                ],
+                "email": "contact@pylonvision.com",
+                "contactPoint": {
+                    "@type": "ContactPoint",
+                    "email": "contact@pylonvision.com",
+                    "contactType": "customer support"
+                },
+                "sameAs": [
+                    "https://www.tiktok.com/@pylonvision",
+                    "https://www.facebook.com/pylonvision",
+                    "https://instagram.com/pylon.vision",
+                    "https://www.pinterest.com/pylonvision/",
+                    "https://www.trustpilot.com/review/pylonvision.com",
+                    "https://medium.com/@pylonvision"
+                ]
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://pylonvision.com/#website",
+                "url": "https://pylonvision.com/",
+                "name": "PylonVision",
+                "publisher": { "@id": "https://pylonvision.com/#organization" }
+            },
+            {
+                "@type": "Product",
+                "@id": "https://pylonvision.com/#all-access-plan",
+                "name": "PylonVision ALL-ACCESS Plan",
+                "description": "Subscription giving full access to every PylonVision system: ready-to-deploy business automation, growth, e-commerce, and AI integration frameworks.",
+                "brand": { "@id": "https://pylonvision.com/#organization" },
+                "offers": {
+                    "@type": "Offer",
+                    "price": "49",
+                    "priceCurrency": "USD",
+                    "priceValidUntil": "2027-12-31",
+                    "availability": "https://schema.org/InStock",
+                    "url": "https://pylonvision.com/"
+                }
+            },
+            {
+                "@type": "Product",
+                "@id": "https://pylonvision.com/#course-10",
+                "name": "AI Automation Blueprint",
+                "description": "Discover how to leverage advanced AI agents to put your business on autopilot. Learn the exact prompts and workflows we use.",
+                "category": "AI & Automation",
+                "brand": { "@id": "https://pylonvision.com/#organization" },
+                "offers": { "@type": "Offer", "price": "69", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://pylonvision.com/#course-10" }
+            },
+            {
+                "@type": "Product",
+                "@id": "https://pylonvision.com/#course-11",
+                "name": "Dropcoursing Method",
+                "description": "Learn the secrets of selling digital products and MRR/PLR courses. Build a high-margin digital empire without inventory or shipping.",
+                "category": "Business",
+                "brand": { "@id": "https://pylonvision.com/#organization" },
+                "offers": { "@type": "Offer", "price": "49", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://pylonvision.com/#course-11" }
+            },
+            {
+                "@type": "Product",
+                "@id": "https://pylonvision.com/#course-12",
+                "name": "Micro-SaaS Developer",
+                "description": "Build and scale your own software-as-a-service using no-code tools. Create recurring revenue without writing a single line of code.",
+                "category": "AI & Automation",
+                "brand": { "@id": "https://pylonvision.com/#organization" },
+                "offers": { "@type": "Offer", "price": "149", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://pylonvision.com/#course-12" }
+            },
+            {
+                "@type": "Product",
+                "@id": "https://pylonvision.com/#course-5",
+                "name": "Faceless Influencer",
+                "description": "Learn how to run a YouTube channel without showing your face. We explain how to choose the right topics and create content efficiently.",
+                "category": "Social",
+                "brand": { "@id": "https://pylonvision.com/#organization" },
+                "offers": { "@type": "Offer", "price": "39", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://pylonvision.com/#course-5" }
+            },
+            {
+                "@type": "Product",
+                "@id": "https://pylonvision.com/#course-9",
+                "name": "The Founder Playbook",
+                "description": "Learn how to build a paid community around your brand. We guide you through the process of turning your knowledge into a subscription business.",
+                "category": "Business",
+                "brand": { "@id": "https://pylonvision.com/#organization" },
+                "offers": { "@type": "Offer", "price": "197", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://pylonvision.com/#course-9" }
+            },
+            {
+                "@type": "Product",
+                "@id": "https://pylonvision.com/#course-1",
+                "name": "E-Commerce Mastery",
+                "description": "Start your dropshipping journey with a solid plan. We teach you how to set up your store, find reliable suppliers, and choose products with potential.",
+                "category": "Business",
+                "brand": { "@id": "https://pylonvision.com/#organization" },
+                "offers": { "@type": "Offer", "price": "49", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://pylonvision.com/#course-1" }
+            },
+            {
+                "@type": "Product",
+                "@id": "https://pylonvision.com/#course-2",
+                "name": "Agency Architect",
+                "description": "Learn how to build organize and scale a marketing agency. We show you proven strategies to find clients and manage your projects.",
+                "category": "Business",
+                "brand": { "@id": "https://pylonvision.com/#organization" },
+                "offers": { "@type": "Offer", "price": "99", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://pylonvision.com/#course-2" }
+            },
+            {
+                "@type": "Product",
+                "@id": "https://pylonvision.com/#course-8",
+                "name": "Insta Money",
+                "description": "Learn strategies to grow on Social Media and engage your followers. We show you how to build an audience and the different ways to monetize your page.",
+                "category": "Social",
+                "brand": { "@id": "https://pylonvision.com/#organization" },
+                "offers": { "@type": "Offer", "price": "19", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://pylonvision.com/#course-8" }
+            },
+            {
+                "@type": "Product",
+                "@id": "https://pylonvision.com/#course-6",
+                "name": "Prime Dropshipping",
+                "description": "Learn how to sell on Amazon, the world's largest marketplace. We explain the FBA model and how to use Amazon's logistics.",
+                "category": "Business",
+                "brand": { "@id": "https://pylonvision.com/#organization" },
+                "offers": { "@type": "Offer", "price": "49", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://pylonvision.com/#course-6" }
+            },
+            {
+                "@type": "Product",
+                "@id": "https://pylonvision.com/#course-3",
+                "name": "Copywriter Secrets",
+                "description": "Discover how to write texts that persuades people to buy easily. You will learn the psychology behind sales and how to present your offers effectively.",
+                "category": "Business",
+                "brand": { "@id": "https://pylonvision.com/#organization" },
+                "offers": { "@type": "Offer", "price": "29", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://pylonvision.com/#course-3" }
+            },
+            {
+                "@type": "Product",
+                "@id": "https://pylonvision.com/#course-7",
+                "name": "Deal Closing Expert",
+                "description": "Improve your sales skills and learn how to close deals over the phone. We provide you with scripts and frameworks used by professional salespeople.",
+                "category": "Business",
+                "brand": { "@id": "https://pylonvision.com/#organization" },
+                "offers": { "@type": "Offer", "price": "99", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://pylonvision.com/#course-7" }
+            },
+            {
+                "@type": "Product",
+                "@id": "https://pylonvision.com/#course-4",
+                "name": "Market Strategy",
+                "description": "Learn the way of trading and technical analysis. We teach you how to read charts, manage risk, and think like a professional investor.",
+                "category": "Business",
+                "brand": { "@id": "https://pylonvision.com/#organization" },
+                "offers": { "@type": "Offer", "price": "79", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://pylonvision.com/#course-4" }
+            },
+            {
+                "@type": "FAQPage",
+                "@id": "https://pylonvision.com/#faq",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "Do I keep 100% of my profits, and is success guaranteed?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Yes, every dollar you make is yours — we don't take any commissions on your software deployments. However, PylonVision provides the operational frameworks; we cannot do the work for you. Building a profitable system takes effort, and we make no guarantees of specific income. Your results depend entirely on your dedication and execution."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Do I need coding skills or expensive software to start?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "No coding skills are required. We provide pre-configured templates and plug-and-play code environments. While we focus on leveraging free and low-cost tools to build your initial systems, scaling a real business may eventually require third-party subscriptions (like Shopify or AI APIs) which are separate from your PylonVision membership."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How quickly do I get access, and are materials updated?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "You get instant access. Right after your payment, you will receive a link to the full library. As AI and automation tools evolve, we continuously update our software engines to ensure you are always using the most efficient and profitable architectures available."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "How does the subscription work, and what is the refund policy?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "You can cancel your recurring membership at any time directly from your dashboard with no hidden fees. Because you get immediate access to proprietary digital content, blueprints, and software frameworks, all sales are final and no refunds are offered. Please be fully committed before purchasing."
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+    </script>
 </head>
 
 <body>
-    <div id="scroll-progress" style="position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: #8B5CF6; z-index: 9999; transition: width 0.1s ease;"></div>
+    <div id="scroll-progress" style="position: fixed; top: 0; left: 0; width: 100%; height: 3px; background: #8B5CF6; z-index: 9999; transform: scaleX(0); transform-origin: 0 0; transition: transform 0.1s ease;"></div>
 
 <div id="main-navigation-wrapper">
 
@@ -79,7 +293,7 @@
         <nav class="navbar">
             <div class="container nav-inner">
                 <a href="/" class="brand">
-                    <img src="images/main-logo-pylonvision.webp" alt="PylonVision Logo" width="150" height="38" class="nav-logo">
+                    <img src="images/main-logo-nav-76.webp" alt="PylonVision Logo" width="150" height="38" class="nav-logo">
                     PylonVision
                 </a>
 
@@ -509,6 +723,232 @@
             </div>
 
             <div id="courseGrid" class="courses-grid" style="scroll-margin-top: 100px;">
+                <!-- Karty modułów wpisane na stałe w HTML (identyczny wygląd jak generowany wcześniej przez JS) —
+                     dzięki temu crawlery/AI widzą tę treść od razu. script.js na starcie i tak czyści ten kontener
+                     i renderuje go od nowa (this.render(this.courses)) — dla realnych użytkowników z JS wygląd
+                     i zachowanie są w 100% takie same jak wcześniej, łącznie z odznakami i datą aktualizacji. -->
+                <a href="https://buy.stripe.com/7sY7sM0Ax0dVffB4fFgfu00" class="course-card" id="course-10" style="text-decoration: none; color: inherit;">
+                    <div class="bestseller-ribbon" style="background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%); text-shadow: 0 1px 2px rgba(0,0,0,0.3);"><i class="fa-solid fa-crown"></i> Bestseller</div>
+                    <div class="card-image-wrapper">
+                        <img src="images/image10.webp" srcset="images/image10-450.webp 450w, images/image10.webp 800w" sizes="(max-width: 640px) 100vw, 400px" alt="AI Automation Blueprint" width="340" height="240" class="card-image" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title" style="margin-bottom:5px; font-size: 1.25rem;">AI Automation Blueprint</h3>
+                        <div style="font-size: 0.75rem; color: #A78BFA; margin-bottom: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-layer-group" style="font-size: 0.8em;"></i> Level: Intermediate • AI Workflows
+                        </div>
+                        <div style="font-size: 0.75rem; color: #10B981; margin-bottom: 10px; font-weight:700; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-rotate" style="font-size: 0.8em;"></i> Updated for September 2026
+                        </div>
+                        <p class="card-desc">Discover how to leverage advanced AI agents to put your business on autopilot. Learn the exact prompts and workflows we use.</p>
+                        <div class="card-footer" style="padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); width: 100%;">
+                            <div class="btn-card" style="display: block; width: 100%; text-align: center; padding: 12px 0;">Get Access</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://buy.stripe.com/7sY7sM0Ax0dVffB4fFgfu00" class="course-card" id="course-11" style="text-decoration: none; color: inherit;">
+                    <div class="bestseller-ribbon" style="background: linear-gradient(135deg, #10B981, #059669);"><i class="fa-solid fa-arrow-trend-up"></i> Trending</div>
+                    <div class="card-image-wrapper">
+                        <img src="images/image11.webp" srcset="images/image11-450.webp 450w, images/image11.webp 800w" sizes="(max-width: 640px) 100vw, 400px" alt="Dropcoursing Method" width="340" height="240" class="card-image" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title" style="margin-bottom:5px; font-size: 1.25rem;">Dropcoursing Method</h3>
+                        <div style="font-size: 0.75rem; color: #A78BFA; margin-bottom: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-layer-group" style="font-size: 0.8em;"></i> Level: All Levels • MRR/PLR System
+                        </div>
+                        <div style="font-size: 0.75rem; color: #10B981; margin-bottom: 10px; font-weight:700; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-rotate" style="font-size: 0.8em;"></i> Updated for September 2026
+                        </div>
+                        <p class="card-desc">Learn the secrets of selling digital products and MRR/PLR courses. Build a high-margin digital empire without inventory or shipping.</p>
+                        <div class="card-footer" style="padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); width: 100%;">
+                            <div class="btn-card" style="display: block; width: 100%; text-align: center; padding: 12px 0;">Get Access</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://buy.stripe.com/7sY7sM0Ax0dVffB4fFgfu00" class="course-card" id="course-12" style="text-decoration: none; color: inherit;">
+                    <div class="bestseller-ribbon" style="background: linear-gradient(135deg, #8B5CF6, #D946EF);"><i class="fa-solid fa-crown"></i> Elite Pick</div>
+                    <div class="card-image-wrapper">
+                        <img src="images/image12.webp" srcset="images/image12-450.webp 450w, images/image12.webp 800w" sizes="(max-width: 640px) 100vw, 400px" alt="Micro-SaaS Developer" width="340" height="240" class="card-image" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title" style="margin-bottom:5px; font-size: 1.25rem;">Micro-SaaS Developer</h3>
+                        <div style="font-size: 0.75rem; color: #A78BFA; margin-bottom: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-layer-group" style="font-size: 0.8em;"></i> Level: Advanced • No-Code SaaS
+                        </div>
+                        <div style="font-size: 0.75rem; color: #10B981; margin-bottom: 10px; font-weight:700; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-rotate" style="font-size: 0.8em;"></i> Updated for September 2026
+                        </div>
+                        <p class="card-desc">Build and scale your own software-as-a-service using no-code tools. Create recurring revenue without writing a single line of code.</p>
+                        <div class="card-footer" style="padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); width: 100%;">
+                            <div class="btn-card" style="display: block; width: 100%; text-align: center; padding: 12px 0;">Get Access</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://buy.stripe.com/7sY7sM0Ax0dVffB4fFgfu00" class="course-card" id="course-5" style="text-decoration: none; color: inherit;">
+                    <div class="bestseller-ribbon" style="background: linear-gradient(135deg, #10B981, #059669);"><i class="fa-solid fa-arrow-trend-up"></i> Trending</div>
+                    <div class="card-image-wrapper">
+                        <img src="images/image5.webp" srcset="images/image5-450.webp 450w, images/image5.webp 800w" sizes="(max-width: 640px) 100vw, 400px" alt="Faceless Influencer" width="340" height="240" class="card-image" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title" style="margin-bottom:5px; font-size: 1.25rem;">Faceless Influencer</h3>
+                        <div style="font-size: 0.75rem; color: #A78BFA; margin-bottom: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-layer-group" style="font-size: 0.8em;"></i> Level: Beginner • Faceless System
+                        </div>
+                        <div style="font-size: 0.75rem; color: #10B981; margin-bottom: 10px; font-weight:700; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-rotate" style="font-size: 0.8em;"></i> Updated for September 2026
+                        </div>
+                        <p class="card-desc">Learn how to run a YouTube channel without showing your face. We explain how to choose the right topics and create content efficiently.</p>
+                        <div class="card-footer" style="padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); width: 100%;">
+                            <div class="btn-card" style="display: block; width: 100%; text-align: center; padding: 12px 0;">Get Access</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://buy.stripe.com/7sY7sM0Ax0dVffB4fFgfu00" class="course-card" id="course-9" style="text-decoration: none; color: inherit;">
+                    <div class="bestseller-ribbon" style="background: linear-gradient(135deg, #8B5CF6, #D946EF);"><i class="fa-solid fa-crown"></i> Elite Pick</div>
+                    <div class="card-image-wrapper">
+                        <img src="images/image9.webp" srcset="images/image9-450.webp 450w, images/image9.webp 800w" sizes="(max-width: 640px) 100vw, 400px" alt="The Founder Playbook" width="340" height="240" class="card-image" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title" style="margin-bottom:5px; font-size: 1.25rem;">The Founder Playbook</h3>
+                        <div style="font-size: 0.75rem; color: #A78BFA; margin-bottom: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-layer-group" style="font-size: 0.8em;"></i> Level: Advanced • Community Engine
+                        </div>
+                        <div style="font-size: 0.75rem; color: #10B981; margin-bottom: 10px; font-weight:700; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-rotate" style="font-size: 0.8em;"></i> Updated for September 2026
+                        </div>
+                        <p class="card-desc">Learn how to build a paid community around your brand. We guide you through the process of turning your knowledge into a subscription business.</p>
+                        <div class="card-footer" style="padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); width: 100%;">
+                            <div class="btn-card" style="display: block; width: 100%; text-align: center; padding: 12px 0;">Get Access</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://buy.stripe.com/7sY7sM0Ax0dVffB4fFgfu00" class="course-card" id="course-1" style="text-decoration: none; color: inherit;">
+                    <div class="bestseller-ribbon" style="background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%); text-shadow: 0 1px 2px rgba(0,0,0,0.3);"><i class="fa-solid fa-crown"></i> Bestseller</div>
+                    <div class="card-image-wrapper">
+                        <img src="images/image1.webp" srcset="images/image1-450.webp 450w, images/image1.webp 800w" sizes="(max-width: 640px) 100vw, 400px" alt="E-Commerce Mastery" width="340" height="240" class="card-image" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title" style="margin-bottom:5px; font-size: 1.25rem;">E-Commerce Mastery</h3>
+                        <div style="font-size: 0.75rem; color: #A78BFA; margin-bottom: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-layer-group" style="font-size: 0.8em;"></i> Level: Beginner • Ecom Blueprint
+                        </div>
+                        <div style="font-size: 0.75rem; color: #10B981; margin-bottom: 10px; font-weight:700; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-rotate" style="font-size: 0.8em;"></i> Updated for September 2026
+                        </div>
+                        <p class="card-desc">Start your dropshipping journey with a solid plan. We teach you how to set up your store, find reliable suppliers, and choose products with potential.</p>
+                        <div class="card-footer" style="padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); width: 100%;">
+                            <div class="btn-card" style="display: block; width: 100%; text-align: center; padding: 12px 0;">Get Access</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://buy.stripe.com/7sY7sM0Ax0dVffB4fFgfu00" class="course-card" id="course-2" style="text-decoration: none; color: inherit;">
+                    <div class="card-image-wrapper">
+                        <img src="images/image2.webp" srcset="images/image2-450.webp 450w, images/image2.webp 800w" sizes="(max-width: 640px) 100vw, 400px" alt="Agency Architect" width="340" height="240" class="card-image" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title" style="margin-bottom:5px; font-size: 1.25rem;">Agency Architect</h3>
+                        <div style="font-size: 0.75rem; color: #A78BFA; margin-bottom: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-layer-group" style="font-size: 0.8em;"></i> Level: Intermediate • Agency SOPs
+                        </div>
+                        <div style="font-size: 0.75rem; color: #10B981; margin-bottom: 10px; font-weight:700; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-rotate" style="font-size: 0.8em;"></i> Updated for September 2026
+                        </div>
+                        <p class="card-desc">Learn how to build organize and scale a marketing agency. We show you proven strategies to find clients and manage your projects.</p>
+                        <div class="card-footer" style="padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); width: 100%;">
+                            <div class="btn-card" style="display: block; width: 100%; text-align: center; padding: 12px 0;">Get Access</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://buy.stripe.com/7sY7sM0Ax0dVffB4fFgfu00" class="course-card" id="course-8" style="text-decoration: none; color: inherit;">
+                    <div class="card-image-wrapper">
+                        <img src="images/image8.webp" srcset="images/image8-450.webp 450w, images/image8.webp 800w" sizes="(max-width: 640px) 100vw, 400px" alt="Insta Money" width="340" height="240" class="card-image" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title" style="margin-bottom:5px; font-size: 1.25rem;">Insta Money</h3>
+                        <div style="font-size: 0.75rem; color: #A78BFA; margin-bottom: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-layer-group" style="font-size: 0.8em;"></i> Level: Beginner • Social Growth
+                        </div>
+                        <div style="font-size: 0.75rem; color: #10B981; margin-bottom: 10px; font-weight:700; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-rotate" style="font-size: 0.8em;"></i> Updated for September 2026
+                        </div>
+                        <p class="card-desc">Learn strategies to grow on Social Media and engage your followers. We show you how to build an audience and the different ways to monetize your page.</p>
+                        <div class="card-footer" style="padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); width: 100%;">
+                            <div class="btn-card" style="display: block; width: 100%; text-align: center; padding: 12px 0;">Get Access</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://buy.stripe.com/7sY7sM0Ax0dVffB4fFgfu00" class="course-card" id="course-6" style="text-decoration: none; color: inherit;">
+                    <div class="card-image-wrapper">
+                        <img src="images/image6.webp" srcset="images/image6-450.webp 450w, images/image6.webp 800w" sizes="(max-width: 640px) 100vw, 400px" alt="Prime Dropshipping" width="340" height="240" class="card-image" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title" style="margin-bottom:5px; font-size: 1.25rem;">Prime Dropshipping</h3>
+                        <div style="font-size: 0.75rem; color: #A78BFA; margin-bottom: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-layer-group" style="font-size: 0.8em;"></i> Level: Intermediate • FBA Logistics
+                        </div>
+                        <div style="font-size: 0.75rem; color: #10B981; margin-bottom: 10px; font-weight:700; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-rotate" style="font-size: 0.8em;"></i> Updated for September 2026
+                        </div>
+                        <p class="card-desc">Learn how to sell on Amazon, the world's largest marketplace. We explain the FBA model and how to use Amazon's logistics.</p>
+                        <div class="card-footer" style="padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); width: 100%;">
+                            <div class="btn-card" style="display: block; width: 100%; text-align: center; padding: 12px 0;">Get Access</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://buy.stripe.com/7sY7sM0Ax0dVffB4fFgfu00" class="course-card" id="course-3" style="text-decoration: none; color: inherit;">
+                    <div class="card-image-wrapper">
+                        <img src="images/image3.webp" srcset="images/image3-450.webp 450w, images/image3.webp 800w" sizes="(max-width: 640px) 100vw, 400px" alt="Copywriter Secrets" width="340" height="240" class="card-image" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title" style="margin-bottom:5px; font-size: 1.25rem;">Copywriter Secrets</h3>
+                        <div style="font-size: 0.75rem; color: #A78BFA; margin-bottom: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-layer-group" style="font-size: 0.8em;"></i> Level: All Levels • Copy Frameworks
+                        </div>
+                        <div style="font-size: 0.75rem; color: #10B981; margin-bottom: 10px; font-weight:700; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-rotate" style="font-size: 0.8em;"></i> Updated for September 2026
+                        </div>
+                        <p class="card-desc">Discover how to write texts that persuades people to buy easily. You will learn the psychology behind sales and how to present your offers effectively.</p>
+                        <div class="card-footer" style="padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); width: 100%;">
+                            <div class="btn-card" style="display: block; width: 100%; text-align: center; padding: 12px 0;">Get Access</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://buy.stripe.com/7sY7sM0Ax0dVffB4fFgfu00" class="course-card" id="course-7" style="text-decoration: none; color: inherit;">
+                    <div class="card-image-wrapper">
+                        <img src="images/image7.webp" srcset="images/image7-450.webp 450w, images/image7.webp 800w" sizes="(max-width: 640px) 100vw, 400px" alt="Deal Closing Expert" width="340" height="240" class="card-image" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title" style="margin-bottom:5px; font-size: 1.25rem;">Deal Closing Expert</h3>
+                        <div style="font-size: 0.75rem; color: #A78BFA; margin-bottom: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-layer-group" style="font-size: 0.8em;"></i> Level: Advanced • Closing Scripts
+                        </div>
+                        <div style="font-size: 0.75rem; color: #10B981; margin-bottom: 10px; font-weight:700; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-rotate" style="font-size: 0.8em;"></i> Updated for September 2026
+                        </div>
+                        <p class="card-desc">Improve your sales skills and learn how to close deals over the phone. We provide you with scripts and frameworks used by professional salespeople.</p>
+                        <div class="card-footer" style="padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); width: 100%;">
+                            <div class="btn-card" style="display: block; width: 100%; text-align: center; padding: 12px 0;">Get Access</div>
+                        </div>
+                    </div>
+                </a>
+                <a href="https://buy.stripe.com/7sY7sM0Ax0dVffB4fFgfu00" class="course-card" id="course-4" style="text-decoration: none; color: inherit;">
+                    <div class="card-image-wrapper">
+                        <img src="images/image4.webp" srcset="images/image4-450.webp 450w, images/image4.webp 800w" sizes="(max-width: 640px) 100vw, 400px" alt="Market Strategy" width="340" height="240" class="card-image" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title" style="margin-bottom:5px; font-size: 1.25rem;">Market Strategy</h3>
+                        <div style="font-size: 0.75rem; color: #A78BFA; margin-bottom: 12px; font-weight: 600; display: flex; align-items: center; gap: 6px;">
+                            <i class="fa-solid fa-layer-group" style="font-size: 0.8em;"></i> Level: Advanced • Technical Charts
+                        </div>
+                        <div style="font-size: 0.75rem; color: #10B981; margin-bottom: 10px; font-weight:700; display:flex; align-items:center; gap:6px;">
+                            <i class="fa-solid fa-rotate" style="font-size: 0.8em;"></i> Updated for September 2026
+                        </div>
+                        <p class="card-desc">Learn the way of trading and technical analysis. We teach you how to read charts, manage risk, and think like a professional investor.</p>
+                        <div class="card-footer" style="padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); width: 100%;">
+                            <div class="btn-card" style="display: block; width: 100%; text-align: center; padding: 12px 0;">Get Access</div>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
@@ -1058,7 +1498,7 @@
             </div>
 
             <div style="display: inline-block;">
-                <a href="#" class="email-protector" data-user="contact" data-domain="pylonvision.com" style="text-decoration: none;">
+                <a href="mailto:contact@pylonvision.com" class="email-protector" data-user="contact" data-domain="pylonvision.com" style="text-decoration: none;">
                     <div style="
                         display: flex; 
                         align-items: center; 
@@ -1072,7 +1512,7 @@
                     " onmouseover="this.style.background='rgba(124, 58, 237, 0.2)'; this.style.borderColor='rgba(124, 58, 237, 0.6)'" onmouseout="this.style.background='rgba(124, 58, 237, 0.1)'; this.style.borderColor='rgba(124, 58, 237, 0.3)'">
 
                         <i class="fa-solid fa-envelope" style="color: #10B981; margin-right: 10px; font-size: 1rem;"></i>
-                        <span class="email-text" style="color: #fff; font-weight: 600; font-size: 1rem;">Loading...</span>
+                        <span class="email-text" style="color: #fff; font-weight: 600; font-size: 1rem;">contact@pylonvision.com</span>
                     </div>
                 </a>
             </div>
@@ -1208,7 +1648,7 @@
                 </div>
             </div>
 
-            <p class="effective-date"><strong>Effective Date:</strong> <span class="dynamic-date">Loading...</span><br><strong>Last Updated:</strong> <span class="dynamic-date">Loading...</span></p>
+            <p class="effective-date"><strong>Effective Date:</strong> <span class="dynamic-date">July 12, 2026</span><br><strong>Last Updated:</strong> <span class="dynamic-date">July 12, 2026</span></p>
 
             <hr style="border: 0; border-top: 1px solid #374151; margin: 25px 0;">
 
@@ -1610,7 +2050,7 @@
                 </div>
                 <!-- KONIEC BLOKU -->
 
-                <p class="effective-date">Last Updated: <span class="dynamic-date">Loading...</span></p>
+                <p class="effective-date">Last Updated: <span class="dynamic-date">July 12, 2026</span></p>
                 <hr style="border: 0; border-top: 1px solid #374151; margin: 25px 0;">
 
                 <p style="font-size: 0.9rem; color: #9CA3AF; margin-bottom: 30px;">

@@ -4,6 +4,32 @@
 ======================================== */
 
 /* ========== 1. CSS RESET & CUSTOM PROPERTIES ========== */
+
+/* Font Awesome ships without font-display:swap on its @font-face rules;
+   redeclaring it here (same CDN URLs, no extra download) lets text render
+   with a fallback glyph instead of staying invisible while the icon font loads. */
+@font-face {
+    font-family: 'Font Awesome 6 Free';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/webfonts/fa-regular-400.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Font Awesome 6 Free';
+    font-style: normal;
+    font-weight: 900;
+    font-display: swap;
+    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/webfonts/fa-solid-900.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Font Awesome 6 Brands';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/webfonts/fa-brands-400.woff2') format('woff2');
+}
+
 :root {
     /* Colors - Dark Theme */
     --primary: #7C3AED;
@@ -935,7 +961,7 @@ button {
     padding: 12px;
     display: flex;
     flex-direction: column;
-    transition: all 0.4s var(--ease-elastic);
+    transition: opacity 0.4s var(--ease-elastic), transform 0.4s var(--ease-elastic), box-shadow 0.4s var(--ease-elastic), border-color 0.4s var(--ease-elastic);
     position: relative;
     box-shadow: 0 10px 30px -15px rgba(0,0,0,0.5);
 }
@@ -1345,13 +1371,13 @@ button {
     stroke-linejoin: round;
     stroke-dasharray: 1000;
     stroke-dashoffset: 1000;
-    animation: drawPath 4s ease-out forwards infinite;
+    animation: drawPath 4s ease-out forwards;
 }
 
 .ai-graph-fill {
     fill: rgba(124, 58, 237, 0.1);
     opacity: 0;
-    animation: fadeInFill 2s ease-out 1.5s forwards infinite;
+    animation: fadeInFill 2s ease-out 1.5s forwards;
 }
 
 .ai-graph-dot {
@@ -1360,7 +1386,7 @@ button {
     opacity: 0;
     /* Dodany punkt środkowy skalowania (zgodny z koordynatami kropki z HTML) */
     transform-origin: 350px 20px; 
-    animation: fadeInDot 0.5s ease-out 3s forwards infinite, pulseDot 2s infinite;
+    animation: fadeInDot 0.5s ease-out 3s forwards, pulseDot 2s infinite 3.5s;
 }
 
 @keyframes drawPath {
@@ -2926,8 +2952,8 @@ input[type=range]::-webkit-slider-runnable-track {
 .faq-question i { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; }
 .faq-item { transition: background-color 0.25s ease-out, border-color 0.25s ease-out !important; }
 
-.star-anim { animation: star-wave-effect 3s infinite ease-in-out; will-change: transform, filter; }
-@keyframes star-wave-effect { 0%, 30%, 100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 0 rgba(251, 191, 36, 0)); color: #FBBF24; } 15% { transform: translateY(-2px) scale(1.15); filter: drop-shadow(0 0 6px rgba(251, 191, 36, 0.8)); color: #FFF3C4; } }
+.star-anim { animation: star-wave-effect 3s infinite ease-in-out; will-change: transform, opacity; }
+@keyframes star-wave-effect { 0%, 30%, 100% { transform: translateY(0) scale(1); opacity: 0.85; } 15% { transform: translateY(-2px) scale(1.15); opacity: 1; } }
 
 .btn-lock-hover { gap: 8px !important; }
 .btn-lock-hover .lock-wrapper { display: inline-grid !important; place-items: center !important; width: 16px !important; height: 16px !important; }

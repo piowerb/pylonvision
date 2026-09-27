@@ -144,10 +144,21 @@ document.addEventListener('DOMContentLoaded', () => {
     MegaMenu.init();
     EmailProtection.init();
     ScrollReveal.init();
-    Constellation.init();
-    Ticker.init();
     Countdown.init();
     TouchOptimizations.init();
+
+    // Purely decorative, non-critical — deferred so their layout cost (canvas resize,
+    // DOM node cloning) doesn't compete with the initial paint. Same end result, just
+    // scheduled a beat later.
+    const deferInit = (fn) => {
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(fn, { timeout: 1000 });
+        } else {
+            setTimeout(fn, 200);
+        }
+    };
+    deferInit(() => Constellation.init());
+    deferInit(() => Ticker.init());
 });
 
 // ========== 3. MOBILE MENU MODULE ==========
@@ -301,11 +312,13 @@ const CookieBanner = {
         if (utils.storage.get('pylon_cookie_consent') === 'accepted') {
             this.loadGoogleAnalytics();
         } 
-        // W przeciwnym razie (brak wyboru), po sekundzie pokazujemy baner
+        // W przeciwnym razie (brak wyboru), pokazujemy baner (skrócone z 1000ms —
+        // ten element był wskazywany przez PageSpeed jako kandydat LCP, a sztuczne
+        // opóźnienie niepotrzebnie wydłużało czas jego wyrenderowania)
         else if (!utils.storage.get('pylon_cookie_consent')) {
             setTimeout(() => {
                 this.banner.classList.add('show');
-            }, 1000);
+            }, 300);
         }
 
         // Akceptacja ciasteczek
@@ -359,8 +372,8 @@ const NavbarScroll = {
 
             // Update scroll progress
             if (this.progress && totalHeight > 0) {
-                const percent = Math.min((scrollPos / totalHeight * 100), 100);
-                this.progress.style.width = `${percent}%`;
+                const percent = Math.min((scrollPos / totalHeight), 1);
+                this.progress.style.transform = `scaleX(${percent})`;
             }
 
             // Add scrolled class to navbar
@@ -562,7 +575,7 @@ stats: {
             card.innerHTML = `
                 ${badgeHtml} 
                 <div class="card-image-wrapper">
-                    <img src="${course.image}" alt="${course.title}" width="340" height="240" class="card-image" ${loadingAttr}>
+                    <img src="${course.image}" srcset="${course.image.replace('.webp', '-450.webp')} 450w, ${course.image} 800w" sizes="(max-width: 640px) 100vw, 400px" alt="${course.title}" width="340" height="240" class="card-image" ${loadingAttr}>
                 </div>
                 <div class="card-content">
                     <h3 class="card-title" style="margin-bottom:5px; font-size: 1.25rem;">${course.title}</h3>
@@ -874,12 +887,25 @@ const ScrollReveal = {
 
         // Bento card mouse effect (desktop only)
         if (!utils.isMobile()) {
-            utils.queryAll('.bento-card').forEach(card => {
+            const bentoCards = utils.queryAll('.bento-card');
+            let bentoRects = [];
+
+            const updateBentoRects = () => {
+                bentoRects = Array.from(bentoCards).map(card => card.getBoundingClientRect());
+            };
+            updateBentoRects();
+            window.addEventListener('resize', utils.debounce(updateBentoRects, 200));
+            window.addEventListener('scroll', utils.throttle(updateBentoRects, 100), { passive: true });
+
+            bentoCards.forEach((card, i) => {
                 card.addEventListener('mousemove', (e) => {
-                    const rect = card.getBoundingClientRect();
-                    card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-                    card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
-                });
+                    const rect = bentoRects[i];
+                    if (!rect) return;
+                    requestAnimationFrame(() => {
+                        card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+                        card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+                    });
+                }, { passive: true });
             });
         }
     }
