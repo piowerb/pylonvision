@@ -1,0 +1,11 @@
+# Ignoruj ustawienia VS Code (żeby nie narzucać ich innym współtwórcom)
+.vscode/
+
+# Ignoruj pliki systemowe macOS
+.DS_Store
+
+# Ignoruj pliki środowiskowe z hasłami
+.env
+
+# Ignoruj folder z zależnościami
+node_modules/
