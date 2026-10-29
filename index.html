@@ -27,14 +27,14 @@
     <meta property="og:url" content="https://pylonvision.com/">
     <meta property="og:title" content="PylonVision | Automation & Growth Systems">
     <meta property="og:description" content="PylonVision is one platform that provides the easiest and fastest way to launch and scale your digital business using ready-to-deploy systems.">
-    <meta property="og:image" content="https://pylonvision.com/og-image.webp">
+    <meta property="og:image" content="https://pylonvision.com/images/og-image.webp">
 
     <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://pylonvision.com/">
     <meta name="twitter:title" content="PylonVision | Automation & Growth Systems">
     <meta name="twitter:description" content="PylonVision is one platform that provides the easiest and fastest way to launch and scale your digital business using ready-to-deploy systems.">
-    <meta name="twitter:image" content="https://pylonvision.com/og-image.webp">
+    <meta name="twitter:image" content="https://pylonvision.com/images/og-image.webp">
 
     <link rel="icon" type="image/png" href="images/main-logo-pylonvision.webp">
 
@@ -55,6 +55,25 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="style.css?v=8">
+
+    <!-- Opening /#privacy or /#terms (e.g. from a course page): show the document straight away instead of flashing the hero first -->
+    <script>
+        (function () {
+            var h = location.hash;
+            if (h !== '#privacy' && h !== '#terms') return;
+            var root = document.documentElement;
+            root.classList.add('legal-boot', 'legal-boot-' + h.slice(1));
+            var done = function () { root.classList.remove('legal-boot', 'legal-boot-privacy', 'legal-boot-terms'); };
+            window.addEventListener('load', done);
+            setTimeout(done, 4000); // safety net
+        })();
+    </script>
+    <style>
+        html.legal-boot { background: #050507; }
+        html.legal-boot body { visibility: hidden; overflow: hidden; }
+        html.legal-boot-privacy #privacy-modal,
+        html.legal-boot-terms #terms-modal { display: flex; visibility: visible; }
+    </style>
     
     <!-- Preload critical resources -->
     <link rel="preload" href="images/main-logo-nav-76.webp" as="image">
@@ -71,7 +90,7 @@
                 "legalName": "Cybernia Sp. z o.o.",
                 "url": "https://pylonvision.com/",
                 "logo": "https://pylonvision.com/images/main-logo-pylonvision.webp",
-                "image": "https://pylonvision.com/og-image.webp",
+                "image": "https://pylonvision.com/images/og-image.webp",
                 "description": "PylonVision is one platform that provides the easiest and fastest way to launch and scale your digital business using ready-to-deploy systems.",
                 "address": {
                     "@type": "PostalAddress",
@@ -81,15 +100,34 @@
                     "addressCountry": "PL"
                 },
                 "identifier": [
-                    { "@type": "PropertyValue", "name": "KRS", "value": "0001201007" },
-                    { "@type": "PropertyValue", "name": "NIP", "value": "PL5833550916" },
-                    { "@type": "PropertyValue", "name": "REGON", "value": "543035541" }
+                    {
+                        "@type": "PropertyValue",
+                        "name": "KRS",
+                        "value": "0001201007"
+                    },
+                    {
+                        "@type": "PropertyValue",
+                        "name": "NIP",
+                        "value": "PL5833550916"
+                    },
+                    {
+                        "@type": "PropertyValue",
+                        "name": "REGON",
+                        "value": "543035541"
+                    }
                 ],
                 "email": "contact@pylonvision.com",
                 "contactPoint": {
                     "@type": "ContactPoint",
                     "email": "contact@pylonvision.com",
                     "contactType": "customer support"
+                },
+                "hasMerchantReturnPolicy": {
+                    "@type": "MerchantReturnPolicy",
+                    "@id": "https://pylonvision.com/#return-policy",
+                    "applicableCountry": ["PL", "US", "GB", "DE", "FR", "ES", "IT", "NL", "IE", "CA", "AU"],
+                    "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+                    "merchantReturnLink": "https://pylonvision.com/#terms"
                 },
                 "sameAs": [
                     "https://www.tiktok.com/@pylonvision",
@@ -105,130 +143,114 @@
                 "@id": "https://pylonvision.com/#website",
                 "url": "https://pylonvision.com/",
                 "name": "PylonVision",
-                "publisher": { "@id": "https://pylonvision.com/#organization" }
+                "publisher": {
+                    "@id": "https://pylonvision.com/#organization"
+                }
             },
             {
                 "@type": "Product",
                 "@id": "https://pylonvision.com/#all-access-plan",
                 "name": "PylonVision ALL-ACCESS Plan",
                 "description": "Subscription giving full access to every PylonVision system: ready-to-deploy business automation, growth, e-commerce, and AI integration frameworks.",
-                "brand": { "@id": "https://pylonvision.com/#organization" },
+                "brand": {
+                    "@type": "Brand",
+                    "name": "PylonVision"
+                },
                 "offers": {
                     "@type": "Offer",
                     "price": "49",
                     "priceCurrency": "USD",
                     "priceValidUntil": "2027-12-31",
                     "availability": "https://schema.org/InStock",
-                    "url": "https://pylonvision.com/"
-                }
+                    "url": "https://pylonvision.com/",
+                    "hasMerchantReturnPolicy": {
+                        "@type": "MerchantReturnPolicy",
+                        "applicableCountry": ["PL", "US", "GB", "DE", "FR", "ES", "IT", "NL", "IE", "CA", "AU"],
+                        "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+                        "merchantReturnLink": "https://pylonvision.com/#terms"
+                    }
+                },
+                "image": "https://pylonvision.com/images/og-image.webp"
             },
             {
-                "@type": "Product",
-                "@id": "https://pylonvision.com/#course-10",
-                "name": "AI Automation Blueprint",
-                "description": "Discover how to leverage advanced AI agents to put your business on autopilot. Learn the exact prompts and workflows we use.",
-                "category": "AI & Automation",
-                "brand": { "@id": "https://pylonvision.com/#organization" },
-                "offers": { "@type": "Offer", "price": "69", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://pylonvision.com/#course-10" }
-            },
-            {
-                "@type": "Product",
-                "@id": "https://pylonvision.com/#course-11",
-                "name": "Dropcoursing Method",
-                "description": "Learn the secrets of selling digital products and MRR/PLR courses. Build a high-margin digital empire without inventory or shipping.",
-                "category": "Business",
-                "brand": { "@id": "https://pylonvision.com/#organization" },
-                "offers": { "@type": "Offer", "price": "49", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://pylonvision.com/#course-11" }
-            },
-            {
-                "@type": "Product",
-                "@id": "https://pylonvision.com/#course-12",
-                "name": "Micro-SaaS Developer",
-                "description": "Build and scale your own software-as-a-service using no-code tools. Create recurring revenue without writing a single line of code.",
-                "category": "AI & Automation",
-                "brand": { "@id": "https://pylonvision.com/#organization" },
-                "offers": { "@type": "Offer", "price": "149", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://pylonvision.com/#course-12" }
-            },
-            {
-                "@type": "Product",
-                "@id": "https://pylonvision.com/#course-5",
-                "name": "Faceless Influencer",
-                "description": "Learn how to run a YouTube channel without showing your face. We explain how to choose the right topics and create content efficiently.",
-                "category": "Social",
-                "brand": { "@id": "https://pylonvision.com/#organization" },
-                "offers": { "@type": "Offer", "price": "39", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://pylonvision.com/#course-5" }
-            },
-            {
-                "@type": "Product",
-                "@id": "https://pylonvision.com/#course-9",
-                "name": "The Founder Playbook",
-                "description": "Learn how to build a paid community around your brand. We guide you through the process of turning your knowledge into a subscription business.",
-                "category": "Business",
-                "brand": { "@id": "https://pylonvision.com/#organization" },
-                "offers": { "@type": "Offer", "price": "197", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://pylonvision.com/#course-9" }
-            },
-            {
-                "@type": "Product",
-                "@id": "https://pylonvision.com/#course-1",
-                "name": "E-Commerce Mastery",
-                "description": "Start your dropshipping journey with a solid plan. We teach you how to set up your store, find reliable suppliers, and choose products with potential.",
-                "category": "Business",
-                "brand": { "@id": "https://pylonvision.com/#organization" },
-                "offers": { "@type": "Offer", "price": "49", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://pylonvision.com/#course-1" }
-            },
-            {
-                "@type": "Product",
-                "@id": "https://pylonvision.com/#course-2",
-                "name": "Agency Architect",
-                "description": "Learn how to build organize and scale a marketing agency. We show you proven strategies to find clients and manage your projects.",
-                "category": "Business",
-                "brand": { "@id": "https://pylonvision.com/#organization" },
-                "offers": { "@type": "Offer", "price": "99", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://pylonvision.com/#course-2" }
-            },
-            {
-                "@type": "Product",
-                "@id": "https://pylonvision.com/#course-8",
-                "name": "Insta Money",
-                "description": "Learn strategies to grow on Social Media and engage your followers. We show you how to build an audience and the different ways to monetize your page.",
-                "category": "Social",
-                "brand": { "@id": "https://pylonvision.com/#organization" },
-                "offers": { "@type": "Offer", "price": "19", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://pylonvision.com/#course-8" }
-            },
-            {
-                "@type": "Product",
-                "@id": "https://pylonvision.com/#course-6",
-                "name": "Prime Dropshipping",
-                "description": "Learn how to sell on Amazon, the world's largest marketplace. We explain the FBA model and how to use Amazon's logistics.",
-                "category": "Business",
-                "brand": { "@id": "https://pylonvision.com/#organization" },
-                "offers": { "@type": "Offer", "price": "49", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://pylonvision.com/#course-6" }
-            },
-            {
-                "@type": "Product",
-                "@id": "https://pylonvision.com/#course-3",
-                "name": "Copywriter Secrets",
-                "description": "Discover how to write texts that persuades people to buy easily. You will learn the psychology behind sales and how to present your offers effectively.",
-                "category": "Business",
-                "brand": { "@id": "https://pylonvision.com/#organization" },
-                "offers": { "@type": "Offer", "price": "29", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://pylonvision.com/#course-3" }
-            },
-            {
-                "@type": "Product",
-                "@id": "https://pylonvision.com/#course-7",
-                "name": "Deal Closing Expert",
-                "description": "Improve your sales skills and learn how to close deals over the phone. We provide you with scripts and frameworks used by professional salespeople.",
-                "category": "Business",
-                "brand": { "@id": "https://pylonvision.com/#organization" },
-                "offers": { "@type": "Offer", "price": "99", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://pylonvision.com/#course-7" }
-            },
-            {
-                "@type": "Product",
-                "@id": "https://pylonvision.com/#course-4",
-                "name": "Market Strategy",
-                "description": "Learn the way of trading and technical analysis. We teach you how to read charts, manage risk, and think like a professional investor.",
-                "category": "Business",
-                "brand": { "@id": "https://pylonvision.com/#organization" },
-                "offers": { "@type": "Offer", "price": "79", "priceCurrency": "USD", "availability": "https://schema.org/InStock", "url": "https://pylonvision.com/#course-4" }
+                "@type": "ItemList",
+                "@id": "https://pylonvision.com/#systems",
+                "name": "PylonVision systems (included in ALL-ACCESS)",
+                "numberOfItems": 12,
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "AI Automation Blueprint",
+                        "url": "https://pylonvision.com/courses/ai-automation-blueprint.html"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Dropcoursing Method",
+                        "url": "https://pylonvision.com/courses/dropcoursing-method.html"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": "Micro-SaaS Developer",
+                        "url": "https://pylonvision.com/courses/micro-saas-developer.html"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 4,
+                        "name": "Faceless Influencer",
+                        "url": "https://pylonvision.com/courses/faceless-influencer.html"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 5,
+                        "name": "The Founder Playbook",
+                        "url": "https://pylonvision.com/courses/the-founder-playbook.html"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 6,
+                        "name": "E-Commerce Mastery",
+                        "url": "https://pylonvision.com/courses/e-commerce-mastery.html"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 7,
+                        "name": "Agency Architect",
+                        "url": "https://pylonvision.com/courses/agency-architect.html"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 8,
+                        "name": "Insta Money",
+                        "url": "https://pylonvision.com/courses/insta-money.html"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 9,
+                        "name": "Prime Dropshipping",
+                        "url": "https://pylonvision.com/courses/prime-dropshipping.html"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 10,
+                        "name": "Copywriter Secrets",
+                        "url": "https://pylonvision.com/courses/copywriter-secrets.html"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 11,
+                        "name": "Deal Closing Expert",
+                        "url": "https://pylonvision.com/courses/deal-closing-expert.html"
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 12,
+                        "name": "Market Strategy",
+                        "url": "https://pylonvision.com/courses/market-strategy.html"
+                    }
+                ]
             },
             {
                 "@type": "FAQPage",
@@ -2374,12 +2396,16 @@
             };
         });
 
-        // Automatyczne otwarcie przy wejściu z hashem w adresie
-        if (window.location.hash === '#privacy' && window.openPrivacyModal) {
+        // Automatyczne otwarcie przy wejściu z hashem w adresie.
+        // script.js may already have removed the hash from the URL by now, so the class set in <head> is checked too.
+        const root = document.documentElement;
+        if ((window.location.hash === '#privacy' || root.classList.contains('legal-boot-privacy')) && window.openPrivacyModal) {
             window.openPrivacyModal();
-        } else if (window.location.hash === '#terms' && window.openTermsModal) {
+        } else if ((window.location.hash === '#terms' || root.classList.contains('legal-boot-terms')) && window.openTermsModal) {
             window.openTermsModal();
         }
+        // The modal is open now, so the page underneath can be shown again
+        root.classList.remove('legal-boot', 'legal-boot-privacy', 'legal-boot-terms');
     });
 
     // Zamykanie modalów po kliknięciu w puste, czarne tło (overlay)
