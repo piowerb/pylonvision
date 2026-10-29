@@ -1060,11 +1060,20 @@ setupCourses() {
         ];
 
         // ZMIENIONE: Zamiast tagu "a href" (który kierował do płatności), przywróciłem użycie funkcji scrollToSpecificCourse do zjeżdżania
+        // Each tile links to the system's own page (real links also help Google show sitelinks)
+        const pages = {
+            1: ["e-commerce-mastery", "E-Commerce Mastery"], 2: ["agency-architect", "Agency Architect"],
+            3: ["copywriter-secrets", "Copywriter Secrets"], 4: ["market-strategy", "Market Strategy"],
+            5: ["faceless-influencer", "Faceless Influencer"], 6: ["prime-dropshipping", "Prime Dropshipping"],
+            7: ["deal-closing-expert", "Deal Closing Expert"], 8: ["insta-money", "Insta Money"],
+            9: ["the-founder-playbook", "The Founder Playbook"], 10: ["ai-automation-blueprint", "AI Automation Blueprint"],
+            11: ["dropcoursing-method", "Dropcoursing Method"], 12: ["micro-saas-developer", "Micro-SaaS Developer"]
+        };
         this.grid.innerHTML = courses.map(c => `
-            <div class="mega-item" onclick="window.scrollToSpecificCourse(${c.id})" style="cursor: pointer;">
-                <div class="mega-img-wrap"><img src="${c.img}" alt="${c.title}" width="180" height="106" loading="lazy"></div>
+            <a class="mega-item" href="courses/${pages[c.id][0]}.html" style="display: block; text-decoration: none; color: inherit;">
+                <div class="mega-img-wrap"><img src="${c.img}" alt="${pages[c.id][1]}" width="180" height="106" loading="lazy"></div>
                 <span>${c.title}</span>
-            </div>
+            </a>
         `).join('');
     },
 
