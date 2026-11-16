@@ -332,12 +332,33 @@ const CookieBanner = {
         this.declineBtn?.addEventListener('click', () => {
             utils.storage.set('pylon_cookie_consent', 'declined');
             this.banner.classList.remove('show');
-            // Strona działa dalej, ale żadne skrypty śledzące nie zostaną załadowane
+            this.disableGoogleAnalytics(); // wycofanie zgody wyłącza GA i usuwa jego ciasteczka
         });
+
+        // Link "Cookie Settings" w stopce: ponowne pokazanie banera
+        window.openCookieSettings = () => {
+            this.banner.classList.add('show');
+        };
+    },
+
+    disableGoogleAnalytics() {
+        window['ga-disable-G-SMGYRPXE6Q'] = true;
+        try {
+            const host = location.hostname.replace(/^www\./, '');
+            document.cookie.split(';').forEach(c => {
+                const name = c.split('=')[0].trim();
+                if (name === '_ga' || name.startsWith('_ga_') || name === '_gid') {
+                    ['', '; domain=' + host, '; domain=.' + host].forEach(d => {
+                        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + d;
+                    });
+                }
+            });
+        } catch (e) {}
     },
 
 // Dynamiczne wstrzykiwanie skryptu śledzącego
     loadGoogleAnalytics() {
+        window['ga-disable-G-SMGYRPXE6Q'] = false;
         // Zabezpieczenie przed podwójnym wgraniem skryptu
         if (document.getElementById('ga-script')) return;
 
@@ -459,7 +480,7 @@ const CourseLibrary = {
         { id: 6, title: "Prime Dropshipping", category: "business", price: "$49", image: "images/image6.webp", detailUrl: "courses/prime-dropshipping/", desc: "Sell on Amazon, the world's largest marketplace. The FBA model and Amazon's logistics, broken down into a system you can follow.", url: "#" },
         { id: 3, title: "Copywriter Secrets", category: "business", price: "$29", image: "images/image3.webp", detailUrl: "courses/copywriter-secrets/", desc: "Write copy that makes people want to buy. Plug-in persuasion frameworks to present your offers so they sell.", url: "#" },
         { id: 7, title: "Deal Closing Expert", category: "business", price: "$99", image: "images/image7.webp", detailUrl: "courses/deal-closing-expert/", desc: "Close more deals over the phone. Get the scripts and frameworks professional salespeople use, ready for your next call.", url: "#" },
-        { id: 4, title: "Market Strategy", category: "business", price: "$79", image: "images/image4.webp", detailUrl: "courses/market-strategy/", desc: "Read charts, manage risk and trade with a clear plan. Technical analysis frameworks and the mindset of a professional trader.", url: "#" }
+        { id: 4, title: "Market Strategy", category: "business", price: "$79", image: "images/image4.webp", detailUrl: "courses/market-strategy/", desc: "Read charts, manage risk and trade with a clear plan. Technical analysis frameworks and the mindset of a professional trader. Trading carries a high risk of loss.", url: "#" }
     ],
 
 stats: {
@@ -585,7 +606,7 @@ stats: {
                     </div>
 
                     <div style="font-size: 0.75rem; color: #10B981; margin-bottom: 10px; font-weight:700; display:flex; align-items:center; gap:6px;">
-                        <i class="fa-solid fa-rotate" style="font-size: 0.8em;"></i> Updated for ${currentDate}
+                        <i class="fa-solid fa-unlock" style="font-size: 0.8em;"></i> Included in ALL-ACCESS
                     </div>
 
                     <p class="card-desc">${course.desc}</p>
@@ -613,7 +634,7 @@ stats: {
     getBadgeHTML(type) {
         const badges = {
             'USER_FAV': '<div class="bestseller-ribbon" style="background: linear-gradient(135deg, #e5e7eb 0%, #9ca3af 50%, #d1d5db 100%); color: #111827;"><i class="fa-solid fa-gem" style="margin-right: 4px;"></i> LIMITED DROP</div>',
-            'BESTSELLER': '<div class="bestseller-ribbon" style="background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%); text-shadow: 0 1px 2px rgba(0,0,0,0.3);"><i class="fa-solid fa-crown"></i> Bestseller</div>',
+            'BESTSELLER': '<div class="bestseller-ribbon" style="background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%); text-shadow: 0 1px 2px rgba(0,0,0,0.3);"><i class="fa-solid fa-flag-checkered"></i> Start Here</div>',
             'ELITE_PICK': '<div class="bestseller-ribbon" style="background: linear-gradient(135deg, #8B5CF6, #D946EF);"><i class="fa-solid fa-crown"></i> Elite Pick</div>',
             'TRENDING': '<div class="bestseller-ribbon" style="background: linear-gradient(135deg, #10B981, #059669);"><i class="fa-solid fa-arrow-trend-up"></i> Trending</div>',
             'TOP_RATED': '<div class="bestseller-ribbon" style="background: linear-gradient(135deg, #6366f1, #4f46e5);"><i class="fa-solid fa-star"></i> Top Rated</div>'
@@ -1252,8 +1273,7 @@ const EmailProtection = {
             }
         });
 
-        // Update effective dates
-        this.updateEffectiveDates();
+        // Effective dates of legal documents are fixed in the HTML (no automatic changes).
     },
 
 updateEffectiveDates() {
